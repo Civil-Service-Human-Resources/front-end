@@ -1,0 +1,35 @@
+{% extends 'layouts/library.layout.njk' %}
+
+{% set pageTitle = 'MOT Library - Ajax Browse' %}
+
+{% block content %}
+
+  {{ components.heading(text='Ajax Browse', tag='h2', size='medium') }}
+
+  {% call components.displayCode() %}
+  <div class="ajax-browse">
+
+    <div class="ajax-browse__block">
+      <ul class="ajax-browse__list">
+        <li class="ajax-browse__item">
+          <a href="#" class="ajax-browse__link">
+            Benefits
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    {# <div class="ajax-browse__block">
+      <ul class="ajax-browse__list">
+        <li class="ajax-browse__item">
+          <a href="#" class="ajax-browse__link">
+            Benefits
+          </a>
+        </li>
+      </ul>
+    </div> #}
+
+  </div>
+  {%- endcall %}
+
+{% endblock %}

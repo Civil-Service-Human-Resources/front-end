@@ -1,0 +1,25 @@
+.ajax-browse {
+
+  &__block {
+
+  }
+
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__item {
+
+  }
+
+  &__link {
+    display: block;
+    padding: 10px;
+    &:hover {
+      background: $grey-1;
+    }
+  }
+
+}
