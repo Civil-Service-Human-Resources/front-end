@@ -33,14 +33,15 @@
     .ajax-browse--two-blocks & {
       width: 40%;
       &--inactive {
+        z-index: 1;
         .ajax-browse__link {
           opacity: 0.3;
           border: none;
         }
-        z-index: 1;
         &:hover {
           width: 60%;
           z-index: 5;
+          box-shadow: 0px 2px 20px transparentize($color: black, $amount: 0.9);
           .ajax-browse__link {
             opacity: 1;
           }
@@ -50,6 +51,7 @@
             white-space: nowrap;
             overflow: hidden;
             z-index: 1;
+            box-shadow: none;
             .ajax-browse__link {
               opacity: 0.3;
               &:after {
@@ -65,6 +67,7 @@
         z-index: 5;
         white-space: nowrap;
         overflow: hidden;
+        box-shadow: 0px 2px 20px transparentize($color: black, $amount: 0.9);
       }
     }
 
@@ -88,6 +91,7 @@
         }
         &:nth-child(2) {
           margin-left: -11%;
+          box-shadow: 0px 2px 20px transparentize($color: black, $amount: 0.9);
           .ajax-browse__link {
             opacity: 0.35;
           }
@@ -96,6 +100,7 @@
         &:hover {
           width: 60%;
           z-index: 10;
+          box-shadow: 0px 2px 20px transparentize($color: black, $amount: 0.9);
           .ajax-browse__link {
             opacity: 1;
           }
@@ -105,6 +110,7 @@
           & ~ .ajax-browse__block--active {
             width: 25%;
             z-index: 1;
+            box-shadow: none;
             .ajax-browse__link {
               opacity: 0.3;
             }
@@ -115,6 +121,7 @@
         margin-left: -11%;
         width: 71%;
         z-index: 10;
+        box-shadow: 0px 2px 20px transparentize($color: black, $amount: 0.9);
       }
     }
 
