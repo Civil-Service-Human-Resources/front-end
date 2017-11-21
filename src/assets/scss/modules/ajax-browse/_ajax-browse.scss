@@ -1,7 +1,201 @@
 .ajax-browse {
 
-  &__block {
+  white-space: nowrap;
+  overflow-x: hidden;
 
+  &, * {
+    box-sizing: border-box;
+  }
+
+  &:after {
+    content: ' ';
+    display: block;
+    clear: both;
+  }
+
+  &__block {
+    float: left;
+    width: 100%;
+    background: white;
+    position: relative;
+    border-left: 1px solid $grey-3;
+    transition: width 0.3s ease-in-out;
+    &--inactive {
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .ajax-browse--one-block & {
+      &--active {
+        border: none;
+      }
+    }
+    .ajax-browse--two-blocks & {
+      width: 40%;
+      &--inactive {
+        .ajax-browse__link {
+          opacity: 0.3;
+        }
+        z-index: 1;
+        border: none;
+        &:hover {
+          width: 60%;
+          z-index: 5;
+          .ajax-browse__link {
+            opacity: 1;
+          }
+          & ~ .ajax-browse__block--active {
+            width: 50%;
+            padding-left: 12%;
+            white-space: nowrap;
+            overflow: hidden;
+            z-index: 1;
+            .ajax-browse__link {
+              opacity: 0.3;
+            }
+          }
+        }
+      }
+      &--active {
+        margin-left: -11%;
+        width: 71%;
+        z-index: 5;
+      }
+    }
+
+    .ajax-browse--three-blocks & {
+      width: 25%;
+      &--inactive {
+        &:nth-child(1) {
+          .ajax-browse__link {
+            opacity: 0.2;
+          }
+          z-index: 1;
+          border: none;
+        }
+        &:nth-child(2) {
+          margin-left: -11%;
+          .ajax-browse__link {
+            opacity: 0.35;
+          }
+          z-index: 5;
+        }
+        &:hover {
+          width: 60%;
+          z-index: 10;
+          .ajax-browse__link {
+            opacity: 1;
+          }
+          & ~ .ajax-browse__block {
+            padding-left: 12%;
+          }
+          & ~ .ajax-browse__block--active {
+            width: 25%;
+            white-space: nowrap;
+            overflow: hidden;
+            z-index: 1;
+            .ajax-browse__link {
+              opacity: 0.3;
+            }
+          }
+        }
+      }
+      &--active {
+        margin-left: -11%;
+        width: 71%;
+        z-index: 10;
+      }
+    }
+
+    .ajax-browse--four-blocks & {
+      width: 20%;
+      &--inactive {
+        &:nth-child(1) {
+          .ajax-browse__link {
+            opacity: 0.2;
+          }
+          z-index: 1;
+          border: none;
+        }
+        &:nth-child(2) {
+          margin-left: -11%;
+          .ajax-browse__link {
+            opacity: 0.3;
+          }
+          z-index: 5;
+        }
+        &:nth-child(3) {
+          margin-left: -11%;
+          .ajax-browse__link {
+            opacity: 0.4;
+          }
+          z-index: 10;
+        }
+        &:hover {
+          width: 60%;
+          z-index: 15;
+          .ajax-browse__link {
+            opacity: 1;
+          }
+          & ~ .ajax-browse__block {
+            padding-left: 12%;
+          }
+          & ~ .ajax-browse__block--active {
+            width: 20%;
+            padding-left: 12%;
+            white-space: nowrap;
+            overflow: hidden;
+            z-index: 1;
+            .ajax-browse__link {
+              opacity: 0.3;
+            }
+          }
+        }
+      }
+      &--active {
+        margin-left: -11%;
+        width: 71%;
+        z-index: 15;
+      }
+    }
+
+    .ajax-browse--five-blocks & {
+      width: 18%;
+      &--inactive {
+        &:nth-child(1) {
+          .ajax-browse__link {
+            opacity: 0.2;
+          }
+          z-index: 1;
+          border: none;
+        }
+        &:nth-child(2) {
+          margin-left: -11%;
+          .ajax-browse__link {
+            opacity: 0.3;
+          }
+          z-index: 5;
+        }
+        &:nth-child(3) {
+          margin-left: -11%;
+          .ajax-browse__link {
+            opacity: 0.4;
+          }
+          z-index: 10;
+        }
+        &:nth-child(4) {
+          margin-left: -11%;
+          .ajax-browse__link {
+            opacity: 0.5;
+          }
+          z-index: 15;
+        }
+      }
+      &--active {
+        margin-left: -11%;
+        width: 71%;
+        z-index: 20;
+      }
+    }
   }
 
   &__list {
@@ -17,8 +211,21 @@
   &__link {
     display: block;
     padding: 10px;
+    position: relative;
+    background: white;
+    &:after {
+      content: ' ';
+      display: block;
+      background-image: url('../images/separator.png');
+      width: 6px;
+      height: 11px;
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+    }
     &:hover {
-      background: $grey-1;
+      background: $grey-5;
     }
   }
 
