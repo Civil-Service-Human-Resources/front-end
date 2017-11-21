@@ -18,8 +18,7 @@
     width: 100%;
     background: white;
     position: relative;
-    border-left: 1px solid $grey-3;
-    transition: width 0.3s ease-in-out;
+    transition: width 0.15s ease-in-out;
     &--inactive {
       white-space: nowrap;
       overflow: hidden;
@@ -45,12 +44,15 @@
           }
           & ~ .ajax-browse__block--active {
             width: 50%;
-            padding-left: 12%;
+            padding-left: 11%;
             white-space: nowrap;
             overflow: hidden;
             z-index: 1;
             .ajax-browse__link {
               opacity: 0.3;
+              &:after {
+                display: none;
+              }
             }
           }
         }
@@ -71,6 +73,14 @@
           }
           z-index: 1;
           border: none;
+          &:hover {
+            & + .ajax-browse__block {
+              z-index: 5;
+            }
+            & ~ .ajax-browse__block--active {
+              z-index: 1;
+            }
+          }
         }
         &:nth-child(2) {
           margin-left: -11%;
@@ -86,7 +96,7 @@
             opacity: 1;
           }
           & ~ .ajax-browse__block {
-            padding-left: 12%;
+            padding-left: 11%;
           }
           & ~ .ajax-browse__block--active {
             width: 25%;
@@ -213,6 +223,7 @@
     padding: 10px;
     position: relative;
     background: white;
+    border-left: 1px solid $grey-3;
     &:after {
       content: ' ';
       display: block;
@@ -223,6 +234,12 @@
       top: 50%;
       right: 10px;
       transform: translateY(-50%);
+      .ajax-browse__block--inactive {
+        display: none;
+      }
+      .ajax-browse__block--inactive:hover & {
+        display: block;
+      }
     }
     &:hover {
       background: $grey-5;
