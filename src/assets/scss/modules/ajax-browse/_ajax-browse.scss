@@ -18,14 +18,16 @@
     width: 100%;
     background: white;
     position: relative;
-    transition: width 0.15s ease-in-out;
+    transition: all 0.15s ease-in-out;
     &--inactive {
       white-space: nowrap;
       overflow: hidden;
     }
     .ajax-browse--one-block & {
       &--active {
-        border: none;
+        .ajax-browse__link {
+          border: none;
+        }
       }
     }
     .ajax-browse--two-blocks & {
@@ -33,9 +35,9 @@
       &--inactive {
         .ajax-browse__link {
           opacity: 0.3;
+          border: none;
         }
         z-index: 1;
-        border: none;
         &:hover {
           width: 60%;
           z-index: 5;
@@ -43,8 +45,8 @@
             opacity: 1;
           }
           & ~ .ajax-browse__block--active {
-            width: 50%;
-            padding-left: 11%;
+            margin-left: -31%;
+            padding-left: 31%;
             white-space: nowrap;
             overflow: hidden;
             z-index: 1;
@@ -61,6 +63,8 @@
         margin-left: -11%;
         width: 71%;
         z-index: 5;
+        white-space: nowrap;
+        overflow: hidden;
       }
     }
 
@@ -68,11 +72,11 @@
       width: 25%;
       &--inactive {
         &:nth-child(1) {
+          z-index: 1;
           .ajax-browse__link {
             opacity: 0.2;
+            border: none;
           }
-          z-index: 1;
-          border: none;
           &:hover {
             & + .ajax-browse__block {
               z-index: 5;
@@ -100,8 +104,6 @@
           }
           & ~ .ajax-browse__block--active {
             width: 25%;
-            white-space: nowrap;
-            overflow: hidden;
             z-index: 1;
             .ajax-browse__link {
               opacity: 0.3;
@@ -120,11 +122,11 @@
       width: 20%;
       &--inactive {
         &:nth-child(1) {
+          z-index: 1;
           .ajax-browse__link {
             opacity: 0.2;
+            border: none;
           }
-          z-index: 1;
-          border: none;
         }
         &:nth-child(2) {
           margin-left: -11%;
@@ -172,11 +174,11 @@
       width: 18%;
       &--inactive {
         &:nth-child(1) {
+          z-index: 1;
           .ajax-browse__link {
             opacity: 0.2;
+            border: none;
           }
-          z-index: 1;
-          border: none;
         }
         &:nth-child(2) {
           margin-left: -11%;
