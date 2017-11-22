@@ -279,6 +279,15 @@
     &:hover {
       background: $grey-5;
     }
+    .ajax-browse__item--active & {
+      background: $govuk-blue;
+      &-heading {
+        color: white;
+      }
+      &-description {
+        color: transparentize($color: white, $amount: 0.3);
+      }
+    }
   }
 
 }
