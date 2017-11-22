@@ -8,25 +8,12 @@
 
   {{ components.paragraph(text='This component is still under development.', lead=true) }}
 
-  {% call components.displayCode() %}
-  <div class="ajax-browse ajax-browse--one-block">
-    {{ components.placeholderAjaxBrowse(active=true) }}
-  </div>
-  {%- endcall %}
+  {{ components.placeholderAjaxBrowse(activeItems=1, inactiveItems=0, modifier='one-block') }}
 
-  {% call components.displayCode() %}
-  <div class="ajax-browse ajax-browse--two-blocks">
-    {{ components.placeholderAjaxBrowse(active=false) }}
-    {{ components.placeholderAjaxBrowse(active=true) }}
-  </div>
-  {%- endcall %}
+  {{ components.placeholderAjaxBrowse(activeItems=1, inactiveItems=1, modifier='two-blocks') }}
 
-  {% call components.displayCode() %}
-  <div class="ajax-browse ajax-browse--three-blocks">
-    {{ components.placeholderAjaxBrowse(active=false) }}
-    {{ components.placeholderAjaxBrowse(active=false) }}
-    {{ components.placeholderAjaxBrowse(active=true) }}
-  </div>
-  {%- endcall %}
+  {{ components.placeholderAjaxBrowse(activeItems=1, inactiveItems=2, modifier='three-blocks') }}
+
+  {{ components.placeholderAjaxBrowse(activeItems=1, inactiveItems=3, modifier='four-blocks') }}
 
 {% endblock %}
