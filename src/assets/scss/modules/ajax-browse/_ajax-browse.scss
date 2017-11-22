@@ -46,6 +46,7 @@
     }
 
     .ajax-browse--two-blocks & {
+      width: 90%;
       &--inactive {
         z-index: 1;
         width: 90%;
@@ -83,8 +84,7 @@
         }
       }
       &--active {
-        margin-left: -70%;
-        width: 80%;
+        margin-left: -80%;
         z-index: 5;
       }
     }
@@ -96,7 +96,9 @@
           z-index: 1;
           .ajax-browse__link {
             opacity: 0.2;
-            border: none;
+          }
+          .ajax-browse__block-inner {
+            border-left-color: white;
           }
           &:hover {
             & + .ajax-browse__block {
@@ -143,6 +145,9 @@
       &--inactive {
         &:nth-child(1) {
           z-index: 1;
+          .ajax-browse__block-inner {
+            border-left-color: white;
+          }
           .ajax-browse__link {
             opacity: 0.2;
           }
