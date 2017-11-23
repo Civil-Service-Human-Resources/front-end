@@ -1,104 +1,138 @@
+import md5 from 'md5';
+import findIndex from 'lodash/findIndex';
 import { AJAX_BROWSE_CONSTANTS } from './constants';
-import { toggleClass, elHasClass } from './../../../shared';
+import { toggleClass, elHasClass, closestParentOfEl } from './../../../shared';
 
 export class AjaxBrowse {
-  
   constructor() {
-
-    // Get elements
     this.ajaxBrowse = document.querySelector('.' + AJAX_BROWSE_CONSTANTS.classNames.ajaxBrowse.base);
-    this.item = document.querySelector('.' + AJAX_BROWSE_CONSTANTS.classNames.item);
+
+    if (!this.ajaxBrowse) return;
 
     this.state = {
-      currentBlocks: []
+      size: 1,
+      loading: false,
+      blocks: [],
     };
 
     this.setup();
-
   }
 
+  /**
+   * Setup
+   * - Add event handlers
+   */
   setup = () => {
-    // Add events
-    $.delegate(document, 'click', '.' + AJAX_BROWSE_CONSTANTS.classNames.item, this.itemClickHandler);
+    this.refreshAllBlocksFromDOM();
 
-    // // Get the current number of items
-    // this.state.currentSize = this.ajaxBrowse.getAttribute('data-total-items') || 1;
-
-    // // Get active item element
-    this.state.curentActiveBlockElement = this.ajaxBrowse.querySelector('.' + AJAX_BROWSE_CONSTANTS.classNames.block.active);
-
-    // Get all items
-    let currentBlocks = this.ajaxBrowse.querySelectorAll('.' + AJAX_BROWSE_CONSTANTS.classNames.block.base);
-
-    if( !currentBlocks ) {
-      return console.warn('No blocks found inside of the ajax browse');
+    // Check if state has been setup
+    if (!this.state || !this.state.blocks || !this.state.size) {
+      return console.warn('State was not setup correctly, aborting.');
     }
 
-    // Get total items
-    this.state.currentSize = currentBlocks.length;
-    this.state.currentBlocks = currentBlocks;
+    this.addEventListeners();
+  };
 
-    // Refresh state
-    this.refreshState();
-  }
+  /**
+   * Gets all the blocks from the DOM
+   * and add it to the state for later use
+   */
+  refreshAllBlocksFromDOM = () => {
+    let blocksFromDOM = this.ajaxBrowse.querySelectorAll('.' + AJAX_BROWSE_CONSTANTS.classNames.block.base);
 
-  itemClickHandler = (event) => {
-    event.preventDefault();
-    // this.state.currentSize = 2;
-    let newItems = [
-      {
-        heading: 'Apprenticeships, 14 to 19 education and training for work',
-        description: 'Includes finding a course, finding an apprenticeship, 16 to 19 Bursary Fund',
-        url: '#',
-      },
-      {
-        heading: 'Apprenticeships, 14 to 19 education and training for work',
-        description: 'Includes finding a course, finding an apprenticeship, 16 to 19 Bursary Fund',
-        url: '#',
-      },
-      {
-        heading: 'Apprenticeships, 14 to 19 education and training for work',
-        description: 'Includes finding a course, finding an apprenticeship, 16 to 19 Bursary Fund',
-        url: '#',
-      },
-      {
-        heading: 'Apprenticeships, 14 to 19 education and training for work',
-        description: 'Includes finding a course, finding an apprenticeship, 16 to 19 Bursary Fund',
-        url: '#',
-      },
-      {
-        heading: 'Apprenticeships, 14 to 19 education and training for work',
-        description: 'Includes finding a course, finding an apprenticeship, 16 to 19 Bursary Fund',
-        url: '#',
+    // Check if any blocks exist
+    if (!blocksFromDOM) {
+      return console.warn('No blocks found inside ajax browse, aborting.');
+    }
+
+    // Convert HTML elements into an actual array
+    blocksFromDOM = Array.from(blocksFromDOM);
+
+    // Generate a hash for each element for later use
+    let blocksFiltered = blocksFromDOM.map((blockElement, blockIndex) => {
+      let blockHash = md5(blockElement.innerHTML);
+      // Get block index from state based on the hash
+      let stateBlockIndex = findIndex(this.state.blocks, { hash: blockHash });
+      // Check if block already exists in the state
+      if (stateBlockIndex === -1) {
+        // It doesn't exist,
+        // Get current items from DOM
+        let itemsFromDOM = blockElement.querySelectorAll('.' + AJAX_BROWSE_CONSTANTS.classNames.item);
+        if (!itemsFromDOM) {
+          return console.warn('Block found in DOM without any items, aborting.');
+        }
+        // Convert it into actual array
+        itemsFromDOM = Array.from(itemsFromDOM);
+        // Filter the items and create a hash for each one
+        let items = itemsFromDOM.map((itemElement, itemIndex) => {
+          // Create hash based on the html, current index, parent index and parent hash
+          let itemHash = md5('' + blockIndex + itemIndex + blockHash + itemElement.innerHTML);
+          // Add hash to dom element attribute
+          itemElement.setAttribute(AJAX_BROWSE_CONSTANTS.attributeNames.item.hash, itemHash);
+          // Add it to the items array
+          return {
+            hash: itemHash,
+            element: itemElement,
+          };
+        });
+        // Add new block form DOM
+        // to the state
+        return {
+          hash: blockHash,
+          element: blockElement,
+          items,
+        };
       }
-    ];
-    let itemsHTML = this.generateNewBlockHTML(newItems);
-    this.state.currentSize = 2;
-    this.resetAllStateBlocks();
-    let currentTotalItemsClassName = AJAX_BROWSE_CONSTANTS.classNames.ajaxBrowse.sizes[2];
-    if( currentTotalItemsClassName ) {
-      this.ajaxBrowse.setAttribute('class', AJAX_BROWSE_CONSTANTS.classNames.ajaxBrowse.base + ' ' + currentTotalItemsClassName);
+      // Add the current one from the state
+      return this.state.blocks[stateBlockIndex];
+    });
+
+    // Add all blocks to the state
+    this.state.blocks = blocksFiltered;
+    // Update state size based on number of blocks
+    this.state.size = blocksFiltered.length;
+
+    // Abort if size is higher than 6
+    if (this.state.size > 6) {
+      return console.warn('Ajax browse supports maximum 6 levels deep, aborting.');
     }
-    this.ajaxBrowse.innerHTML = this.ajaxBrowse.innerHTML + itemsHTML;
-    
-    console.log('test1');
-    // this.refreshState();
-    event.target.blur();
-  }
+  };
+
+  addEventListeners = () => {
+    // Add click event handlers for all items
+    $.delegate(this.ajaxBrowse, 'click', '.' + AJAX_BROWSE_CONSTANTS.classNames.item, this.itemClickHandler);
+  };
+
+  /**
+   * Item click handler
+   * - Fetches new list data
+   * - Adds new items to the dom
+   * - Updates state
+   * - Refreshes DOM based on state
+   */
+  itemClickHandler = event => {
+    // Prevent link from navigation user
+    event.preventDefault();
+    // Get the list item element, as the target may not be the correct element
+    let item = closestParentOfEl(event.target, '.' + AJAX_BROWSE_CONSTANTS.classNames.item);
+    // Check if element is found in DOM
+    if (!item) return;
+    console.log(item);
+  };
 
   generateNewBlockHTML = (items = false) => {
-    if( !items ) return;
+    if (!items) return;
     let itemsHTML = [];
     items.forEach(item => {
       let itemHeading, itemDescription;
-      if( item.heading ) {
+      if (item.heading) {
         itemHeading = `
         <span class="ajax-browse__link-heading">
           ${item.heading}
         </span>
         `;
       }
-      if( item.description ) {
+      if (item.description) {
         itemDescription = `
         <span class="ajax-browse__link-description">
           ${item.description}
@@ -125,52 +159,7 @@ export class AjaxBrowse {
     </div>
     `;
     return HTML;
-  }
-  
-  refreshState = () => {
+  };
 
-    // Check if current size state was changed
-    // if( !this._previousState || this.state.currentSize !== this._previousState.currentSize ) {
-      console.log('test');
-      // Replace class based on number of items
-      let blocks = this.ajaxBrowse.querySelectorAll('.' + AJAX_BROWSE_CONSTANTS.classNames.block.base);
-      let currentTotalItemsClassName = AJAX_BROWSE_CONSTANTS.classNames.ajaxBrowse.sizes[blocks.length];
-      if( currentTotalItemsClassName ) {
-        this.ajaxBrowse.setAttribute('class', AJAX_BROWSE_CONSTANTS.classNames.ajaxBrowse.base + ' ' + currentTotalItemsClassName);
-      }
-    // }
-
-    // Reset all blocks
-    this.resetAllStateBlocks();
-
-    this._previousState = this.state;
-
-  }
-
-  resetAllStateBlocks = () => {
-    // if( this.state.currentBlocks ) {
-      // Reset all blocks to normal
-      let blocks = this.ajaxBrowse.querySelectorAll('.' + AJAX_BROWSE_CONSTANTS.classNames.block.base);
-      blocks.forEach((block, index)=> {
-        if( index == blocks.length - 1 ) {
-          block.setAttribute('class', AJAX_BROWSE_CONSTANTS.classNames.block.base + ' ' + AJAX_BROWSE_CONSTANTS.classNames.block.active);
-        } else {
-          block.setAttribute('class', AJAX_BROWSE_CONSTANTS.classNames.block.base + ' ' + AJAX_BROWSE_CONSTANTS.classNames.block.inactive);
-        }
-        // toggleClass(block, AJAX_BROWSE_CONSTANTS.classNames.block.active, false);
-        // toggleClass(block, AJAX_BROWSE_CONSTANTS.classNames.block.hidden, false);
-      });
-      // for(let i = 0; i < this.state.currentBlocks.length; i++) {
-      //   this.state.currentBlocks[i].setAttribute('class', AJAX_BROWSE_CONSTANTS.classNames.block.base);
-      // }
-      // Make the last block item active
-      let lastBlockItem = blocks[blocks.length - 1];
-      toggleClass(lastBlockItem, AJAX_BROWSE_CONSTANTS.classNames.block.active, true);
-
-      lastBlockItem.focus();
-
-    // }
-  }
-
+  refreshState = () => {};
 }
-  

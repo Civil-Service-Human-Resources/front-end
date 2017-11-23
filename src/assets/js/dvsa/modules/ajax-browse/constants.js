@@ -6,8 +6,8 @@ export const AJAX_BROWSE_CONSTANTS = {
         1: 'ajax-browse--one-block',
         2: 'ajax-browse--two-blocks',
         3: 'ajax-browse--three-blocks',
-        4: 'ajax-browse--four-blocks'
-      }
+        4: 'ajax-browse--four-blocks',
+      },
     },
     block: {
       base: 'ajax-browse__block',
@@ -19,5 +19,10 @@ export const AJAX_BROWSE_CONSTANTS = {
     list: 'ajax-browse__list',
     item: 'ajax-browse__item',
     link: 'ajax-browse__link',
-  }
+  },
+  attributeNames: {
+    item: {
+      hash: 'data-item-hash',
+    },
+  },
 };

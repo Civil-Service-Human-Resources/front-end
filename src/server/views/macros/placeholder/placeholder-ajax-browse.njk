@@ -1,16 +1,21 @@
-{% macro placeholderAjaxBrowse(activeItems=1, inactiveItems=0, modifier='one-block') %}
-<div class="ajax-browse ajax-browse--{{ modifier }}" data-total-items="{{ activeItems + inactiveItems }}">
-  {% for i in range(0, inactiveItems) -%}
-    {{ placeholderAjaxBrowseItem(active=false) }}
-  {%- endfor %}
-  {% for i in range(0, activeItems) -%}
-    {{ placeholderAjaxBrowseItem(active=true) }}
-  {%- endfor %}
+{% macro placeholderAjaxBrowse(activeItems=1, inactiveItems=0, modifier='one-block', backButton=false, hoverEffect=true) %}
+<div class="ajax-browse {{ 'ajax-browse--hover-effect' if hoverEffect }} {{ 'ajax-browse--back-button' if backButton }} ajax-browse--{{ modifier }}" data-total-items="{{ activeItems + inactiveItems }}">
+  <div class="ajax-browse__back-wrapper">
+    <a class="ajax-browse__back-button button">Back</a>
+  </div>
+  <div class="ajax-browse__inner">
+    {% for i in range(0, inactiveItems) -%}
+      {{ placeholderAjaxBrowseItem() }}
+    {%- endfor %}
+    {% for i in range(0, activeItems) -%}
+      {{ placeholderAjaxBrowseItem(active=true) }}
+    {%- endfor %}
+  </div>
 </div>
 {% endmacro %}
 
 {% macro placeholderAjaxBrowseItem(active=false) %}
-<div class="ajax-browse__block ajax-browse__block--{{ 'active' if active else 'inactive' }}">
+<div class="ajax-browse__block">
   <div class="ajax-browse__block-inner">
     <ul class="ajax-browse__list">
       <li class="ajax-browse__item">
