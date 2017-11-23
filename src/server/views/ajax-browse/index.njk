@@ -1,0 +1,18 @@
+{% extends 'layouts/default.layout.njk' %}
+
+{% set pageTitle = 'DVSA - Ajax Browse' %}
+
+{% block content %}
+
+  {{ components.pageHeading(heading='Ajax Browse', secondary='DVSA Front-End') }}
+  {{ components.paragraph(text='This component is still under development.', lead=true) }}
+
+  <br class="clearfix">
+
+  {{ components.placeholderAjaxBrowse(activeItems=1, inactiveItems=5, modifier='six-blocks', backButton=false, hoverEffect=true) }}
+
+  <br class="clearfix">
+
+  {{ components.placeholderAjaxBrowse(activeItems=1, inactiveItems=5, modifier='six-blocks', backButton=true, hoverEffect=false) }}
+  
+{% endblock %}

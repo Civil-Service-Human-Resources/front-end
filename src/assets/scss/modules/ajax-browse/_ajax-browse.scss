@@ -1,8 +1,6 @@
 .ajax-browse {
 
-  overflow-x: hidden;
   position: relative;
-  white-space: nowrap;
 
   &, * {
     box-sizing: border-box;
@@ -14,249 +12,311 @@
     clear: both;
   }
 
-  &__block {
-    display: inline-block;
-    width: 100%;
-    background: white;
-    transition: all 0.15s ease-in-out;
-    vertical-align:top;
-    white-space: initial;
-    position: relative;
-    overflow-y: auto;
-    box-shadow: 0px 0px 500px transparentize($color: black, $amount: 0.7);
-
-    &:first-child {
-      box-shadow: none;
+  &__back-wrapper {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 50;
+    display: none;
+    .ajax-browse--back-button & {
+      display: block;
     }
-
-    // &--inactive {
-    //   .ajax-browse__link {
-    //     &:after {
-    //       display: none;
-    //     }
-    //   }
-    // }
-
-    &--hidden {
+    .ajax-browse--two-blocks.ajax-browse--back-button &, .ajax-browse--one-block.ajax-browse--back-button & {
       display: none;
     }
+  }
 
-    .ajax-browse--one-block & {
-      &--active {
-        .ajax-browse__block-inner {
-          border: none;
-        }
-      }
+  &__back-button {
+
+  }
+
+  &__inner {
+    overflow-x: hidden;
+    white-space: nowrap;
+  }
+
+  &__block {
+    display: inline-block;
+    vertical-align: top;
+    width: 40%;
+    background: white;
+    transition: all 0.15s ease-in-out;
+    position: relative;
+    white-space: initial;
+
+    &-inner {
+      border-left: 1px solid $grey-3;
+      min-height: 700px;
     }
 
-    z-index: 1;
-    width: 90%;
-    .ajax-browse__block-inner {
-      opacity: 0.3;
-      border-left: none;
-      border-right: 1px solid white;
-    }
-    & ~ .ajax-browse__block {
-      margin-left: -80%;
-    }
-    &:hover {
-      z-index: 5;
-      box-shadow: 0px 0 500px transparentize($color: black, $amount: 0.7);
+    &:first-child {
       .ajax-browse__block-inner {
-        opacity: 1;
-        border-right-color: $grey-3;
+        border-left-color: white;
       }
-      .ajax-browse__link {
-        &:after {
-          display: block;
-        }
-      }
-      & ~ .ajax-browse__block:last-child {
+    }
+
+    .ajax-browse--three-blocks & {
+      &:nth-child(1) {
         z-index: 1;
-        opacity: 0.3;
-        margin-left: 0;
-        box-shadow: none;
+      }
+      &:nth-child(2) {
+        z-index: 5;
+        margin-left: -20%;
         .ajax-browse__block-inner {
-          border-left-color: white;
+          opacity: 1;
         }
-        .ajax-browse__link {
-          &:after {
-            display: none;
+      }
+      &:last-child {
+        z-index: 10;
+      }
+    }
+
+    .ajax-browse--four-blocks & {
+      &:nth-child(1) {
+        z-index: 1;
+      }
+      &:nth-child(2) {
+        z-index: 5;
+        margin-left: -31%;
+      }
+      &:nth-child(3) {
+        z-index: 10;
+        margin-left: -31%;
+        .ajax-browse__block-inner {
+          opacity: 1;
+        }
+      }
+      &:last-child {
+        z-index: 15;
+      }
+    }
+
+    .ajax-browse--five-blocks & {
+      &:nth-child(1) {
+        z-index: 1;
+      }
+      &:nth-child(2) {
+        z-index: 5;
+        margin-left: -34%;
+      }
+      &:nth-child(3) {
+        z-index: 10;
+        margin-left: -34%;
+      }
+      &:nth-child(4) {
+        z-index: 15;
+        margin-left: -34%;
+      }
+      &:last-child {
+        z-index: 20;
+      }
+    }
+
+    .ajax-browse--six-blocks & {
+      &:nth-child(1) {
+        z-index: 1;
+      }
+      &:nth-child(2) {
+        z-index: 5;
+        margin-left: -36%;
+      }
+      &:nth-child(3) {
+        z-index: 10;
+        margin-left: -35%;
+      }
+      &:nth-child(4) {
+        z-index: 15;
+        margin-left: -35%;
+      }
+      &:nth-child(5) {
+        z-index: 15;
+        margin-left: -35%;
+      }
+      &:last-child {
+        z-index: 20;
+      }
+    }
+
+    .ajax-browse--three-blocks.ajax-browse--back-button & {
+      &:nth-child(1) {
+        .ajax-browse__block-inner {
+          opacity: 0.15;
+        }
+      }
+      &:nth-child(3) {
+        .ajax-browse__block-inner {
+          opacity: 1;
+        }
+      }
+    }
+
+    .ajax-browse--four-blocks.ajax-browse--back-button & {
+      &:nth-child(1) {
+        .ajax-browse__block-inner {
+          opacity: 0.1;
+        }
+      }
+      &:nth-child(2) {
+        .ajax-browse__block-inner {
+          opacity: 0.15;
+        }
+      }
+      &:nth-child(3) {
+        .ajax-browse__block-inner {
+          opacity: 1;
+        }
+      }
+    }
+
+    .ajax-browse--five-blocks.ajax-browse--back-button & {
+      &:nth-child(1) {
+        .ajax-browse__block-inner {
+          opacity: 0.1;
+        }
+      }
+      &:nth-child(2) {
+        .ajax-browse__block-inner {
+          opacity: 0.13;
+        }
+      }
+      &:nth-child(3) {
+        .ajax-browse__block-inner {
+          opacity: 0.15;
+        }
+      }
+      &:nth-child(4) {
+        .ajax-browse__block-inner {
+          opacity: 1;
+        }
+      }
+    }
+
+    .ajax-browse--six-blocks.ajax-browse--back-button & {
+      &:nth-child(1) {
+        .ajax-browse__block-inner {
+          opacity: 0.1;
+        }
+      }
+      &:nth-child(2) {
+        .ajax-browse__block-inner {
+          opacity: 0.12;
+        }
+      }
+      &:nth-child(3) {
+        .ajax-browse__block-inner {
+          opacity: 0.13;
+        }
+      }
+      &:nth-child(4) {
+        .ajax-browse__block-inner {
+          opacity: 0.15;
+        }
+      }
+      &:nth-child(5) {
+        .ajax-browse__block-inner {
+          opacity: 1;
+        }
+      }
+    }
+
+    .ajax-browse--three-blocks.ajax-browse--hover-effect & {
+      &:nth-child(1) {
+        .ajax-browse__block-inner {
+          opacity: 0.5;
+        }
+      }
+      &:nth-child(3) {
+        .ajax-browse__block-inner {
+          opacity: 1;
+        }
+      }
+    }
+
+    .ajax-browse--four-blocks.ajax-browse--hover-effect & {
+      &:nth-child(1) {
+        .ajax-browse__block-inner {
+          opacity: 0.3;
+        }
+      }
+      &:nth-child(2) {
+        .ajax-browse__block-inner {
+          opacity: 0.5;
+        }
+      }
+      &:nth-child(3) {
+        .ajax-browse__block-inner {
+          opacity: 1;
+        }
+      }
+    }
+
+    .ajax-browse--five-blocks.ajax-browse--hover-effect & {
+      &:nth-child(1) {
+        .ajax-browse__block-inner {
+          opacity: 0.15;
+        }
+      }
+      &:nth-child(2) {
+        .ajax-browse__block-inner {
+          opacity: 0.3;
+        }
+      }
+      &:nth-child(3) {
+        .ajax-browse__block-inner {
+          opacity: 0.5;
+        }
+      }
+      &:nth-child(4) {
+        .ajax-browse__block-inner {
+          opacity: 1;
+        }
+      }
+    }
+
+    .ajax-browse--six-blocks.ajax-browse--hover-effect & {
+      &:nth-child(1) {
+        .ajax-browse__block-inner {
+          opacity: 0.15;
+        }
+      }
+      &:nth-child(2) {
+        .ajax-browse__block-inner {
+          opacity: 0.2;
+        }
+      }
+      &:nth-child(3) {
+        .ajax-browse__block-inner {
+          opacity: 0.3;
+        }
+      }
+      &:nth-child(4) {
+        .ajax-browse__block-inner {
+          opacity: 0.5;
+        }
+      }
+      &:nth-child(5) {
+        .ajax-browse__block-inner {
+          opacity: 1;
+        }
+      }
+    }
+
+    .ajax-browse--hover-effect & {
+      &:hover {
+        &:nth-child(n) {
+          .ajax-browse__block-inner {
+            opacity: 1;
           }
         }
-      }
-    }
-    &:last-child {
-      
-      .ajax-browse__block-inner {
-        opacity: 1;
-      }
-    }
-
-    // .ajax-browse--two-blocks & {
-    //   width: 90%;
-    //   &--inactive {
-    //     z-index: 1;
-    //     width: 90%;
-    //     .ajax-browse__block-inner {
-    //       opacity: 0.3;
-    //       border-left: none;
-    //       border-right: 1px solid white;
-    //     }
-    //     &:hover {
-    //       z-index: 5;
-    //       box-shadow: 0px 0 500px transparentize($color: black, $amount: 0.7);
-    //       .ajax-browse__block-inner {
-    //         opacity: 1;
-    //         border-right-color: $grey-3;
-    //       }
-    //       .ajax-browse__link {
-    //         &:after {
-    //           display: block;
-    //         }
-    //       }
-    //       & ~ .ajax-browse__block--active {
-    //         z-index: 1;
-    //         opacity: 0.3;
-    //         margin-left: 0;
-    //         box-shadow: none;
-    //         .ajax-browse__block-inner {
-    //           border-left-color: white;
-    //         }
-    //         .ajax-browse__link {
-    //           &:after {
-    //             display: none;
-    //           }
-    //         }
-    //       }
-    //     }
-    //   }
-    //   &--active {
-    //     margin-left: -80%;
-    //     z-index: 5;
-    //   }
-    // }
-
-    // .ajax-browse--three-blocks & {
-    //   width: 80%;
-    //   &--inactive {
-    //     &:nth-child(1) {
-    //       z-index: 1;
-    //       .ajax-browse__link {
-    //         opacity: 0.2;
-    //       }
-    //       .ajax-browse__block-inner {
-    //         border-left-color: white;
-    //       }
-    //       &:hover {
-    //         & + .ajax-browse__block {
-    //           z-index: 5;
-    //         }
-    //         & ~ .ajax-browse__block--active {
-    //           z-index: 1;
-    //         }
-    //       }
-    //     }
-    //     &:nth-child(2) {
-    //       z-index: 5;
-    //       margin-left: -70%;
-    //       .ajax-browse__link {
-    //         opacity: 0.35;
-    //       }
-    //     }
-    //     &:hover {
-    //       z-index: 10;
-    //       box-shadow: 0px 0 500px transparentize($color: black, $amount: 0.7);
-    //       .ajax-browse__link {
-    //         opacity: 1;
-    //       }
-    //       & ~ .ajax-browse__block {
-    //         margin-left: -1%;
-    //       }
-    //       & ~ .ajax-browse__block--active {
-    //         z-index: 1;
-    //         box-shadow: none;
-    //         .ajax-browse__link {
-    //           opacity: 0.3;
-    //         }
-    //       }
-    //     }
-    //   }
-    //   &--active {
-    //     margin-left: -70%;
-    //     z-index: 10;
-    //   }
-    // }
-
-    // .ajax-browse--four-blocks & {
-    //   width: 70%;
-    //   &--inactive {
-    //     &:nth-child(1) {
-    //       z-index: 1;
-    //       .ajax-browse__block-inner {
-    //         border-left-color: white;
-    //       }
-    //       .ajax-browse__link {
-    //         opacity: 0.2;
-    //       }
-    //     }
-    //     &:nth-child(2) {
-    //       z-index: 5;
-    //       margin-left: -60%;
-    //       .ajax-browse__link {
-    //         opacity: 0.3;
-    //       }
-    //     }
-    //     &:nth-child(3) {
-    //       z-index: 10;
-    //       margin-left: -60%;
-    //       .ajax-browse__link {
-    //         opacity: 0.4;
-    //       }
-    //     }
-    //     &:hover {
-    //       z-index: 15;
-    //       box-shadow: 0px 0 500px transparentize($color: black, $amount: 0.7);
-    //       .ajax-browse__link {
-    //         opacity: 1;
-    //       }
-    //       & ~ .ajax-browse__block {
-    //         margin-left: -1%;
-    //       }
-    //       & ~ .ajax-browse__block--active {
-    //         z-index: 1;
-    //         .ajax-browse__link {
-    //           opacity: 0.3;
-    //         }
-    //       }
-    //     }
-    //   }
-    //   &--active {
-    //     margin-left: -60%;
-    //     z-index: 15;
-    //   }
-    // }
-
-    @media(max-width: 762px) {
-      .ajax-browse--two-blocks &, .ajax-browse--three-blocks &, .ajax-browse--four-blocks & {
-        &--inactive {
-          display: none;
-        }
-        &--active {
-          width: 100%;
-          margin: 0;
+        & ~ .ajax-browse__block {
+          margin-left: 0;
           .ajax-browse__block-inner {
-            border-left-color: white;
+            opacity: 0.5;
           }
         }
       }
     }
     
-  }
-
-  &__block-inner {
-    border-left: 1px solid $grey-3;
-    height: 500px;
   }
 
   &__list {
