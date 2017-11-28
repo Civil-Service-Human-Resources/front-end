@@ -1,10 +1,19 @@
 import md5 from 'md5';
 import findIndex from 'lodash/findIndex';
 import find from 'lodash/find';
+import { observable, computed } from 'mobx';
+
 import { AJAX_BROWSE_CONSTANTS } from './constants';
 import { toggleClass, elHasClass, closestParentOfEl } from './../../../shared';
 
 export class AjaxBrowse {
+  @observable blocks = [];
+
+  @computed
+  get totalBlocks() {
+    return this.blocks.length;
+  }
+
   constructor(element = false) {
     this.ajaxBrowse = element;
     if (!this.ajaxBrowse) return;
@@ -117,7 +126,7 @@ export class AjaxBrowse {
     event.preventDefault();
     // Check if state is currently
     // processing another request
-    if( this.state.loading ) return;
+    if (this.state.loading) return;
     // Get the clicked item
     let item = closestParentOfEl(event.target, '.' + AJAX_BROWSE_CONSTANTS.classNames.item.base);
     // Get the clicked item parent block
@@ -129,7 +138,7 @@ export class AjaxBrowse {
     // Get the item hash from DOM
     let blockHash = block.getAttribute(AJAX_BROWSE_CONSTANTS.attributeNames.block.hash);
     let blockFromState = find(this.state.blocks, { hash: blockHash });
-    if( !blockFromState || !blockFromState.items ) {
+    if (!blockFromState || !blockFromState.items) {
       return console.warn('Block not found in the state or does not have any items');
     }
     // Add loading class to the current item
