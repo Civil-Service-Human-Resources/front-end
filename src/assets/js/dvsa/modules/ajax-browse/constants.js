@@ -2,6 +2,7 @@ export const AJAX_BROWSE_CONSTANTS = {
   classNames: {
     ajaxBrowse: {
       base: 'ajax-browse',
+      loading: 'ajax-browse--loading',
       sizes: {
         1: 'ajax-browse--one-block',
         2: 'ajax-browse--two-blocks',
@@ -17,10 +18,17 @@ export const AJAX_BROWSE_CONSTANTS = {
       inner: 'ajax-browse__block-inner',
     },
     list: 'ajax-browse__list',
-    item: 'ajax-browse__item',
+    item: {
+      base: 'ajax-browse__item',
+      loading: 'ajax-browse__item--loading',
+      disabled: 'ajax-browse__item--disabled',
+    },
     link: 'ajax-browse__link',
   },
   attributeNames: {
+    block: {
+      hash: 'data-block-hash',
+    },
     item: {
       hash: 'data-item-hash',
     },
