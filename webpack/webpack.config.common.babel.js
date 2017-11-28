@@ -32,9 +32,13 @@ module.exports = {
                 'debug': true,
                 useBuiltIns: true,
               }],
+              'stage-0',
               'stage-2',
               'stage-3'
             ],
+            plugins: [
+              'transform-decorators-legacy'
+            ]
           },
         },
       },
