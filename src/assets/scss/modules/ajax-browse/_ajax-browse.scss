@@ -191,7 +191,7 @@
       }
     }
 
-    .ajax-browse--six-blocks.ajax-browse--back-button & {
+    .ajax-browse--six-blocks.ajax-browse--back-button:not(.ajax-browse--loading) & {
       &:nth-child(1) {
         .ajax-browse__block-inner {
           opacity: 0.1;
@@ -273,7 +273,7 @@
       }
     }
 
-    .ajax-browse--six-blocks.ajax-browse--hover-effect & {
+    .ajax-browse--six-blocks.ajax-browse--hover-effect:not(.ajax-browse--loading) & {
       &:nth-child(1) {
         .ajax-browse__block-inner {
           opacity: 0.15;
@@ -301,6 +301,14 @@
       }
     }
 
+    &:hover {
+      & + .ajax-browse__block {
+        .ajax-browse__block-inner {
+          opacity: 0.5;
+        }
+      }
+    }
+
     .ajax-browse--hover-effect & {
       &:hover {
         &:nth-child(n) {
@@ -313,6 +321,19 @@
           .ajax-browse__block-inner {
             opacity: 0.5;
           }
+        }
+      }
+    }
+
+    .ajax-browse--loading & {
+      &:nth-child(n) {
+        .ajax-browse__block-inner {
+          opacity: 0.3;
+        }
+      }
+      &:hover {
+        .ajax-browse__block-inner {
+          opacity: 0.3;
         }
       }
     }
@@ -331,7 +352,7 @@
 
   &__link {
     display: block;
-    padding: 10px 20px 10px 10px;
+    padding: 10px 35px 10px 10px;
     position: relative;
     background: white;
     text-decoration: none;
@@ -340,6 +361,7 @@
       margin: 0;
       padding: 0;
     }
+
     &-description {
       display: block;
       margin: 5px 0 0 0;
@@ -348,26 +370,38 @@
       line-height: 20px;
       color: $text-colour;
     }
+
     &:after {
       content: ' ';
       display: block;
       background-image: url('../images/separator.png');
-      width: 6px;
-      height: 11px;
+      background-repeat: no-repeat;
+      background-position: center center;
+      width: 16px;
+      height: 16px;
       position: absolute;
       top: 50%;
       right: 10px;
       transform: translateY(-50%);
-      .ajax-browse__block--inactive {
-        display: none;
-      }
-      .ajax-browse__block--inactive:hover & {
-        display: block;
+      .ajax-browse__item--loading & {
+        background-image: url('../images/loading-spinner-small.gif');
       }
     }
+
     &:hover {
       background: $grey-5;
     }
+
+    &:focus {
+      background: $focus-colour;
+      outline: none;
+    }
+
+    .ajax-browse--loading & {
+      pointer-events: none;
+      cursor: default;
+    }
+    
     .ajax-browse__item--active & {
       background: $govuk-blue;
       &-heading {

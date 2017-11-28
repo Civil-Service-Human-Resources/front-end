@@ -1,12 +1,12 @@
 import md5 from 'md5';
 import findIndex from 'lodash/findIndex';
+import find from 'lodash/find';
 import { AJAX_BROWSE_CONSTANTS } from './constants';
 import { toggleClass, elHasClass, closestParentOfEl } from './../../../shared';
 
 export class AjaxBrowse {
-  constructor() {
-    this.ajaxBrowse = document.querySelector('.' + AJAX_BROWSE_CONSTANTS.classNames.ajaxBrowse.base);
-
+  constructor(element = false) {
+    this.ajaxBrowse = element;
     if (!this.ajaxBrowse) return;
 
     this.state = {
@@ -50,14 +50,17 @@ export class AjaxBrowse {
 
     // Generate a hash for each element for later use
     let blocksFiltered = blocksFromDOM.map((blockElement, blockIndex) => {
-      let blockHash = md5(blockElement.innerHTML);
+      // Create hash based on html and index
+      let blockHash = md5('' + blockIndex + blockElement.innerHTML);
+      // Set block hash to its element attribute
+      blockElement.setAttribute(AJAX_BROWSE_CONSTANTS.attributeNames.block.hash, blockHash);
       // Get block index from state based on the hash
       let stateBlockIndex = findIndex(this.state.blocks, { hash: blockHash });
       // Check if block already exists in the state
       if (stateBlockIndex === -1) {
         // It doesn't exist,
         // Get current items from DOM
-        let itemsFromDOM = blockElement.querySelectorAll('.' + AJAX_BROWSE_CONSTANTS.classNames.item);
+        let itemsFromDOM = blockElement.querySelectorAll('.' + AJAX_BROWSE_CONSTANTS.classNames.item.base);
         if (!itemsFromDOM) {
           return console.warn('Block found in DOM without any items, aborting.');
         }
@@ -75,8 +78,7 @@ export class AjaxBrowse {
             element: itemElement,
           };
         });
-        // Add new block form DOM
-        // to the state
+        // Add new block from DOM to the state
         return {
           hash: blockHash,
           element: blockElement,
@@ -100,7 +102,7 @@ export class AjaxBrowse {
 
   addEventListeners = () => {
     // Add click event handlers for all items
-    $.delegate(this.ajaxBrowse, 'click', '.' + AJAX_BROWSE_CONSTANTS.classNames.item, this.itemClickHandler);
+    $.delegate(this.ajaxBrowse, 'click', '.' + AJAX_BROWSE_CONSTANTS.classNames.item.base, this.itemClickHandler);
   };
 
   /**
@@ -113,11 +115,31 @@ export class AjaxBrowse {
   itemClickHandler = event => {
     // Prevent link from navigation user
     event.preventDefault();
-    // Get the list item element, as the target may not be the correct element
-    let item = closestParentOfEl(event.target, '.' + AJAX_BROWSE_CONSTANTS.classNames.item);
-    // Check if element is found in DOM
-    if (!item) return;
-    console.log(item);
+    // Check if state is currently
+    // processing another request
+    if( this.state.loading ) return;
+    // Get the clicked item
+    let item = closestParentOfEl(event.target, '.' + AJAX_BROWSE_CONSTANTS.classNames.item.base);
+    // Get the clicked item parent block
+    let block = closestParentOfEl(event.target, '.' + AJAX_BROWSE_CONSTANTS.classNames.block.base);
+    // Check if item is in the DOM
+    if (!item || !block) {
+      return console.warn('No item or parent block found');
+    }
+    // Get the item hash from DOM
+    let blockHash = block.getAttribute(AJAX_BROWSE_CONSTANTS.attributeNames.block.hash);
+    let blockFromState = find(this.state.blocks, { hash: blockHash });
+    if( !blockFromState || !blockFromState.items ) {
+      return console.warn('Block not found in the state or does not have any items');
+    }
+    // Add loading class to the current item
+    toggleClass(item, AJAX_BROWSE_CONSTANTS.classNames.item.loading, true);
+    this.toggleLoading(true);
+  };
+
+  toggleLoading = (loading = true) => {
+    this.state.loading = loading;
+    toggleClass(this.ajaxBrowse, AJAX_BROWSE_CONSTANTS.classNames.ajaxBrowse.loading, loading);
   };
 
   generateNewBlockHTML = (items = false) => {
