@@ -9,6 +9,9 @@ module.exports = merge(common, {
     path: path.resolve('dist', 'assets', 'javascripts'),
   },
   plugins: [
-    new MinifyPlugin()
+    new MinifyPlugin(),
+    new webpack.DefinePlugin({
+      ENV_PRODUCTION: false
+    })
   ],
 });
