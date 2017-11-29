@@ -1,45 +1,98 @@
 import md5 from 'md5';
 import findIndex from 'lodash/findIndex';
 import find from 'lodash/find';
-import { observable, computed } from 'mobx';
+import { createStore } from 'redux';
+
+import * as ACTIONS from './redux/actions';
+import reducers from './redux/reducers';
 
 import { AJAX_BROWSE_CONSTANTS } from './constants';
 import { toggleClass, elHasClass, closestParentOfEl } from './../../../shared';
 
 export class AjaxBrowse {
-  @observable blocks = [];
-
-  @computed
-  get totalBlocks() {
-    return this.blocks.length;
-  }
-
   constructor(element = false) {
-    this.ajaxBrowse = element;
-    if (!this.ajaxBrowse) return;
+    if (!element) return;
 
-    this.state = {
-      size: 1,
-      loading: false,
-      blocks: [],
-    };
-
-    this.setup();
+    if (ENV_PRODUCTION) {
+      this.store = createStore(reducers);
+    } else {
+      // Development only
+      // Adds ability to use redux dev tool chrome extension
+      this.store = createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+    }
+    this.store.subscribe(this.storeListener);
+    this.store.dispatch(ACTIONS.setupContainer(element));
+    this.store.dispatch(ACTIONS.setupStarted());
   }
+
+  /**
+   * Store change handler
+   */
+  storeListener = () => {
+    let state = this.store.getState();
+    // Run setup
+    if (state.settings.settingUp) {
+      console.log(state.settings);
+      this.addItemsFromDOM(state.settings.container.element);
+      this.store.dispatch(ACTIONS.setupCompleted());
+    }
+  };
 
   /**
    * Setup
    * - Add event handlers
    */
   setup = () => {
-    this.refreshAllBlocksFromDOM();
+    store.dispatch(ACTIONS.enableLoading());
+    // this.refreshAllBlocksFromDOM();
 
-    // Check if state has been setup
-    if (!this.state || !this.state.blocks || !this.state.size) {
-      return console.warn('State was not setup correctly, aborting.');
-    }
+    // // Check if state has been setup
+    // if (!this.state || !this.state.blocks || !this.state.size) {
+    //   return console.warn('State was not setup correctly, aborting.');
+    // }
 
-    this.addEventListeners();
+    // this.addEventListeners();
+  };
+
+  addItemsFromDOM = container => {
+    // Check container exists
+    if (!container) return;
+    // Get all the blocks from the DOM
+    let blocksFromDOM = container.querySelectorAll('.' + AJAX_BROWSE_CONSTANTS.classNames.block.base);
+    // Check if any blocks exist
+    if (!blocksFromDOM) return;
+    // Convert blocks to array
+    blocksFromDOM = Array.from(blocksFromDOM);
+    // Loop through each block
+    blocksFromDOM.forEach((blockElement, blockIndex) => {
+      // Add block to state
+      let test = this.store.dispatch(ACTIONS.addBlock(blockElement));
+      console.log(test);
+      // Get current items for this block from the DOM
+      // let itemsFromDOM = blockElement.querySelectorAll('.' + AJAX_BROWSE_CONSTANTS.classNames.item.base);
+      // // Check if block has any items
+      // if (!itemsFromDOM) return;
+      // // Convert it into actual array
+      // itemsFromDOM = Array.from(itemsFromDOM);
+      // // Filter the items and create a hash for each one
+      // let items = itemsFromDOM.map((itemElement, itemIndex) => {
+      //   // Add hash to dom element attribute
+      //   itemElement.setAttribute(AJAX_BROWSE_CONSTANTS.attributeNames.item.hash, itemHash);
+      //   // Add it to the items array
+      //   return {
+      //     hash: itemHash,
+      //     element: itemElement,
+      //   };
+      // });
+
+      // let block = {
+      //   hash: blockHash,
+      //   element: blockElement,
+      //   items,
+      // };
+
+      // store.dispatch(ACTIONS.addBlock(block));
+    });
   };
 
   /**
@@ -47,7 +100,8 @@ export class AjaxBrowse {
    * and add it to the state for later use
    */
   refreshAllBlocksFromDOM = () => {
-    let blocksFromDOM = this.ajaxBrowse.querySelectorAll('.' + AJAX_BROWSE_CONSTANTS.classNames.block.base);
+    let state = store.getState();
+    let blocksFromDOM = state.settings.containerElement.querySelectorAll('.' + AJAX_BROWSE_CONSTANTS.classNames.block.base);
 
     // Check if any blocks exist
     if (!blocksFromDOM) {
@@ -57,56 +111,47 @@ export class AjaxBrowse {
     // Convert HTML elements into an actual array
     blocksFromDOM = Array.from(blocksFromDOM);
 
-    // Generate a hash for each element for later use
-    let blocksFiltered = blocksFromDOM.map((blockElement, blockIndex) => {
+    // Loop through each block in the DOM
+    blocksFromDOM.forEach((blockElement, blockIndex) => {
       // Create hash based on html and index
       let blockHash = md5('' + blockIndex + blockElement.innerHTML);
       // Set block hash to its element attribute
       blockElement.setAttribute(AJAX_BROWSE_CONSTANTS.attributeNames.block.hash, blockHash);
-      // Get block index from state based on the hash
-      let stateBlockIndex = findIndex(this.state.blocks, { hash: blockHash });
-      // Check if block already exists in the state
-      if (stateBlockIndex === -1) {
-        // It doesn't exist,
-        // Get current items from DOM
-        let itemsFromDOM = blockElement.querySelectorAll('.' + AJAX_BROWSE_CONSTANTS.classNames.item.base);
-        if (!itemsFromDOM) {
-          return console.warn('Block found in DOM without any items, aborting.');
-        }
-        // Convert it into actual array
-        itemsFromDOM = Array.from(itemsFromDOM);
-        // Filter the items and create a hash for each one
-        let items = itemsFromDOM.map((itemElement, itemIndex) => {
-          // Create hash based on the html, current index, parent index and parent hash
-          let itemHash = md5('' + blockIndex + itemIndex + blockHash + itemElement.innerHTML);
-          // Add hash to dom element attribute
-          itemElement.setAttribute(AJAX_BROWSE_CONSTANTS.attributeNames.item.hash, itemHash);
-          // Add it to the items array
-          return {
-            hash: itemHash,
-            element: itemElement,
-          };
-        });
-        // Add new block from DOM to the state
-        return {
-          hash: blockHash,
-          element: blockElement,
-          items,
-        };
+      // Get current items from DOM
+      let itemsFromDOM = blockElement.querySelectorAll('.' + AJAX_BROWSE_CONSTANTS.classNames.item.base);
+      if (!itemsFromDOM) {
+        return console.warn('Block found in DOM without any items, aborting.');
       }
-      // Add the current one from the state
-      return this.state.blocks[stateBlockIndex];
+      // Convert it into actual array
+      itemsFromDOM = Array.from(itemsFromDOM);
+      // Filter the items and create a hash for each one
+      let items = itemsFromDOM.map((itemElement, itemIndex) => {
+        // Create hash based on the html, current index, parent index and parent hash
+        let itemHash = md5('' + blockIndex + itemIndex + blockHash + itemElement.innerHTML);
+        // Add hash to dom element attribute
+        itemElement.setAttribute(AJAX_BROWSE_CONSTANTS.attributeNames.item.hash, itemHash);
+        // Add it to the items array
+        return {
+          hash: itemHash,
+          element: itemElement,
+        };
+      });
+
+      let block = {
+        hash: blockHash,
+        element: blockElement,
+        items,
+      };
+
+      store.dispatch(ACTIONS.addBlock(block));
     });
 
-    // Add all blocks to the state
-    this.state.blocks = blocksFiltered;
-    // Update state size based on number of blocks
-    this.state.size = blocksFiltered.length;
+    console.log(store.getState());
 
-    // Abort if size is higher than 6
-    if (this.state.size > 6) {
-      return console.warn('Ajax browse supports maximum 6 levels deep, aborting.');
-    }
+    // // Abort if size is higher than 6
+    // if (this.state.size > 6) {
+    //   return console.warn('Ajax browse supports maximum 6 levels deep, aborting.');
+    // }
   };
 
   addEventListeners = () => {

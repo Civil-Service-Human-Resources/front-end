@@ -5,9 +5,13 @@ import merge from 'webpack-merge';
 
 module.exports = merge(common, {
   watch: true,
+  devtool: 'cheap-module-eval-source-map',
   plugins: [
     // More info:
     // https://webpack.js.org/plugins/source-map-dev-tool-plugin/
-    new webpack.SourceMapDevToolPlugin()
+    // new webpack.SourceMapDevToolPlugin(),
+    new webpack.DefinePlugin({
+      ENV_PRODUCTION: false
+    })
   ]
 });
