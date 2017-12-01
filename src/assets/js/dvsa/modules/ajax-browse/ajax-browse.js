@@ -1,18 +1,30 @@
 import md5 from 'md5';
 import findIndex from 'lodash/findIndex';
 import find from 'lodash/find';
+import has from 'lodash/has';
 import { createStore } from 'redux';
 
 import * as ACTIONS from './redux/actions';
 import reducers from './redux/reducers';
+import * as SELECTORS from './redux/selectors';
 
 import { AJAX_BROWSE_CONSTANTS } from './constants';
-import { toggleClass, elHasClass, closestParentOfEl } from './../../../shared';
+import { toggleClass, elHasClass, closestParentOfEl, difference } from './../../../shared';
+
+import { Browse } from './mithril/components/browse';
+import m from 'mithril';
 
 export class AjaxBrowse {
   constructor(element = false) {
     if (!element) return;
 
+    let endpointURL = element.getAttribute(AJAX_BROWSE_CONSTANTS.attributeNames.endpointURL);
+
+    if (!endpointURL) {
+      return console.warn('Please provide an endpoint url for ajax browse in the data attribute.');
+    }
+
+    // Create a redux store
     if (ENV_PRODUCTION) {
       this.store = createStore(reducers);
     } else {
@@ -20,8 +32,13 @@ export class AjaxBrowse {
       // Adds ability to use redux dev tool chrome extension
       this.store = createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
     }
+
+    this._previousState = this.store.getState();
+
     this.store.subscribe(this.storeListener);
+
     this.store.dispatch(ACTIONS.setupContainer(element));
+    this.store.dispatch(ACTIONS.setupEndpointURL(endpointURL));
     this.store.dispatch(ACTIONS.setupStarted());
   }
 
@@ -30,212 +47,118 @@ export class AjaxBrowse {
    */
   storeListener = () => {
     let state = this.store.getState();
-    // Run setup
-    if (state.settings.settingUp) {
-      console.log(state.settings);
-      this.addItemsFromDOM(state.settings.container.element);
+    let stateDiff = difference(state, this._previousState);
+    this._previousState = state;
+
+    let container = state.settings.container.element;
+
+    // Check for setup
+    if (has(stateDiff, 'settings.settingUp') && stateDiff.settings.settingUp) {
+      // Create block tree from DOM nodes
+      this.addItemsFromDOM(container);
+      // Reset current DOM container element
+      this.resetContainer(container);
+      // Update state to mark setup as completed
       this.store.dispatch(ACTIONS.setupCompleted());
     }
-  };
 
-  /**
-   * Setup
-   * - Add event handlers
-   */
-  setup = () => {
-    store.dispatch(ACTIONS.enableLoading());
-    // this.refreshAllBlocksFromDOM();
+    // Check for when setup is completed
+    if (has(stateDiff, 'settings.setupCompleted') && state.settings.setupCompleted) {
+      // Refresh DOM with items from state
+      this.renderMithril(container);
+    }
 
-    // // Check if state has been setup
-    // if (!this.state || !this.state.blocks || !this.state.size) {
-    //   return console.warn('State was not setup correctly, aborting.');
-    // }
-
-    // this.addEventListeners();
-  };
-
-  addItemsFromDOM = container => {
-    // Check container exists
-    if (!container) return;
-    // Get all the blocks from the DOM
-    let blocksFromDOM = container.querySelectorAll('.' + AJAX_BROWSE_CONSTANTS.classNames.block.base);
-    // Check if any blocks exist
-    if (!blocksFromDOM) return;
-    // Convert blocks to array
-    blocksFromDOM = Array.from(blocksFromDOM);
-    // Loop through each block
-    blocksFromDOM.forEach((blockElement, blockIndex) => {
-      // Add block to state
-      let test = this.store.dispatch(ACTIONS.addBlock(blockElement));
-      console.log(test);
-      // Get current items for this block from the DOM
-      // let itemsFromDOM = blockElement.querySelectorAll('.' + AJAX_BROWSE_CONSTANTS.classNames.item.base);
-      // // Check if block has any items
-      // if (!itemsFromDOM) return;
-      // // Convert it into actual array
-      // itemsFromDOM = Array.from(itemsFromDOM);
-      // // Filter the items and create a hash for each one
-      // let items = itemsFromDOM.map((itemElement, itemIndex) => {
-      //   // Add hash to dom element attribute
-      //   itemElement.setAttribute(AJAX_BROWSE_CONSTANTS.attributeNames.item.hash, itemHash);
-      //   // Add it to the items array
-      //   return {
-      //     hash: itemHash,
-      //     element: itemElement,
-      //   };
-      // });
-
-      // let block = {
-      //   hash: blockHash,
-      //   element: blockElement,
-      //   items,
-      // };
-
-      // store.dispatch(ACTIONS.addBlock(block));
-    });
+    if (state.settings.setupCompleted) {
+      m.redraw();
+    }
   };
 
   /**
    * Gets all the blocks from the DOM
    * and add it to the state for later use
+   *
+   * @param {HTMLElement} container DOM element which represent the current ajax browse
    */
-  refreshAllBlocksFromDOM = () => {
-    let state = store.getState();
-    let blocksFromDOM = state.settings.containerElement.querySelectorAll('.' + AJAX_BROWSE_CONSTANTS.classNames.block.base);
+  addItemsFromDOM = container => {
+    // Check container exists
+    if (!container) return;
+
+    // Update state
+    this.store.dispatch(ACTIONS.startAddingBlocks());
+
+    // Get all the blocks from the DOM
+    let blocksFromDOM = container.querySelectorAll('.' + AJAX_BROWSE_CONSTANTS.classNames.block.base);
 
     // Check if any blocks exist
-    if (!blocksFromDOM) {
-      return console.warn('No blocks found inside ajax browse, aborting.');
-    }
+    if (!blocksFromDOM) return;
 
-    // Convert HTML elements into an actual array
+    // Convert blocks to array
     blocksFromDOM = Array.from(blocksFromDOM);
 
-    // Loop through each block in the DOM
+    // Loop through each block
     blocksFromDOM.forEach((blockElement, blockIndex) => {
-      // Create hash based on html and index
-      let blockHash = md5('' + blockIndex + blockElement.innerHTML);
-      // Set block hash to its element attribute
-      blockElement.setAttribute(AJAX_BROWSE_CONSTANTS.attributeNames.block.hash, blockHash);
-      // Get current items from DOM
+      // Create hash to lookup block
+      let blockHash = md5(blockIndex + blockElement);
+
+      //Get current items for this block from the DOM
       let itemsFromDOM = blockElement.querySelectorAll('.' + AJAX_BROWSE_CONSTANTS.classNames.item.base);
-      if (!itemsFromDOM) {
-        return console.warn('Block found in DOM without any items, aborting.');
-      }
+
+      // Check if block has any items
+      if (!itemsFromDOM) return;
+
       // Convert it into actual array
       itemsFromDOM = Array.from(itemsFromDOM);
+
       // Filter the items and create a hash for each one
       let items = itemsFromDOM.map((itemElement, itemIndex) => {
-        // Create hash based on the html, current index, parent index and parent hash
-        let itemHash = md5('' + blockIndex + itemIndex + blockHash + itemElement.innerHTML);
-        // Add hash to dom element attribute
-        itemElement.setAttribute(AJAX_BROWSE_CONSTANTS.attributeNames.item.hash, itemHash);
-        // Add it to the items array
+        let href = itemElement.querySelector('.' + AJAX_BROWSE_CONSTANTS.classNames.link.base).href || '';
+        let heading = itemElement.querySelector('.' + AJAX_BROWSE_CONSTANTS.classNames.link.heading).innerText || '';
+        let description = itemElement.querySelector('.' + AJAX_BROWSE_CONSTANTS.classNames.link.description).innerText || '';
+        let active = elHasClass(itemElement, AJAX_BROWSE_CONSTANTS.classNames.item.active);
+        let itemId = itemElement.getAttribute(AJAX_BROWSE_CONSTANTS.attributeNames.item.id);
+        let endOfTree = itemElement.getAttribute(AJAX_BROWSE_CONSTANTS.attributeNames.item.endOfTree) === 'true' ? true : false;
         return {
-          hash: itemHash,
-          element: itemElement,
+          href,
+          heading,
+          description,
+          active,
+          itemId,
+          endOfTree,
         };
       });
 
-      let block = {
-        hash: blockHash,
-        element: blockElement,
-        items,
-      };
-
-      store.dispatch(ACTIONS.addBlock(block));
+      // Add block to state
+      this.store.dispatch(ACTIONS.addBlock(items));
     });
 
-    console.log(store.getState());
-
-    // // Abort if size is higher than 6
-    // if (this.state.size > 6) {
-    //   return console.warn('Ajax browse supports maximum 6 levels deep, aborting.');
-    // }
-  };
-
-  addEventListeners = () => {
-    // Add click event handlers for all items
-    $.delegate(this.ajaxBrowse, 'click', '.' + AJAX_BROWSE_CONSTANTS.classNames.item.base, this.itemClickHandler);
+    // Update state
+    this.store.dispatch(ACTIONS.endAddingBlocks());
   };
 
   /**
-   * Item click handler
-   * - Fetches new list data
-   * - Adds new items to the dom
-   * - Updates state
-   * - Refreshes DOM based on state
+   * Remove all current DOM nodes and,
+   * changes the class name of the current container
+   *
+   * @param {HTMLElement} container DOM element which represent the current ajax browse
    */
-  itemClickHandler = event => {
-    // Prevent link from navigation user
-    event.preventDefault();
-    // Check if state is currently
-    // processing another request
-    if (this.state.loading) return;
-    // Get the clicked item
-    let item = closestParentOfEl(event.target, '.' + AJAX_BROWSE_CONSTANTS.classNames.item.base);
-    // Get the clicked item parent block
-    let block = closestParentOfEl(event.target, '.' + AJAX_BROWSE_CONSTANTS.classNames.block.base);
-    // Check if item is in the DOM
-    if (!item || !block) {
-      return console.warn('No item or parent block found');
-    }
-    // Get the item hash from DOM
-    let blockHash = block.getAttribute(AJAX_BROWSE_CONSTANTS.attributeNames.block.hash);
-    let blockFromState = find(this.state.blocks, { hash: blockHash });
-    if (!blockFromState || !blockFromState.items) {
-      return console.warn('Block not found in the state or does not have any items');
-    }
-    // Add loading class to the current item
-    toggleClass(item, AJAX_BROWSE_CONSTANTS.classNames.item.loading, true);
-    this.toggleLoading(true);
+  resetContainer = container => {
+    container.innerHTML = '';
+    container.setAttribute('class', 'ajax-browse__js-container');
   };
 
-  toggleLoading = (loading = true) => {
-    this.state.loading = loading;
-    toggleClass(this.ajaxBrowse, AJAX_BROWSE_CONSTANTS.classNames.ajaxBrowse.loading, loading);
-  };
-
-  generateNewBlockHTML = (items = false) => {
-    if (!items) return;
-    let itemsHTML = [];
-    items.forEach(item => {
-      let itemHeading, itemDescription;
-      if (item.heading) {
-        itemHeading = `
-        <span class="ajax-browse__link-heading">
-          ${item.heading}
-        </span>
-        `;
-      }
-      if (item.description) {
-        itemDescription = `
-        <span class="ajax-browse__link-description">
-          ${item.description}
-        </span>
-        `;
-      }
-      itemsHTML.push(`
-      <li class="ajax-browse__item">
-        <a href="${item.url}" class="ajax-browse__link">
-         ${itemHeading}
-         ${itemDescription} 
-        </a>
-      </li>
-      `);
+  /**
+   * Recreates the DOM ajax browse element,
+   * based on the blocks tree from the state
+   *
+   * @param {HTMLElement} container DOM element which represent the current ajax browse
+   */
+  renderMithril = container => {
+    let state = this.store.getState();
+    // m.render(container, <Browse state={state} store={this.store} />);
+    m.mount(container, {
+      view: () => {
+        return m(Browse, { store: this.store });
+      },
     });
-    itemsHTML = itemsHTML.join(' ');
-    let HTML = `
-    <div class="ajax-browse__block">
-      <div class="ajax-browse__block-inner">
-        <ul class="ajax-browse__list">
-          ${itemsHTML}
-        </ul>
-      </div>
-    </div>
-    `;
-    return HTML;
   };
-
-  refreshState = () => {};
 }

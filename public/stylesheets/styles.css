@@ -4210,7 +4210,7 @@ sup,
     display: none; }
     .ajax-browse--back-button .ajax-browse__back-wrapper {
       display: block; }
-    .ajax-browse--two-blocks.ajax-browse--back-button .ajax-browse__back-wrapper, .ajax-browse--one-block.ajax-browse--back-button .ajax-browse__back-wrapper {
+    .ajax-browse--2-blocks.ajax-browse--back-button .ajax-browse__back-wrapper, .ajax-browse--1-blocks.ajax-browse--back-button .ajax-browse__back-wrapper {
       display: none; }
   .ajax-browse__inner {
     overflow-x: hidden;
@@ -4229,111 +4229,111 @@ sup,
       min-height: 700px; }
     .ajax-browse__block:first-child .ajax-browse__block-inner {
       border-left-color: white; }
-    .ajax-browse--three-blocks .ajax-browse__block:nth-child(1) {
+    .ajax-browse--3-blocks .ajax-browse__block:nth-child(1) {
       z-index: 1; }
-    .ajax-browse--three-blocks .ajax-browse__block:nth-child(2) {
+    .ajax-browse--3-blocks .ajax-browse__block:nth-child(2) {
       z-index: 5;
       margin-left: -20%; }
-      .ajax-browse--three-blocks .ajax-browse__block:nth-child(2) .ajax-browse__block-inner {
+      .ajax-browse--3-blocks .ajax-browse__block:nth-child(2) .ajax-browse__block-inner {
         opacity: 1; }
-    .ajax-browse--three-blocks .ajax-browse__block:last-child {
+    .ajax-browse--3-blocks .ajax-browse__block:last-child {
       z-index: 10; }
-    .ajax-browse--four-blocks .ajax-browse__block:nth-child(1) {
+    .ajax-browse--4-blocks .ajax-browse__block:nth-child(1) {
       z-index: 1; }
-    .ajax-browse--four-blocks .ajax-browse__block:nth-child(2) {
+    .ajax-browse--4-blocks .ajax-browse__block:nth-child(2) {
       z-index: 5;
       margin-left: -31%; }
-    .ajax-browse--four-blocks .ajax-browse__block:nth-child(3) {
+    .ajax-browse--4-blocks .ajax-browse__block:nth-child(3) {
       z-index: 10;
       margin-left: -31%; }
-      .ajax-browse--four-blocks .ajax-browse__block:nth-child(3) .ajax-browse__block-inner {
+      .ajax-browse--4-blocks .ajax-browse__block:nth-child(3) .ajax-browse__block-inner {
         opacity: 1; }
-    .ajax-browse--four-blocks .ajax-browse__block:last-child {
+    .ajax-browse--4-blocks .ajax-browse__block:last-child {
       z-index: 15; }
-    .ajax-browse--five-blocks .ajax-browse__block:nth-child(1) {
+    .ajax-browse--5-blocks .ajax-browse__block:nth-child(1) {
       z-index: 1; }
-    .ajax-browse--five-blocks .ajax-browse__block:nth-child(2) {
+    .ajax-browse--5-blocks .ajax-browse__block:nth-child(2) {
       z-index: 5;
       margin-left: -34%; }
-    .ajax-browse--five-blocks .ajax-browse__block:nth-child(3) {
+    .ajax-browse--5-blocks .ajax-browse__block:nth-child(3) {
       z-index: 10;
       margin-left: -34%; }
-    .ajax-browse--five-blocks .ajax-browse__block:nth-child(4) {
+    .ajax-browse--5-blocks .ajax-browse__block:nth-child(4) {
       z-index: 15;
       margin-left: -34%; }
-    .ajax-browse--five-blocks .ajax-browse__block:last-child {
+    .ajax-browse--5-blocks .ajax-browse__block:last-child {
       z-index: 20; }
-    .ajax-browse--six-blocks .ajax-browse__block:nth-child(1) {
+    .ajax-browse--6-blocks .ajax-browse__block:nth-child(1) {
       z-index: 1; }
-    .ajax-browse--six-blocks .ajax-browse__block:nth-child(2) {
+    .ajax-browse--6-blocks .ajax-browse__block:nth-child(2) {
       z-index: 5;
       margin-left: -36%; }
-    .ajax-browse--six-blocks .ajax-browse__block:nth-child(3) {
+    .ajax-browse--6-blocks .ajax-browse__block:nth-child(3) {
       z-index: 10;
       margin-left: -35%; }
-    .ajax-browse--six-blocks .ajax-browse__block:nth-child(4) {
+    .ajax-browse--6-blocks .ajax-browse__block:nth-child(4) {
       z-index: 15;
       margin-left: -35%; }
-    .ajax-browse--six-blocks .ajax-browse__block:nth-child(5) {
+    .ajax-browse--6-blocks .ajax-browse__block:nth-child(5) {
       z-index: 15;
       margin-left: -35%; }
-    .ajax-browse--six-blocks .ajax-browse__block:last-child {
+    .ajax-browse--6-blocks .ajax-browse__block:last-child {
       z-index: 20; }
-    .ajax-browse--three-blocks.ajax-browse--back-button .ajax-browse__block:nth-child(1) .ajax-browse__block-inner {
+    .ajax-browse--3-blocks.ajax-browse--back-button .ajax-browse__block:nth-child(1) .ajax-browse__block-inner {
       opacity: 0.15; }
-    .ajax-browse--three-blocks.ajax-browse--back-button .ajax-browse__block:nth-child(3) .ajax-browse__block-inner {
+    .ajax-browse--3-blocks.ajax-browse--back-button .ajax-browse__block:nth-child(3) .ajax-browse__block-inner {
       opacity: 1; }
-    .ajax-browse--four-blocks.ajax-browse--back-button .ajax-browse__block:nth-child(1) .ajax-browse__block-inner {
+    .ajax-browse--4-blocks.ajax-browse--back-button .ajax-browse__block:nth-child(1) .ajax-browse__block-inner {
       opacity: 0.1; }
-    .ajax-browse--four-blocks.ajax-browse--back-button .ajax-browse__block:nth-child(2) .ajax-browse__block-inner {
+    .ajax-browse--4-blocks.ajax-browse--back-button .ajax-browse__block:nth-child(2) .ajax-browse__block-inner {
       opacity: 0.15; }
-    .ajax-browse--four-blocks.ajax-browse--back-button .ajax-browse__block:nth-child(3) .ajax-browse__block-inner {
+    .ajax-browse--4-blocks.ajax-browse--back-button .ajax-browse__block:nth-child(3) .ajax-browse__block-inner {
       opacity: 1; }
-    .ajax-browse--five-blocks.ajax-browse--back-button .ajax-browse__block:nth-child(1) .ajax-browse__block-inner {
+    .ajax-browse--5-blocks.ajax-browse--back-button .ajax-browse__block:nth-child(1) .ajax-browse__block-inner {
       opacity: 0.1; }
-    .ajax-browse--five-blocks.ajax-browse--back-button .ajax-browse__block:nth-child(2) .ajax-browse__block-inner {
+    .ajax-browse--5-blocks.ajax-browse--back-button .ajax-browse__block:nth-child(2) .ajax-browse__block-inner {
       opacity: 0.13; }
-    .ajax-browse--five-blocks.ajax-browse--back-button .ajax-browse__block:nth-child(3) .ajax-browse__block-inner {
+    .ajax-browse--5-blocks.ajax-browse--back-button .ajax-browse__block:nth-child(3) .ajax-browse__block-inner {
       opacity: 0.15; }
-    .ajax-browse--five-blocks.ajax-browse--back-button .ajax-browse__block:nth-child(4) .ajax-browse__block-inner {
+    .ajax-browse--5-blocks.ajax-browse--back-button .ajax-browse__block:nth-child(4) .ajax-browse__block-inner {
       opacity: 1; }
-    .ajax-browse--six-blocks.ajax-browse--back-button:not(.ajax-browse--loading) .ajax-browse__block:nth-child(1) .ajax-browse__block-inner {
+    .ajax-browse--6-blocks.ajax-browse--back-button:not(.ajax-browse--loading) .ajax-browse__block:nth-child(1) .ajax-browse__block-inner {
       opacity: 0.1; }
-    .ajax-browse--six-blocks.ajax-browse--back-button:not(.ajax-browse--loading) .ajax-browse__block:nth-child(2) .ajax-browse__block-inner {
+    .ajax-browse--6-blocks.ajax-browse--back-button:not(.ajax-browse--loading) .ajax-browse__block:nth-child(2) .ajax-browse__block-inner {
       opacity: 0.12; }
-    .ajax-browse--six-blocks.ajax-browse--back-button:not(.ajax-browse--loading) .ajax-browse__block:nth-child(3) .ajax-browse__block-inner {
+    .ajax-browse--6-blocks.ajax-browse--back-button:not(.ajax-browse--loading) .ajax-browse__block:nth-child(3) .ajax-browse__block-inner {
       opacity: 0.13; }
-    .ajax-browse--six-blocks.ajax-browse--back-button:not(.ajax-browse--loading) .ajax-browse__block:nth-child(4) .ajax-browse__block-inner {
+    .ajax-browse--6-blocks.ajax-browse--back-button:not(.ajax-browse--loading) .ajax-browse__block:nth-child(4) .ajax-browse__block-inner {
       opacity: 0.15; }
-    .ajax-browse--six-blocks.ajax-browse--back-button:not(.ajax-browse--loading) .ajax-browse__block:nth-child(5) .ajax-browse__block-inner {
+    .ajax-browse--6-blocks.ajax-browse--back-button:not(.ajax-browse--loading) .ajax-browse__block:nth-child(5) .ajax-browse__block-inner {
       opacity: 1; }
-    .ajax-browse--three-blocks.ajax-browse--hover-effect .ajax-browse__block:nth-child(1) .ajax-browse__block-inner {
+    .ajax-browse--3-blocks.ajax-browse--hover-effect .ajax-browse__block:nth-child(1) .ajax-browse__block-inner {
       opacity: 0.5; }
-    .ajax-browse--three-blocks.ajax-browse--hover-effect .ajax-browse__block:nth-child(3) .ajax-browse__block-inner {
+    .ajax-browse--3-blocks.ajax-browse--hover-effect .ajax-browse__block:nth-child(3) .ajax-browse__block-inner {
       opacity: 1; }
-    .ajax-browse--four-blocks.ajax-browse--hover-effect .ajax-browse__block:nth-child(1) .ajax-browse__block-inner {
+    .ajax-browse--4-blocks.ajax-browse--hover-effect .ajax-browse__block:nth-child(1) .ajax-browse__block-inner {
       opacity: 0.3; }
-    .ajax-browse--four-blocks.ajax-browse--hover-effect .ajax-browse__block:nth-child(2) .ajax-browse__block-inner {
+    .ajax-browse--4-blocks.ajax-browse--hover-effect .ajax-browse__block:nth-child(2) .ajax-browse__block-inner {
       opacity: 0.5; }
-    .ajax-browse--four-blocks.ajax-browse--hover-effect .ajax-browse__block:nth-child(3) .ajax-browse__block-inner {
+    .ajax-browse--4-blocks.ajax-browse--hover-effect .ajax-browse__block:nth-child(3) .ajax-browse__block-inner {
       opacity: 1; }
-    .ajax-browse--five-blocks.ajax-browse--hover-effect .ajax-browse__block:nth-child(1) .ajax-browse__block-inner {
+    .ajax-browse--5-blocks.ajax-browse--hover-effect .ajax-browse__block:nth-child(1) .ajax-browse__block-inner {
       opacity: 0.15; }
-    .ajax-browse--five-blocks.ajax-browse--hover-effect .ajax-browse__block:nth-child(2) .ajax-browse__block-inner {
+    .ajax-browse--5-blocks.ajax-browse--hover-effect .ajax-browse__block:nth-child(2) .ajax-browse__block-inner {
       opacity: 0.3; }
-    .ajax-browse--five-blocks.ajax-browse--hover-effect .ajax-browse__block:nth-child(3) .ajax-browse__block-inner {
+    .ajax-browse--5-blocks.ajax-browse--hover-effect .ajax-browse__block:nth-child(3) .ajax-browse__block-inner {
       opacity: 0.5; }
-    .ajax-browse--five-blocks.ajax-browse--hover-effect .ajax-browse__block:nth-child(4) .ajax-browse__block-inner {
+    .ajax-browse--5-blocks.ajax-browse--hover-effect .ajax-browse__block:nth-child(4) .ajax-browse__block-inner {
       opacity: 1; }
-    .ajax-browse--six-blocks.ajax-browse--hover-effect:not(.ajax-browse--loading) .ajax-browse__block:nth-child(1) .ajax-browse__block-inner {
+    .ajax-browse--6-blocks.ajax-browse--hover-effect:not(.ajax-browse--loading) .ajax-browse__block:nth-child(1) .ajax-browse__block-inner {
       opacity: 0.15; }
-    .ajax-browse--six-blocks.ajax-browse--hover-effect:not(.ajax-browse--loading) .ajax-browse__block:nth-child(2) .ajax-browse__block-inner {
+    .ajax-browse--6-blocks.ajax-browse--hover-effect:not(.ajax-browse--loading) .ajax-browse__block:nth-child(2) .ajax-browse__block-inner {
       opacity: 0.2; }
-    .ajax-browse--six-blocks.ajax-browse--hover-effect:not(.ajax-browse--loading) .ajax-browse__block:nth-child(3) .ajax-browse__block-inner {
+    .ajax-browse--6-blocks.ajax-browse--hover-effect:not(.ajax-browse--loading) .ajax-browse__block:nth-child(3) .ajax-browse__block-inner {
       opacity: 0.3; }
-    .ajax-browse--six-blocks.ajax-browse--hover-effect:not(.ajax-browse--loading) .ajax-browse__block:nth-child(4) .ajax-browse__block-inner {
+    .ajax-browse--6-blocks.ajax-browse--hover-effect:not(.ajax-browse--loading) .ajax-browse__block:nth-child(4) .ajax-browse__block-inner {
       opacity: 0.5; }
-    .ajax-browse--six-blocks.ajax-browse--hover-effect:not(.ajax-browse--loading) .ajax-browse__block:nth-child(5) .ajax-browse__block-inner {
+    .ajax-browse--6-blocks.ajax-browse--hover-effect:not(.ajax-browse--loading) .ajax-browse__block:nth-child(5) .ajax-browse__block-inner {
       opacity: 1; }
     .ajax-browse__block:hover + .ajax-browse__block .ajax-browse__block-inner {
       opacity: 0.5; }
@@ -4385,7 +4385,8 @@ sup,
       .ajax-browse__item--loading .ajax-browse__link:after {
         background-image: url("../images/loading-spinner-small.gif"); }
     .ajax-browse__link:hover {
-      background: #eee; }
+      background: #eee;
+      cursor: pointer; }
     .ajax-browse__link:focus {
       background: #ffbf47;
       outline: none; }

@@ -8,7 +8,9 @@ const initialState = {
     element: false,
     hash: false,
   },
+  endpointURL: false,
   loading: true,
+  addingBlocks: false,
 };
 
 export default function settings(state = initialState, action) {
@@ -20,6 +22,12 @@ export default function settings(state = initialState, action) {
           element: action.payload,
           hash: md5(action.payload),
         },
+      };
+    }
+    case ACTION_TYPES.SETUP_ENDPOINT_URL: {
+      return {
+        ...state,
+        endpointURL: action.url,
       };
     }
     case ACTION_TYPES.ENABLE_LOADING: {
@@ -48,6 +56,18 @@ export default function settings(state = initialState, action) {
         loading: false,
         settingUp: false,
         setupCompleted: true,
+      };
+    }
+    case ACTION_TYPES.START_ADDING_BLOCKS: {
+      return {
+        ...state,
+        addingBlocks: true,
+      };
+    }
+    case ACTION_TYPES.END_ADDING_BLOCKS: {
+      return {
+        ...state,
+        addingBlocks: false,
       };
     }
     default: {

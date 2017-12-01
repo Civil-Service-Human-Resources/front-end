@@ -22,15 +22,20 @@ export const AJAX_BROWSE_CONSTANTS = {
       base: 'ajax-browse__item',
       loading: 'ajax-browse__item--loading',
       disabled: 'ajax-browse__item--disabled',
+      active: 'ajax-browse__item--active',
     },
-    link: 'ajax-browse__link',
+    link: {
+      base: 'ajax-browse__link',
+      heading: 'ajax-browse__link-heading',
+      description: 'ajax-browse__link-description',
+    },
   },
   attributeNames: {
-    block: {
-      hash: 'data-block-hash',
-    },
+    endpointURL: 'data-endpoint-url',
+    block: {},
     item: {
-      hash: 'data-item-hash',
+      id: 'data-item-id',
+      endOfTree: 'data-end-of-tree',
     },
   },
 };

@@ -37,7 +37,12 @@ module.exports = {
               'stage-3'
             ],
             plugins: [
-              'transform-decorators-legacy'
+              'transform-decorators-legacy',
+              [
+                'transform-react-jsx', {
+                  'pragma': 'm'
+                }
+              ]
             ]
           },
         },

@@ -21,7 +21,7 @@
     .ajax-browse--back-button & {
       display: block;
     }
-    .ajax-browse--two-blocks.ajax-browse--back-button &, .ajax-browse--one-block.ajax-browse--back-button & {
+    .ajax-browse--2-blocks.ajax-browse--back-button &, .ajax-browse--1-blocks.ajax-browse--back-button & {
       display: none;
     }
   }
@@ -55,7 +55,7 @@
       }
     }
 
-    .ajax-browse--three-blocks & {
+    .ajax-browse--3-blocks & {
       &:nth-child(1) {
         z-index: 1;
       }
@@ -71,7 +71,7 @@
       }
     }
 
-    .ajax-browse--four-blocks & {
+    .ajax-browse--4-blocks & {
       &:nth-child(1) {
         z-index: 1;
       }
@@ -91,7 +91,7 @@
       }
     }
 
-    .ajax-browse--five-blocks & {
+    .ajax-browse--5-blocks & {
       &:nth-child(1) {
         z-index: 1;
       }
@@ -112,7 +112,7 @@
       }
     }
 
-    .ajax-browse--six-blocks & {
+    .ajax-browse--6-blocks & {
       &:nth-child(1) {
         z-index: 1;
       }
@@ -137,7 +137,7 @@
       }
     }
 
-    .ajax-browse--three-blocks.ajax-browse--back-button & {
+    .ajax-browse--3-blocks.ajax-browse--back-button & {
       &:nth-child(1) {
         .ajax-browse__block-inner {
           opacity: 0.15;
@@ -150,7 +150,7 @@
       }
     }
 
-    .ajax-browse--four-blocks.ajax-browse--back-button & {
+    .ajax-browse--4-blocks.ajax-browse--back-button & {
       &:nth-child(1) {
         .ajax-browse__block-inner {
           opacity: 0.1;
@@ -168,7 +168,7 @@
       }
     }
 
-    .ajax-browse--five-blocks.ajax-browse--back-button & {
+    .ajax-browse--5-blocks.ajax-browse--back-button & {
       &:nth-child(1) {
         .ajax-browse__block-inner {
           opacity: 0.1;
@@ -191,7 +191,7 @@
       }
     }
 
-    .ajax-browse--six-blocks.ajax-browse--back-button:not(.ajax-browse--loading) & {
+    .ajax-browse--6-blocks.ajax-browse--back-button:not(.ajax-browse--loading) & {
       &:nth-child(1) {
         .ajax-browse__block-inner {
           opacity: 0.1;
@@ -219,7 +219,7 @@
       }
     }
 
-    .ajax-browse--three-blocks.ajax-browse--hover-effect & {
+    .ajax-browse--3-blocks.ajax-browse--hover-effect & {
       &:nth-child(1) {
         .ajax-browse__block-inner {
           opacity: 0.5;
@@ -232,7 +232,7 @@
       }
     }
 
-    .ajax-browse--four-blocks.ajax-browse--hover-effect & {
+    .ajax-browse--4-blocks.ajax-browse--hover-effect & {
       &:nth-child(1) {
         .ajax-browse__block-inner {
           opacity: 0.3;
@@ -250,7 +250,7 @@
       }
     }
 
-    .ajax-browse--five-blocks.ajax-browse--hover-effect & {
+    .ajax-browse--5-blocks.ajax-browse--hover-effect & {
       &:nth-child(1) {
         .ajax-browse__block-inner {
           opacity: 0.15;
@@ -273,7 +273,7 @@
       }
     }
 
-    .ajax-browse--six-blocks.ajax-browse--hover-effect:not(.ajax-browse--loading) & {
+    .ajax-browse--6-blocks.ajax-browse--hover-effect:not(.ajax-browse--loading) & {
       &:nth-child(1) {
         .ajax-browse__block-inner {
           opacity: 0.15;
@@ -390,6 +390,7 @@
 
     &:hover {
       background: $grey-5;
+      cursor: pointer;
     }
 
     &:focus {

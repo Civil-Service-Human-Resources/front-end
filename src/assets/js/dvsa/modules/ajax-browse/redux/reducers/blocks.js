@@ -1,4 +1,3 @@
-import md5 from 'md5';
 import * as ACTION_TYPES from './../constants';
 
 const initialState = [];
@@ -9,10 +8,23 @@ export default function blocks(state = initialState, action) {
       return [
         ...state,
         {
-          hash: md5(action.payload),
-          items: [],
+          items: action.items,
         },
       ];
+    }
+    case ACTION_TYPES.REPLACE_BLOCK: {
+      return state.map((item, index) => {
+        if (index !== action.blockIndex) {
+          return item;
+        }
+        return {
+          ...item,
+          items: action.items,
+        };
+      });
+    }
+    case ACTION_TYPES.REMOVE_BLOCK: {
+      return [...state.slice(0, action.blockIndex), ...state.slice(action.blockIndex + 1)];
     }
     default: {
       return state;

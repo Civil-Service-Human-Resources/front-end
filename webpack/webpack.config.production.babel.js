@@ -1,4 +1,5 @@
 import path from 'path';
+import webpack from 'webpack';
 import common from './webpack.config.common.babel';
 import merge from 'webpack-merge';
 import MinifyPlugin from 'babel-minify-webpack-plugin';

@@ -34,3 +34,24 @@ export const setupContainer = element => {
     payload: element,
   };
 };
+
+export const setupEndpointURL = url => {
+  return {
+    type: ACTION_TYPES.SETUP_ENDPOINT_URL,
+    url: url,
+  };
+};
+
+export const startAddingBlocks = () => {
+  return {
+    type: ACTION_TYPES.START_ADDING_BLOCKS,
+    payload: true,
+  };
+};
+
+export const endAddingBlocks = () => {
+  return {
+    type: ACTION_TYPES.END_ADDING_BLOCKS,
+    payload: true,
+  };
+};
