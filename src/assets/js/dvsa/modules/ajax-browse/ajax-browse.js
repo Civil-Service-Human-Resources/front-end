@@ -12,6 +12,7 @@ import { AJAX_BROWSE_CONSTANTS } from './constants';
 import { toggleClass, elHasClass, closestParentOfEl, difference } from './../../../shared';
 
 import { Browse } from './mithril/components/browse';
+import { Provider } from './mithril/components/provider';
 import m from 'mithril';
 
 export class AjaxBrowse {
@@ -154,10 +155,14 @@ export class AjaxBrowse {
    */
   renderMithril = container => {
     let state = this.store.getState();
-    // m.render(container, <Browse state={state} store={this.store} />);
     m.mount(container, {
       view: () => {
-        return m(Browse, { store: this.store });
+        // return m(Browse, { store: this.store });
+        return (
+          <Provider store={this.store}>
+            <Browse />
+          </Provider>
+        );
       },
     });
   };

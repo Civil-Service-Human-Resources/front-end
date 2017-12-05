@@ -4212,6 +4212,24 @@ sup,
       display: block; }
     .ajax-browse--2-blocks.ajax-browse--back-button .ajax-browse__back-wrapper, .ajax-browse--1-blocks.ajax-browse--back-button .ajax-browse__back-wrapper {
       display: none; }
+  .ajax-browse__back-button {
+    position: relative; }
+    .ajax-browse--loading .ajax-browse__back-button:after {
+      content: ' ';
+      background-image: url("../images/loading-spinner-small.gif");
+      background-position: center center;
+      background-repeat: no-repeat;
+      width: 16px;
+      height: 16px;
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+          -ms-transform: translate(-50%, -50%);
+              transform: translate(-50%, -50%); }
+  .ajax-browse--loading .ajax-browse__back-text {
+    opacity: 0; }
   .ajax-browse__inner {
     overflow-x: hidden;
     white-space: nowrap; }

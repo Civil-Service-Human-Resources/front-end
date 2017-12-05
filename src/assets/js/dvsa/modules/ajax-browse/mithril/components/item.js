@@ -55,10 +55,10 @@ export class Item {
       'ajax-browse__item--active': active,
     });
     return (
-      <li class={classes}>
-        <a href={href} class="ajax-browse__link" onclick={this.itemClick}>
-          <span class="ajax-browse__link-heading">{heading}</span>
-          <span class="ajax-browse__link-description">{description}</span>
+      <li className={classes}>
+        <a href={href} className="ajax-browse__link" onclick={this.itemClick}>
+          <span className="ajax-browse__link-heading">{heading}</span>
+          <span className="ajax-browse__link-description">{description}</span>
         </a>
       </li>
     );

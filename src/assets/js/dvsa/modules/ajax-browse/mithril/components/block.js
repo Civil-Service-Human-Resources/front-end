@@ -20,9 +20,9 @@ export class Block {
   view() {
     const { key } = this.attrs;
     return (
-      <div class="ajax-browse__block">
-        <div class="ajax-browse__block-inner">
-          <ul class="ajax-browse__list">{this.getItems()}</ul>
+      <div className="ajax-browse__block">
+        <div className="ajax-browse__block-inner">
+          <ul className="ajax-browse__list">{this.getItems()}</ul>
         </div>
       </div>
     );

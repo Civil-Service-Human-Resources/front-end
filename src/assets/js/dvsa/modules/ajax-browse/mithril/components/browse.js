@@ -1,28 +1,30 @@
 import m from 'mithril';
 import { Block } from './block';
+import { BackButton } from './back-button';
 import * as ACTIONS from './../../redux/actions';
 import classnames from 'classnames';
 
 export class Browse {
-  constructor(vnode) {
-    this.attrs = vnode.attrs;
-  }
-
   oncreate() {
-    this.attrs.store.dispatch(ACTIONS.disableLoading());
+    this.store.dispatch(ACTIONS.disableLoading());
   }
 
   getBlocks() {
-    const { store } = this.attrs;
-    const { blocks } = this.attrs.store.getState();
+    const { blocks } = this.store.getState();
     if (!blocks) return;
     return blocks.map((block, index) => {
-      return <Block key={index} items={block.items} store={store} blockIndex={index} />;
+      return <Block key={index} items={block.items} blockIndex={index} />;
     });
   }
 
+  getBackButton() {
+    const { blocks } = this.store.getState();
+    return blocks.length > 2 ? <BackButton /> : false;
+  }
+
   view() {
-    const { settings, blocks } = this.attrs.store.getState();
+    return 'test';
+    const { settings, blocks } = this.store.getState();
     const classes = classnames({
       'ajax-browse': true,
       'ajax-browse--back-button': true,
@@ -31,10 +33,8 @@ export class Browse {
     });
     return (
       <div className={classes}>
-        <div class="ajax-browse__back-wrapper">
-          <a class="ajax-browse__back-button button">Back</a>
-        </div>
-        <div class="ajax-browse__inner">{this.getBlocks()}</div>
+        {/* {this.getBackButton()} */}
+        {/* <div className="ajax-browse__inner">{this.getBlocks()}</div> */}
       </div>
     );
   }

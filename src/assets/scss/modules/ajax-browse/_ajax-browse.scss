@@ -27,7 +27,28 @@
   }
 
   &__back-button {
+    position: relative;
+    .ajax-browse--loading & {
+      &:after {
+        content: ' ';
+        background-image: url('../images/loading-spinner-small.gif');
+        background-position: center center;
+        background-repeat: no-repeat;
+        width: 16px;
+        height: 16px;
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
 
+  &__back-text {
+    .ajax-browse--loading & {
+      opacity: 0;
+    }
   }
 
   &__inner {
