@@ -27,19 +27,28 @@ const getItems = exports.getItems = (() => {
 
     res.json({
       items: [{
+        id: 201,
         href: '#',
         heading: _faker2.default.random.words(3),
         description: _faker2.default.random.words(15),
+        loading: false,
+        active: false,
         endOfTree: false
       }, {
+        id: 202,
         href: '#',
         heading: _faker2.default.random.words(3),
         description: _faker2.default.random.words(15),
+        loading: false,
+        active: false,
         endOfTree: false
       }, {
+        id: 203,
         href: '#',
         heading: _faker2.default.random.words(3),
         description: _faker2.default.random.words(15),
+        loading: false,
+        active: false,
         endOfTree: false
       }]
     });
