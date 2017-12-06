@@ -4,7 +4,7 @@ const delay = () => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(true);
-    }, 500);
+    }, 50);
   });
 };
 

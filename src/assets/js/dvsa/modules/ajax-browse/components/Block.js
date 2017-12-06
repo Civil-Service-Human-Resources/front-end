@@ -29,6 +29,9 @@ class Block extends Component {
     // Enable loading for clicked item
     this.props.enableItemLoading(this.props.blockIndex, itemIndex);
 
+    // Set current item as active
+    this.props.enableItemActive(this.props.blockIndex, itemIndex);
+
     // Fetch new block items using ajax
     axios
       .post(this.props.endpointURL, {
@@ -55,9 +58,6 @@ class Block extends Component {
 
         // Disable loading for clicked item
         this.props.disableItemLoading(this.props.blockIndex, itemIndex);
-
-        // Set current item as active
-        this.props.enableItemActive(this.props.blockIndex, itemIndex);
 
         // Disable loading for whole ajax browse
         this.props.disableLoading();

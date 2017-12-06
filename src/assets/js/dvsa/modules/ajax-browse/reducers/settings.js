@@ -24,24 +24,28 @@ export default function settings(state = initialState, action) {
         },
       };
     }
+
     case ACTION_TYPES.SETUP_ENDPOINT_URL: {
       return {
         ...state,
         endpointURL: action.url,
       };
     }
+
     case ACTION_TYPES.ENABLE_LOADING: {
       return {
         ...state,
         loading: true,
       };
     }
+
     case ACTION_TYPES.DISABLE_LOADING: {
       return {
         ...state,
         loading: false,
       };
     }
+
     case ACTION_TYPES.SETUP_STARTED: {
       return {
         ...state,
@@ -50,6 +54,7 @@ export default function settings(state = initialState, action) {
         setupCompleted: false,
       };
     }
+
     case ACTION_TYPES.SETUP_COMPLETED: {
       return {
         ...state,
@@ -58,18 +63,21 @@ export default function settings(state = initialState, action) {
         setupCompleted: true,
       };
     }
+
     case ACTION_TYPES.START_ADDING_BLOCKS: {
       return {
         ...state,
         addingBlocks: true,
       };
     }
+
     case ACTION_TYPES.END_ADDING_BLOCKS: {
       return {
         ...state,
         addingBlocks: false,
       };
     }
+
     default: {
       return state;
     }

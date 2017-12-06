@@ -37862,6 +37862,9 @@ var Block = function (_Component) {
       // Enable loading for clicked item
       _this.props.enableItemLoading(_this.props.blockIndex, itemIndex);
 
+      // Set current item as active
+      _this.props.enableItemActive(_this.props.blockIndex, itemIndex);
+
       // Fetch new block items using ajax
       _axios2.default.post(_this.props.endpointURL, {
         params: {
@@ -37887,9 +37890,6 @@ var Block = function (_Component) {
 
         // Disable loading for clicked item
         _this.props.disableItemLoading(_this.props.blockIndex, itemIndex);
-
-        // Set current item as active
-        _this.props.enableItemActive(_this.props.blockIndex, itemIndex);
 
         // Disable loading for whole ajax browse
         _this.props.disableLoading();
@@ -38334,24 +38334,28 @@ function settings() {
           }
         });
       }
+
     case ACTION_TYPES.SETUP_ENDPOINT_URL:
       {
         return _extends({}, state, {
           endpointURL: action.url
         });
       }
+
     case ACTION_TYPES.ENABLE_LOADING:
       {
         return _extends({}, state, {
           loading: true
         });
       }
+
     case ACTION_TYPES.DISABLE_LOADING:
       {
         return _extends({}, state, {
           loading: false
         });
       }
+
     case ACTION_TYPES.SETUP_STARTED:
       {
         return _extends({}, state, {
@@ -38360,6 +38364,7 @@ function settings() {
           setupCompleted: false
         });
       }
+
     case ACTION_TYPES.SETUP_COMPLETED:
       {
         return _extends({}, state, {
@@ -38368,18 +38373,21 @@ function settings() {
           setupCompleted: true
         });
       }
+
     case ACTION_TYPES.START_ADDING_BLOCKS:
       {
         return _extends({}, state, {
           addingBlocks: true
         });
       }
+
     case ACTION_TYPES.END_ADDING_BLOCKS:
       {
         return _extends({}, state, {
           addingBlocks: false
         });
       }
+
     default:
       {
         return state;

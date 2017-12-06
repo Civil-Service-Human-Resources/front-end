@@ -4310,7 +4310,7 @@ sup,
     -webkit-transition: all 0.15s ease-in-out;
     transition: all 0.15s ease-in-out;
     position: relative;
-    white-space: initial; }
+    white-space: normal; }
     .ajax-browse__block-inner {
       border-left: 1px solid #dee0e2;
       min-height: 700px; }
