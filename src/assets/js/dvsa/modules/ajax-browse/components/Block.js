@@ -12,6 +12,7 @@ import {
   disableItemLoading,
   enableItemActive,
   disableItemActive,
+  removeBlocksAfterIndex,
 } from './../actions';
 import BlockItem from './BlockItem';
 
@@ -46,6 +47,10 @@ class Block extends Component {
         } else {
           // Add a new block
           this.props.addBlock(items);
+        }
+
+        if (this.props.blocks.length > newBlockIndex + 1) {
+          this.props.removeBlocksAfterIndex(newBlockIndex);
         }
 
         // Disable loading for clicked item
@@ -105,6 +110,7 @@ const mapActionsToProps = {
   disableItemLoading,
   enableItemActive,
   disableItemActive,
+  removeBlocksAfterIndex,
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(Block);

@@ -20,6 +20,7 @@ export default function blocks(state = initialState, action) {
         ...state,
         {
           items,
+          visible: action.visible,
         },
       ];
     }
@@ -51,6 +52,31 @@ export default function blocks(state = initialState, action) {
 
     case ACTION_TYPES.REMOVE_BLOCK: {
       return [...state.slice(0, action.blockIndex), ...state.slice(action.blockIndex + 1)];
+    }
+
+    case ACTION_TYPES.REMOVE_BLOCKS_AFTER_INDEX: {
+      return [...state.slice(0, action.endBlockIndex + 1)];
+    }
+
+    case ACTION_TYPES.REMOVE_LAST_BLOCK: {
+      const newState = [...state.slice(0, state.length - 1)];
+      return newState.map((block, index) => {
+        if (index === newState.length - 1) {
+          const items = block.items.map((item, index) => {
+            return {
+              ...item,
+              active: false,
+            };
+          });
+          return {
+            ...block,
+            items,
+          };
+        }
+        return {
+          ...block,
+        };
+      });
     }
 
     case ACTION_TYPES.ENABLE_BLOCK_ITEM_LOADING: {

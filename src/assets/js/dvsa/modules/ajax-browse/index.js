@@ -23,14 +23,17 @@ export const initAjaxBrowse = () => {
   if (
     window.__AJAX_BROWSE__ &&
     window.__AJAX_BROWSE__.endpointURL &&
-    window.__AJAX_BROWSE__.items &&
-    Array.isArray(window.__AJAX_BROWSE__.items)
+    window.__AJAX_BROWSE__.blocks &&
+    Array.isArray(window.__AJAX_BROWSE__.blocks)
   ) {
     // Setup endpoint url in the initial state
     store.dispatch(ACTIONS.setupEndpointURL(window.__AJAX_BROWSE__.endpointURL));
 
-    // Setup items in the initial state
-    store.dispatch(ACTIONS.addBlock(window.__AJAX_BROWSE__.items));
+    // Setup blocks in the initial state
+    window.__AJAX_BROWSE__.blocks.forEach((block, index) => {
+      if (!Array.isArray(block.items)) return;
+      store.dispatch(ACTIONS.addBlock(block.items, block.visible));
+    });
   }
 
   // Find current ajax browse DOM node

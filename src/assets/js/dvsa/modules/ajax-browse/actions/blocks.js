@@ -1,9 +1,10 @@
 import * as ACTION_TYPES from './../constants';
 
-export const addBlock = (items = []) => {
+export const addBlock = (items = [], visible = true) => {
   return {
     type: ACTION_TYPES.ADD_BLOCK,
     items,
+    visible,
   };
 };
 
@@ -19,6 +20,19 @@ export const removeBlock = blockIndex => {
   return {
     type: ACTION_TYPES.REMOVE_BLOCK,
     blockIndex,
+  };
+};
+
+export const removeBlocksAfterIndex = endBlockIndex => {
+  return {
+    type: ACTION_TYPES.REMOVE_BLOCKS_AFTER_INDEX,
+    endBlockIndex,
+  };
+};
+
+export const removeLastBlock = () => {
+  return {
+    type: ACTION_TYPES.REMOVE_LAST_BLOCK,
   };
 };
 

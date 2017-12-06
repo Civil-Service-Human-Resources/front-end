@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { enableLoading, disableLoading } from './../actions';
+import { enableLoading, disableLoading, removeLastBlock } from './../actions';
 
 class BackButton extends Component {
   onBackClick = event => {
-    console.log(event);
+    this.props.enableLoading();
+    this.props.removeLastBlock();
+    this.props.disableLoading();
   };
 
   render() {
@@ -29,6 +31,7 @@ const mapStateToProps = state => ({
 const mapActionsToProp = {
   enableLoading,
   disableLoading,
+  removeLastBlock,
 };
 
 export default connect(mapStateToProps, mapActionsToProp)(BackButton);

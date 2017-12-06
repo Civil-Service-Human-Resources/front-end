@@ -18176,12 +18176,15 @@ var initAjaxBrowse = exports.initAjaxBrowse = function initAjaxBrowse() {
   // - Ajax browse object exists
   // - Object has the endpoint url
   // - Object has items as array
-  if (window.__AJAX_BROWSE__ && window.__AJAX_BROWSE__.endpointURL && window.__AJAX_BROWSE__.items && Array.isArray(window.__AJAX_BROWSE__.items)) {
+  if (window.__AJAX_BROWSE__ && window.__AJAX_BROWSE__.endpointURL && window.__AJAX_BROWSE__.blocks && Array.isArray(window.__AJAX_BROWSE__.blocks)) {
     // Setup endpoint url in the initial state
     store.dispatch(ACTIONS.setupEndpointURL(window.__AJAX_BROWSE__.endpointURL));
 
-    // Setup items in the initial state
-    store.dispatch(ACTIONS.addBlock(window.__AJAX_BROWSE__.items));
+    // Setup blocks in the initial state
+    window.__AJAX_BROWSE__.blocks.forEach(function (block, index) {
+      if (!Array.isArray(block.items)) return;
+      store.dispatch(ACTIONS.addBlock(block.items, block.visible));
+    });
   }
 
   // Find current ajax browse DOM node
@@ -37602,6 +37605,8 @@ var ADD_BLOCK_ITEM = exports.ADD_BLOCK_ITEM = 'add_block_item';
 var UPDATE_BLOCK = exports.UPDATE_BLOCK = 'update_block';
 
 var REMOVE_BLOCK = exports.REMOVE_BLOCK = 'remove_block';
+var REMOVE_BLOCKS_AFTER_INDEX = exports.REMOVE_BLOCKS_AFTER_INDEX = 'remove_all_other_blocks';
+var REMOVE_LAST_BLOCK = exports.REMOVE_LAST_BLOCK = 'remove_last_block';
 
 var ENABLE_BLOCK_ITEM_LOADING = exports.ENABLE_BLOCK_ITEM_LOADING = 'enable_block_item_loading';
 var DISABLE_BLOCK_ITEM_LOADING = exports.DISABLE_BLOCK_ITEM_LOADING = 'disable_block_item_loading';
@@ -37619,7 +37624,7 @@ var DISABLE_BLOCK_ITEM_ACTIVE = exports.DISABLE_BLOCK_ITEM_ACTIVE = 'disable_blo
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.disableItemActive = exports.enableItemActive = exports.disableItemLoading = exports.enableItemLoading = exports.removeBlock = exports.updateBlock = exports.addBlock = undefined;
+exports.disableItemActive = exports.enableItemActive = exports.disableItemLoading = exports.enableItemLoading = exports.removeLastBlock = exports.removeBlocksAfterIndex = exports.removeBlock = exports.updateBlock = exports.addBlock = undefined;
 
 var _constants = __webpack_require__(75);
 
@@ -37629,10 +37634,12 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 var addBlock = exports.addBlock = function addBlock() {
   var items = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var visible = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
 
   return {
     type: ACTION_TYPES.ADD_BLOCK,
-    items: items
+    items: items,
+    visible: visible
   };
 };
 
@@ -37648,6 +37655,19 @@ var removeBlock = exports.removeBlock = function removeBlock(blockIndex) {
   return {
     type: ACTION_TYPES.REMOVE_BLOCK,
     blockIndex: blockIndex
+  };
+};
+
+var removeBlocksAfterIndex = exports.removeBlocksAfterIndex = function removeBlocksAfterIndex(endBlockIndex) {
+  return {
+    type: ACTION_TYPES.REMOVE_BLOCKS_AFTER_INDEX,
+    endBlockIndex: endBlockIndex
+  };
+};
+
+var removeLastBlock = exports.removeLastBlock = function removeLastBlock() {
+  return {
+    type: ACTION_TYPES.REMOVE_LAST_BLOCK
   };
 };
 
@@ -37731,7 +37751,9 @@ var BackButton = function (_Component) {
     }
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = BackButton.__proto__ || Object.getPrototypeOf(BackButton)).call.apply(_ref, [this].concat(args))), _this), _this.onBackClick = function (event) {
-      console.log(event);
+      _this.props.enableLoading();
+      _this.props.removeLastBlock();
+      _this.props.disableLoading();
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -37767,7 +37789,8 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var mapActionsToProp = {
   enableLoading: _actions.enableLoading,
-  disableLoading: _actions.disableLoading
+  disableLoading: _actions.disableLoading,
+  removeLastBlock: _actions.removeLastBlock
 };
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapActionsToProp)(BackButton);
@@ -37858,6 +37881,10 @@ var Block = function (_Component) {
           _this.props.addBlock(items);
         }
 
+        if (_this.props.blocks.length > newBlockIndex + 1) {
+          _this.props.removeBlocksAfterIndex(newBlockIndex);
+        }
+
         // Disable loading for clicked item
         _this.props.disableItemLoading(_this.props.blockIndex, itemIndex);
 
@@ -37926,7 +37953,8 @@ var mapActionsToProps = {
   enableItemLoading: _actions.enableItemLoading,
   disableItemLoading: _actions.disableItemLoading,
   enableItemActive: _actions.enableItemActive,
-  disableItemActive: _actions.disableItemActive
+  disableItemActive: _actions.disableItemActive,
+  removeBlocksAfterIndex: _actions.removeBlocksAfterIndex
 };
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapActionsToProps)(Block);
@@ -38102,7 +38130,8 @@ function blocks() {
           };
         });
         return [].concat(_toConsumableArray(state), [{
-          items: items
+          items: items,
+          visible: action.visible
         }]);
       }
 
@@ -38134,18 +38163,19 @@ function blocks() {
         return [].concat(_toConsumableArray(state.slice(0, action.blockIndex)), _toConsumableArray(state.slice(action.blockIndex + 1)));
       }
 
-    case ACTION_TYPES.ENABLE_BLOCK_ITEM_LOADING:
+    case ACTION_TYPES.REMOVE_BLOCKS_AFTER_INDEX:
       {
-        return state.map(function (block, index) {
-          if (index === action.blockIndex) {
+        return [].concat(_toConsumableArray(state.slice(0, action.endBlockIndex + 1)));
+      }
+
+    case ACTION_TYPES.REMOVE_LAST_BLOCK:
+      {
+        var newState = [].concat(_toConsumableArray(state.slice(0, state.length - 1)));
+        return newState.map(function (block, index) {
+          if (index === newState.length - 1) {
             var _items2 = block.items.map(function (item, index) {
-              if (index === action.itemIndex) {
-                return _extends({}, item, {
-                  loading: true
-                });
-              }
               return _extends({}, item, {
-                loading: false
+                active: false
               });
             });
             return _extends({}, block, {
@@ -38156,14 +38186,14 @@ function blocks() {
         });
       }
 
-    case ACTION_TYPES.DISABLE_BLOCK_ITEM_LOADING:
+    case ACTION_TYPES.ENABLE_BLOCK_ITEM_LOADING:
       {
         return state.map(function (block, index) {
           if (index === action.blockIndex) {
             var _items3 = block.items.map(function (item, index) {
               if (index === action.itemIndex) {
                 return _extends({}, item, {
-                  loading: false
+                  loading: true
                 });
               }
               return _extends({}, item, {
@@ -38178,18 +38208,18 @@ function blocks() {
         });
       }
 
-    case ACTION_TYPES.ENABLE_BLOCK_ITEM_ACTIVE:
+    case ACTION_TYPES.DISABLE_BLOCK_ITEM_LOADING:
       {
         return state.map(function (block, index) {
           if (index === action.blockIndex) {
             var _items4 = block.items.map(function (item, index) {
               if (index === action.itemIndex) {
                 return _extends({}, item, {
-                  active: true
+                  loading: false
                 });
               }
               return _extends({}, item, {
-                active: false
+                loading: false
               });
             });
             return _extends({}, block, {
@@ -38200,11 +38230,33 @@ function blocks() {
         });
       }
 
-    case ACTION_TYPES.DISABLE_BLOCK_ITEM_ACTIVE:
+    case ACTION_TYPES.ENABLE_BLOCK_ITEM_ACTIVE:
       {
         return state.map(function (block, index) {
           if (index === action.blockIndex) {
             var _items5 = block.items.map(function (item, index) {
+              if (index === action.itemIndex) {
+                return _extends({}, item, {
+                  active: true
+                });
+              }
+              return _extends({}, item, {
+                active: false
+              });
+            });
+            return _extends({}, block, {
+              items: _items5
+            });
+          }
+          return _extends({}, block);
+        });
+      }
+
+    case ACTION_TYPES.DISABLE_BLOCK_ITEM_ACTIVE:
+      {
+        return state.map(function (block, index) {
+          if (index === action.blockIndex) {
+            var _items6 = block.items.map(function (item, index) {
               if (index === action.itemIndex) {
                 return _extends({}, item, {
                   active: false
@@ -38215,7 +38267,7 @@ function blocks() {
               });
             });
             return _extends({}, block, {
-              items: _items5
+              items: _items6
             });
           }
           return _extends({}, block);
