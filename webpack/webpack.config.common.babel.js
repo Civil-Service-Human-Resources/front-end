@@ -4,7 +4,6 @@ import webpack from 'webpack';
 module.exports = {
   entry: {
     dvsa: path.resolve('src', 'assets', 'js', 'dvsa', 'index.js'),
-    'ie-shims': path.resolve('src', 'assets', 'js', 'ie-shims', 'index.js'),
     development: path.resolve('src', 'assets', 'js', 'development', 'index.js'),
   },
   output: {
@@ -25,7 +24,7 @@ module.exports = {
                 'targets': {
                   'browsers': [
                     'last 3 versions',
-                    'ie >= 9',
+                    'ie >= 8',
                     'last 3 iOS major versions'
                   ]
                 },

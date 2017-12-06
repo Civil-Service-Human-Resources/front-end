@@ -53,23 +53,18 @@
     }
 }
 
-.manuals {
+.level-3 {
+    padding-left: 20px;
+}
 
-    ul ul {
+.level-4 {
+    padding-left: 40px;
+}
 
-        padding-left: 20px;
+tr.borderless + tr {
 
-        & >li {
-            list-style: circle;
-        }
-
-        & ul {
-
-            padding-left: 20px;
-
-            & >li {
-                list-style: square;
-            }
-        }
+    li {
+        margin-left: 20px;
     }
+
 }

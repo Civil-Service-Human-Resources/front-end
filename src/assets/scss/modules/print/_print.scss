@@ -1,7 +1,8 @@
-.print {
- 
-  // Elements
-  @import 'elements/show';
-  @import 'elements/hide';
+.print-show {
+  display: none !important;
+}
 
+@media print {
+  @import 'partials/misc';
+  @import 'partials/header';
 }
