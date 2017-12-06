@@ -37,11 +37,7 @@ module.exports = {
             ],
             plugins: [
               'transform-decorators-legacy',
-              [
-                'transform-react-jsx', {
-                  'pragma': 'm'
-                }
-              ]
+              'transform-react-jsx'
             ]
           },
         },

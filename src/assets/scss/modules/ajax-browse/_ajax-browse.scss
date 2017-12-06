@@ -68,10 +68,7 @@
     &-inner {
       border-left: 1px solid $grey-3;
       min-height: 700px;
-    }
-
-    &:first-child {
-      .ajax-browse__block-inner {
+      .ajax-browse--1-blocks & {
         border-left-color: white;
       }
     }

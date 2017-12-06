@@ -12,7 +12,8 @@ module.exports = merge(common, {
   plugins: [
     new MinifyPlugin(),
     new webpack.DefinePlugin({
-      ENV_PRODUCTION: false
+      ENV_PRODUCTION: true,
+      'process.env.NODE_ENV': JSON.stringify('production')
     })
   ],
 });

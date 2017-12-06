@@ -9,7 +9,33 @@
 
   <br class="clearfix">
 
-  <div class="ajax-browse ajax-browse--back-button ajax-browse--1-blocks" data-endpoint-url="{{ appURL }}/api/v1/ajax-browse">
+  <script type="text/javascript">
+  window.__AJAX_BROWSE__ = {
+    endpointURL: '{{ appURL }}/api/v1/ajax-browse',
+    items: [
+      {
+        id: 123,
+        href: '#',
+        heading: 'Births, deaths, marriages and care',
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia rerum sunt quod modi veritatis voluptatibus odio cupiditate possimus aperiam, facilis, rem iste cum odit quam.',
+        loading: false,
+        active: false,
+        endOfTree: false,
+      },
+      {
+        id: 124,
+        href: '#',
+        heading: 'Births, deaths, marriages and care',
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia rerum sunt quod modi veritatis voluptatibus odio cupiditate possimus aperiam, facilis, rem iste cum odit quam.',
+        loading: false,
+        active: false,
+        endOfTree: false,
+      }
+    ]
+  };
+  </script>
+
+  <div id="ajax-browse" class="ajax-browse ajax-browse--back-button ajax-browse--1-blocks" data-endpoint-url="{{ appURL }}/api/v1/ajax-browse">
     <div class="ajax-browse__back-wrapper">
       <a class="ajax-browse__back-button button">Back</a>
     </div>

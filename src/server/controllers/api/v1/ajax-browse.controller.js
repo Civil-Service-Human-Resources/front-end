@@ -14,21 +14,30 @@ export const getItems = async (req, res) => {
   res.json({
     items: [
       {
+        id: 201,
         href: '#',
         heading: faker.random.words(3),
         description: faker.random.words(15),
+        loading: false,
+        active: false,
         endOfTree: false,
       },
       {
+        id: 202,
         href: '#',
         heading: faker.random.words(3),
         description: faker.random.words(15),
+        loading: false,
+        active: false,
         endOfTree: false,
       },
       {
+        id: 203,
         href: '#',
         heading: faker.random.words(3),
         description: faker.random.words(15),
+        loading: false,
+        active: false,
         endOfTree: false,
       },
     ],
