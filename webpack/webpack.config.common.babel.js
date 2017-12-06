@@ -24,9 +24,9 @@ module.exports = {
               ['env', {
                 'targets': {
                   'browsers': [
-                    'last 5 versions',
+                    'last 3 versions',
                     'ie >= 9',
-                    'last 5 iOS major versions'
+                    'last 3 iOS major versions'
                   ]
                 },
                 'debug': true,
