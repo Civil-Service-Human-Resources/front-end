@@ -6886,6 +6886,7 @@ var RECALLS_ACCORDION_CONSTANTS = exports.RECALLS_ACCORDION_CONSTANTS = {
     submitRecallUi: 'cta-submitted',
     submitRecallOutcome: 'Requested',
     submitTimestamp: 'timestamp',
+    responseTimestamp: 'response-timestamp',
     error: {
       event: 'api-response',
       elementName: 'Recall',
@@ -17036,10 +17037,18 @@ var RecallsAccordion = exports.RecallsAccordion = function () {
         if (responseData !== null && responseData.dataLayer) {
           // Check if is array
           if (Array.isArray(responseData.dataLayer)) {
-            responseData.dataLayer.forEach(function (dataLayerObject) {
+            responseData.dataLayer.forEach(function (dataLayerObject, index) {
+              // Add response timestamp
+              // to the first datalayer push
+              if (index === 0) {
+                dataLayerObject[_constants.RECALLS_ACCORDION_CONSTANTS.dataLayer.responseTimestamp] = Date.now();
+              }
               _this.dataLayerPush(dataLayerObject);
             });
           } else if (responseData.dataLayer !== null && _typeof(responseData.dataLayer) === 'object') {
+            // Add response timestamp
+            // to the first datalayer push
+            responseData.dataLayer[_constants.RECALLS_ACCORDION_CONSTANTS.dataLayer.responseTimestamp] = Date.now();
             _this.dataLayerPush(responseData.dataLayer);
           }
         }
