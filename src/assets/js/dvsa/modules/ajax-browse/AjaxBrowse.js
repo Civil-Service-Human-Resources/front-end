@@ -11,9 +11,11 @@ class AjaxBrowse extends Component {
   componentDidMount() {
     this.props.disableLoading();
   }
+
   render() {
     const classes = classnames({
       'ajax-browse': true,
+      'ajax-browse--hover-effect': false,
       'ajax-browse--back-button': true,
       'ajax-browse--loading': this.props.settings.loading,
       ['ajax-browse--' + this.props.blocks.length + '-blocks']: true,

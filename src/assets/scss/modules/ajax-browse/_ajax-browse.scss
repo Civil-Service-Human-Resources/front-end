@@ -209,7 +209,7 @@
       }
     }
 
-    .ajax-browse--6-blocks.ajax-browse--back-button:not(.ajax-browse--loading) & {
+    .ajax-browse--6-blocks.ajax-browse--back-button & {
       &:nth-child(1) {
         .ajax-browse__block-inner {
           opacity: 0.1;
@@ -291,7 +291,7 @@
       }
     }
 
-    .ajax-browse--6-blocks.ajax-browse--hover-effect:not(.ajax-browse--loading) & {
+    .ajax-browse--6-blocks.ajax-browse--hover-effect & {
       &:nth-child(1) {
         .ajax-browse__block-inner {
           opacity: 0.15;

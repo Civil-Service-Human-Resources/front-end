@@ -34,13 +34,20 @@ class Block extends Component {
     // Temporary index for the next block,
     // based on the current block index
     const newBlockIndex = this.props.blockIndex + 1;
+    const newBlocksLength = newBlockIndex + 1;
+
+    // Check if there is any blocks after the new index
+    // Remove all blocks upto the next block index
+    if (this.props.blocks.length > newBlocksLength) {
+      this.props.removeBlocksAfterIndex(newBlockIndex);
+    }
 
     // Check if this item was already clicked,
     // therefore no need to fetch data again
     if (item.active === true) {
       // Remove all other block after the next block,
       // and disable loading status for current item
-      return this.removeAllBlocksAfterIndexAndDisableLoading(itemIndex, newBlockIndex);
+      return;
     }
 
     // Enable whole state loading
@@ -54,7 +61,7 @@ class Block extends Component {
       .post(this.props.endpointURL, {
         params: {
           itemId: item.id,
-          blocksLength: this.props.blocks.length,
+          blocksLength: newBlocksLength,
         },
       })
       .then(response => {
@@ -80,29 +87,13 @@ class Block extends Component {
         this.props.enableItemActive(this.props.blockIndex, itemIndex);
 
         // Remove all other blocks after new one (if any)
-        this.removeAllBlocksAfterIndexAndDisableLoading(itemIndex, newBlockIndex);
+        // this.removeAllBlocksAfterIndexAndDisableLoading(itemIndex, newBlockIndex);
+        // Disable loading for clicked item
+        this.props.disableItemLoading(this.props.blockIndex, itemIndex);
+
+        // Disable loading for whole ajax browse
+        this.props.disableLoading();
       });
-  };
-
-  /**
-   * Removes all other blocks after the block index provide
-   * Also disables the loading status of current item/ajax browse
-   *
-   * @param {Number} itemIndex Index of the current item inside the block
-   * @param {Number} newBlockIndex Index of the currenet block
-   */
-  removeAllBlocksAfterIndexAndDisableLoading = (itemIndex, newBlockIndex) => {
-    // Check that the params are valid
-    if (newBlockIndex === undefined || !this.props.blocks) return;
-    if (this.props.blocks.length > newBlockIndex + 1) {
-      this.props.removeBlocksAfterIndex(newBlockIndex);
-    }
-
-    // Disable loading for clicked item
-    this.props.disableItemLoading(this.props.blockIndex, itemIndex);
-
-    // Disable loading for whole ajax browse
-    this.props.disableLoading();
   };
 
   render() {
