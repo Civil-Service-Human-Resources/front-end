@@ -68,7 +68,7 @@
     &-inner {
       border-left: 1px solid $grey-3;
       min-height: 700px;
-      .ajax-browse--1-blocks & {
+      .ajax-browse__block:first-child & {
         border-left-color: white;
       }
     }
@@ -403,6 +403,9 @@
       transform: translateY(-50%);
       .ajax-browse__item--loading & {
         background-image: url('../images/loading-spinner-small.gif');
+      }
+      .ajax-browse__item--end-of-tree & {
+        display: none;
       }
     }
 

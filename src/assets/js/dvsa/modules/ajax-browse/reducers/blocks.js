@@ -14,6 +14,7 @@ export default function blocks(state = initialState, action) {
           loading: item.loading || false,
           active: item.active || false,
           endOfTree: item.endOfTree || false,
+          clicked: false,
         };
       });
       return [
@@ -55,7 +56,22 @@ export default function blocks(state = initialState, action) {
     }
 
     case ACTION_TYPES.REMOVE_BLOCKS_AFTER_INDEX: {
-      return [...state.slice(0, action.endBlockIndex + 1)];
+      const newState = [...state.slice(0, action.endBlockIndex + 1)];
+      return newState.map((block, index) => {
+        if (index === newState.length - 1) {
+          const items = block.items.map(item => {
+            return {
+              ...item,
+              active: false,
+            };
+          });
+          return {
+            ...block,
+            items,
+          };
+        }
+        return block;
+      });
     }
 
     case ACTION_TYPES.REMOVE_LAST_BLOCK: {

@@ -9,6 +9,7 @@ class BlockItem extends Component {
       'ajax-browse__item': true,
       'ajax-browse__item--loading': this.props.loading,
       'ajax-browse__item--active': this.props.active,
+      'ajax-browse__item--end-of-tree': this.props.endOfTree,
     });
     return (
       <li className={classes}>

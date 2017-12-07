@@ -17,7 +17,7 @@ const delay = () => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(true);
-    }, 500);
+    }, 50);
   });
 };
 
@@ -33,7 +33,7 @@ const getItems = exports.getItems = (() => {
         description: _faker2.default.random.words(15),
         loading: false,
         active: false,
-        endOfTree: false
+        endOfTree: req.body.params.blocksLength === 5 ? true : false
       }, {
         id: 202,
         href: '#',
@@ -41,7 +41,7 @@ const getItems = exports.getItems = (() => {
         description: _faker2.default.random.words(15),
         loading: false,
         active: false,
-        endOfTree: false
+        endOfTree: req.body.params.blocksLength === 5 ? true : false
       }, {
         id: 203,
         href: '#',
@@ -49,7 +49,7 @@ const getItems = exports.getItems = (() => {
         description: _faker2.default.random.words(15),
         loading: false,
         active: false,
-        endOfTree: false
+        endOfTree: req.body.params.blocksLength === 5 ? true : false
       }]
     });
   });

@@ -20,7 +20,7 @@ export const getItems = async (req, res) => {
         description: faker.random.words(15),
         loading: false,
         active: false,
-        endOfTree: false,
+        endOfTree: req.body.params.blocksLength === 5 ? true : false,
       },
       {
         id: 202,
@@ -29,7 +29,7 @@ export const getItems = async (req, res) => {
         description: faker.random.words(15),
         loading: false,
         active: false,
-        endOfTree: false,
+        endOfTree: req.body.params.blocksLength === 5 ? true : false,
       },
       {
         id: 203,
@@ -38,7 +38,7 @@ export const getItems = async (req, res) => {
         description: faker.random.words(15),
         loading: false,
         active: false,
-        endOfTree: false,
+        endOfTree: req.body.params.blocksLength === 5 ? true : false,
       },
     ],
   });
