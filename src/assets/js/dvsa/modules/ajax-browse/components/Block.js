@@ -44,11 +44,7 @@ class Block extends Component {
 
     // Check if this item was already clicked,
     // therefore no need to fetch data again
-    if (item.active === true) {
-      // Remove all other block after the next block,
-      // and disable loading status for current item
-      return;
-    }
+    if (item.active === true) return;
 
     // Enable whole state loading
     this.props.enableLoading();
@@ -69,7 +65,9 @@ class Block extends Component {
 
         // Check to make sure response has items
         if (!items) {
-          this.props.disableItemLoading(itemIndex);
+          // Disable loading for clicked item
+          this.props.disableItemLoading(this.props.blockIndex, itemIndex);
+          // Disable loading for whole ajax browse
           this.props.disableLoading();
           return;
         }
@@ -86,8 +84,6 @@ class Block extends Component {
         // Set current item as active
         this.props.enableItemActive(this.props.blockIndex, itemIndex);
 
-        // Remove all other blocks after new one (if any)
-        // this.removeAllBlocksAfterIndexAndDisableLoading(itemIndex, newBlockIndex);
         // Disable loading for clicked item
         this.props.disableItemLoading(this.props.blockIndex, itemIndex);
 
