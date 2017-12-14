@@ -9,3 +9,4 @@ node_modules
 spider.txt
 public
 npm-debug.log
+coverage

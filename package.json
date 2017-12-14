@@ -13,7 +13,9 @@
     "pretty-js": "prettier --print-width 140 --single-quote --trailing-comma es5 --write \"src/**/*.js\"",
     "run-tests": "cross-env NODE_ENV=testing mocha --require babel-core/register --watch --timeout 10000 ./tests/bootstrap/runner.js ./tests/src/**/**.js",
     "precommit-msg": "echo 'Running pre-commit commands...' && exit 0",
-    "git-add": "git add ."
+    "git-add": "git add .",
+    "test": "jest",
+    "test:coverage": "jest --coverage"
   },
   "pre-commit": [
     "precommit-msg",
@@ -23,6 +25,15 @@
   "repository": {
     "type": "git",
     "url": "git@github.com:dvsa/front-end.git"
+  },
+  "jest": {
+    "setupFiles": [
+      "<rootDir>/__tests__/shims.js",
+      "<rootDir>/__tests__/setup-tests.js"
+    ],
+    "modulePathIgnorePatterns": [
+      "tests"
+    ]
   },
   "author": "",
   "license": "ISC",
@@ -76,6 +87,7 @@
     "babel-minify-webpack-plugin": "^0.2.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "babel-preset-stage-3": "^6.24.1",
@@ -83,6 +95,8 @@
     "classlist.js": "^1.1.20150312",
     "cross-env": "^5.1.1",
     "cssnano": "^3.10.0",
+    "enzyme": "^3.2.0",
+    "enzyme-adapter-react-16": "^1.1.0",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-autoprefixer": "^4.0.0",
     "gulp-babel": "^7.0.0",
@@ -98,11 +112,15 @@
     "gulp-scss-lint": "^0.5.0",
     "gulp-sourcemaps": "^2.6.1",
     "gulp-tap": "^1.0.1",
+    "jest": "^21.2.1",
     "mocha": "^4.0.1",
+    "moxios": "^0.4.0",
+    "nock": "^9.1.4",
     "pre-commit": "^1.2.2",
     "prettier": "^1.7.4",
     "prop-types": "^15.6.0",
     "puppeteer": "^0.13.0",
+    "raf": "^3.4.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
@@ -110,6 +128,7 @@
     "reselect": "^3.0.1",
     "run-sequence": "^2.2.0",
     "sass-module-importer": "^1.4.0",
+    "sinon": "^4.1.3",
     "undertaker-forward-reference": "^1.0.2",
     "webpack": "^3.6.0",
     "webpack-bundle-analyzer": "^2.9.1",

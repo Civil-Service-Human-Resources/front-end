@@ -10,6 +10,8 @@ const initialState = {
   },
   endpointURL: false,
   loading: true,
+  didReceiveInvalidData: false,
+  receivedDataAt: false,
   addingBlocks: false,
 };
 
