@@ -1,4 +1,5 @@
 import faker from 'faker';
+import RFR_DATA from './data/formatted-output.json';
 
 const delay = () => {
   return new Promise((resolve, reject) => {
@@ -11,35 +12,31 @@ const delay = () => {
 export const getItems = async (req, res) => {
   await delay();
 
+  // Get all categories based on parent id
+  const parentCategoryId = req.body.params.itemId;
+  const subCategories = RFR_DATA.categories.filter(category => {
+    return category.parentCategoryId === parentCategoryId;
+  });
+
+  // Format sub categories for response
+  const responseItems = subCategories.map(subCategory => {
+    let currentSubCategories = RFR_DATA.categories.filter(category => {
+      return category.parentCategoryId === subCategory.id;
+    });
+    return {
+      id: subCategory.id,
+      href: '#',
+      heading: subCategory.name,
+      description: subCategory.description,
+      loading: false,
+      active: false,
+      endOfTree: req.body.params.blocksLength === 5 ? true : currentSubCategories.length === 0,
+    };
+  });
+
+  console.log(responseItems);
+
   res.json({
-    items: [
-      {
-        id: 201,
-        href: '#',
-        heading: faker.random.words(3),
-        description: faker.random.words(15),
-        loading: false,
-        active: false,
-        endOfTree: req.body.params.blocksLength === 5 ? true : false,
-      },
-      {
-        id: 202,
-        href: '#',
-        heading: faker.random.words(3),
-        description: faker.random.words(15),
-        loading: false,
-        active: false,
-        endOfTree: req.body.params.blocksLength === 5 ? true : false,
-      },
-      {
-        id: 203,
-        href: '#',
-        heading: faker.random.words(3),
-        description: faker.random.words(15),
-        loading: false,
-        active: false,
-        endOfTree: req.body.params.blocksLength === 5 ? true : false,
-      },
-    ],
+    items: responseItems,
   });
 };
