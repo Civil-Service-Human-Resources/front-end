@@ -1,0 +1,21 @@
+{% extends 'layouts/default.layout.njk' %}
+
+{% set pageTitle = 'Test Form - Success' %}
+
+{% block content %}
+
+  {{ 'You have an error!' if error }}
+
+  {% call components.gridRow() %}
+  
+    {% call components.columnFull() %}
+
+      {{ components.heading(text="Test Form") }}
+
+      {{ components.banner(mainText='This is my rifle', secondaryText='There are many like it, but this one is mine.', type='confirmation') }}
+
+    {%- endcall %}
+
+  {%- endcall %}
+  
+{% endblock %}

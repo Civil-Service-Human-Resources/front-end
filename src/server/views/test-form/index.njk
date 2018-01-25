@@ -1,0 +1,45 @@
+{% extends 'layouts/default.layout.njk' %}
+
+{% set pageTitle = 'Test Form' %}
+
+{% set firnameErrors = errors.firstname if errors %}
+{% set lastnameErrors = errors.lastname if errors %}
+
+{% block content %}
+
+  {% call components.gridRow() %}
+  
+    {% call components.columnFull() %}
+      
+      {% if errors %}
+      <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
+        <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">
+          There was some errors, please fix!
+        </h2>
+
+        {% for message in errorMessages %}
+        <p>
+          {{ message }}
+        </p>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      {{ components.heading(text="Test Form") }}
+
+      {{ components.paragraph(text="Some text...", lead=true) }}
+
+      {% call components.form(action='/test-form', method='POST') %}
+
+        {{ components.field(label='First name', id='firstname', group=true, error=firnameErrors) }}
+
+        {{ components.field(label='Last name', id='lastname', group=true, error=lastnameErrors) }}
+
+        {{ components.button(text='Submit') }}
+      {%- endcall %}
+
+    {%- endcall %}
+
+  {%- endcall %}
+  
+{% endblock %}

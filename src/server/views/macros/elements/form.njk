@@ -1,0 +1,9 @@
+{% macro form(action=false, method='GET', class=false) %}
+  <form 
+  {{ 'action="' + action + '"' if action }}
+  {{ 'class="' + class + '"' if class }}
+  {{ 'method="' + method + '"' if method }}
+  >
+    {{ caller() }}
+  </form>
+{% endmacro %}
