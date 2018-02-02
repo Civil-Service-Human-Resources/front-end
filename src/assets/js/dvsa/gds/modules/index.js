@@ -7,5 +7,5 @@ export const initModules = () => {
   new CookieMessage();
   new HeaderMenu();
   new LinksWithRole();
-  new ShowHideContent();
+  // new ShowHideContent();
 };
