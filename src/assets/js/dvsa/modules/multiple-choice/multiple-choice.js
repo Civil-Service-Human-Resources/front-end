@@ -9,18 +9,19 @@ export class MultiChoice {
     multiChoiceItems.forEach(this.setup);
   }
 
-  setup = (item, index) => {
-    let self, targetId, target, inputRef;
+  setup = item => {
+    let self, targetId, target, inputRef, inputGroupName;
     self = item;
 
     targetId = self.dataset.target;
     target = document.getElementById(targetId);
     target.setAttribute('aria-expanded', false);
-    inputRef = self.querySelector('input[name$="radio-contact-group"]');
+    inputRef = self.querySelector('input[type="radio"]');
+    inputGroupName = inputRef.getAttribute('name');
 
     this.state.objects.push({
-      index,
       inputRef,
+      inputGroupName: this.getInputGroupName(inputRef) || null,
       target,
       isActive: inputRef.checked || false,
     });
@@ -30,8 +31,14 @@ export class MultiChoice {
 
   handleChangeState = () => {
     this.state.objects.forEach(item => {
-      this.toggleState(item);
+      if (item.inputGroupName == this.getInputGroupName(event.target)) {
+        this.toggleState(item);
+      }
     });
+  };
+
+  getInputGroupName = inputElm => {
+    return inputElm.getAttribute('name');
   };
 
   toggleState = item => {
