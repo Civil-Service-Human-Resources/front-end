@@ -1,1 +1,0 @@
-export const RADIO_MULTICHOICE_CONSTANTS = {};

@@ -1,50 +1,47 @@
 export class MultiChoice {
-  constructor(multiChoiceItem) {
-    // Sets THIS to the passed in object
-    this.multiChoiceItem = multiChoiceItem;
-
-    // Check if multiple choice component exists
-    if (!this.multiChoiceItem) return console.log('Multiple choice item cannot be found');
-
-    // Get the components target
-    this.targetId = this.multiChoiceItem.dataset.target;
-    this.target = document.getElementById(this.targetId);
-
-    // Check if target is defined
-    if (!this.targetId || !this.target) return console.log('Target not defined');
-
-    let multiChoiceItems = Array.from(document.getElementsByClassName('multiple-choice'));
-
-    if (!multiChoiceItems) return console.log('Could not find multiple choice items');
-
-    // Defines empty state obj
+  constructor() {
     this.state = {
-      nodeIndex: this.getIndexOfThis(multiChoiceItems, multiChoiceItem),
-      targetNode: {
-        id: this.targetId,
-        node: this.target,
-        isActive: false,
-      },
+      objects: [],
     };
 
-    this.setup();
+    let multiChoiceItems = Array.from(document.getElementsByClassName('multiple-choice'));
+    if (!multiChoiceItems || !multiChoiceItems.length) return console.log('Multi choice components not found on DOM');
+    multiChoiceItems.forEach(this.setup);
   }
 
-  // Sets up an inital radioMultiChoice component
-  setup = () => {
-    this.target.setAttribute('aria-expanded', this.state.targetNode.isActive);
-    this.multiChoiceItem.addEventListener('click', this.handleClick);
+  setup = (item, index) => {
+    let self, targetId, target, inputRef;
+    self = item;
+
+    targetId = self.dataset.target;
+    target = document.getElementById(targetId);
+    target.setAttribute('aria-expanded', false);
+    inputRef = self.querySelector('input[name$="radio-contact-group"]');
+
+    this.state.objects.push({
+      index,
+      inputRef,
+      target,
+      isActive: inputRef.checked || false,
+    });
+
+    inputRef.addEventListener('change', this.handleChangeState);
   };
 
-  handleClick = event => {
-    this.toggleState();
+  handleChangeState = () => {
+    this.state.objects.forEach(item => {
+      this.toggleState(item);
+    });
   };
 
-  toggleState = () => {};
-
-  resetState = () => {};
-
-  getIndexOfThis = (ary, context) => {
-    return ary.indexOf(context);
+  toggleState = item => {
+    item.isActive = item.inputRef.checked;
+    if (item.isActive) {
+      item.target.classList.remove('js-hidden');
+      item.target.setAttribute('aria-expanded', true);
+    } else {
+      item.target.classList.add('js-hidden');
+      item.target.setAttribute('aria-expanded', false);
+    }
   };
 }
