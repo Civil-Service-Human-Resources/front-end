@@ -1,0 +1,43 @@
+{% extends 'layouts/default.layout.njk' %}
+ 
+{% set pageTitle = 'Demo interaction - enter address' %}
+
+{% set firstLine = firstLine if firstLine %}
+{% set secondLine = secondLine if secondLine %}
+{% set townCity = townCity if townCity %}
+{% set postcode = postcode if postcode %}
+ 
+{% block content %}
+ 
+  {{ components.pageHeading(heading='Demo interaction journey - enter address', secondary='') }}
+  
+  {% call components.gridRow() %}
+    
+    {% call components.columnTwoThirds() %}
+       
+      {{ components.paragraph(text='We need to know your address', lead=true) }}
+
+      {% call components.formElement(name='address', method='POST') %}
+      
+        {{ components.field(label='First line of address', id='firstLine', hint="", group=true, value=firstLine)}}
+
+        {{ components.field(label='Second line of address', id='secondName', hint="", group=true, value=secondLine)}}
+
+        {{ components.field(label='Town/city', id='townCity', hint="", group=true, value=townCity)}}
+        
+        {{ components.field(label='Postcode', id='postcode', hint="", group=true, value=postcode)}}
+
+        {% call components.formGroup() %}
+
+          {{ components.button(text='Continue', group=true)}}
+
+        {%- endcall %}  
+
+      {%- endcall %}
+      
+    {%- endcall %}
+ 
+  {%- endcall %}
+
+{% endblock %}   
+

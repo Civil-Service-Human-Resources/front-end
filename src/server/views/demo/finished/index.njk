@@ -1,0 +1,19 @@
+{% extends 'layouts/default.layout.njk' %}
+ 
+{% set pageTitle = 'Demo interaction - complete!' %}
+ 
+{% block content %}
+ 
+  {{ components.pageHeading(heading='Demo interaction journey - complete!', secondary='') }}
+  
+  {% call components.gridRow() %}
+    
+    {% call components.columnTwoThirds() %}
+       
+      {{ components.paragraph(text='WEll done, you deserve a medal!', lead=true) }}
+
+    {%- endcall %}
+ 
+  {%- endcall %}
+
+{% endblock %}   

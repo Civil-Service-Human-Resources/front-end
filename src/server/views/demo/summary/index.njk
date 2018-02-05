@@ -1,0 +1,64 @@
+{% extends 'layouts/default.layout.njk' %}
+ 
+{% set pageTitle = 'Demo interaction - contact details' %}
+
+{% set firstName = firstName if firstName %} 
+{% set lastName = lastName if lastName %}
+{% set address = address if address %} 
+ 
+{% block content %}
+ 
+    {{ components.pageHeading(heading='Demo interaction journey - summary', secondary='') }}
+  
+    {% call components.gridRow() %}
+    
+        {% call components.columnTwoThirds() %}
+
+            {{ components.paragraph(text='Check everything is correct before continuing', lead=true) }}
+
+            {% call components.formElement(name='name', method='POST') %}
+
+                {% call components.formGroup() %}              
+
+                {{ test }}
+                    
+                    <table>
+                        <caption class="visuallyhidden">Information summary</caption>
+                        <tbody>
+                            <tr>
+                                <td>Full name</td>
+                                <td>{{ firstName }} {{ lastName }}</td>
+                                <td><a href="/demo?mode=edit">change</a></td>
+                            </tr>
+                            <tr>
+                                <td>Address</td>
+                                <td>{{ address }}</td>
+                                <td><a href="/demo/address?mode=edit">change</a></td>
+                            </tr>
+                            <tr>
+                                <td>Contact details</td>
+                                <td>
+                                    {{ emailAddress }}
+                                    <br />
+                                    {{ phoneNumber }}
+                                </td>
+                                <td><a href="/demo/contact?mode=edit">change</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                {%- endcall %}  
+
+            {% call components.formGroup() %}
+
+                {{ components.button(text='Continue', group=true)}}
+
+            {%- endcall %}  
+
+        {%- endcall %}
+      
+    {%- endcall %}
+ 
+  {%- endcall %}
+
+{% endblock %}   

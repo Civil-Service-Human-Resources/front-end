@@ -1,0 +1,33 @@
+{% extends 'layouts/default.layout.njk' %}
+ 
+{% set pageTitle = 'Demo interaction - contact details' %}
+ 
+{% block content %}
+ 
+  {{ components.pageHeading(heading='Demo interaction journey - contact details', secondary='') }}
+  
+  {% call components.gridRow() %}
+    
+    {% call components.columnTwoThirds() %}
+       
+      {{ components.paragraph(text='We need a few more bits and bobs', lead=true) }}
+
+      {% call components.formElement(name='name', method='POST') %}
+      
+        {{ components.field(label='Enter your email address', id='email', hint="", group=true)}}
+
+        {{ components.field(label='Enter your phone number', id='phone', hint="", group=true)}}
+
+        {% call components.formGroup() %}
+
+          {{ components.button(text='Continue', group=true)}}
+
+        {%- endcall %}  
+
+      {%- endcall %}
+      
+    {%- endcall %}
+ 
+  {%- endcall %}
+
+{% endblock %}   

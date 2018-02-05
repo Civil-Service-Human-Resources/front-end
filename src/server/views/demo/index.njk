@@ -1,0 +1,55 @@
+{% extends 'layouts/default.layout.njk' %}
+
+{% set firstNameErrorMessage = 'Enter your first name' if errorFirstName %}
+{% set lastNameErrorMessage = 'Enter your last name' if errorLastName %}
+{% set firstName = firstName if firstName %} 
+{% set lastName = lastName if lastName %} 
+
+{% set pageTitle = 'Demo interaction' %}
+ 
+{% block content %}
+ 
+  {{ components.pageHeading(heading='Demo interaction journey', secondary='') }}
+  
+  {% call components.gridRow() %}
+
+    {% call components.columnTwoThirds() %}
+
+      {% if errorNames %}
+        <div class="error-summary" role="alert" aria-labelledby="nameErrors" tabindex="-1">
+          <h2 class="heading-medium error-summary-heading" id="nameErrors">There was a problem with your information</h2>
+          {{ components.paragraph(text='Please correct the errors') }}
+          <ul class="error-summary-list">
+            {% if errorFirstName %}
+              <li><a href="#firstName">Please enter your first name</a></li>
+            {% endif %}
+            {% if errorLastName %}
+              <li><a href="#lastName">Please enter your last name</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      {% endif %}
+       
+      {{ components.paragraph(text='We need to know your name', lead=true) }}
+
+      {% call components.formElement(name='name', method='POST') %}
+
+      <span>firstName = {{ firstName }} </span>
+      
+        {{ components.field(label='First name', id='firstName', hint='', value=firstName, group=true, error=firstNameErrorMessage)}}
+
+        {{ components.field(label='Last name', id='lastName', hint='', value=lastName, group=true, error=lastNameErrorMessage)}}
+
+        {% call components.formGroup() %}
+
+          {{ components.button(text='Continue', group=true)}}
+
+        {%- endcall %}  
+
+      {%- endcall %}
+      
+    {%- endcall %}
+
+  {%- endcall %}
+
+{% endblock %}   
