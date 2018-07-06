@@ -208,7 +208,7 @@ export function recordGet(req, res) {
   }
 
   showNewNav = req.session.showNewNav;
-  navItem = '';
+  navItem = 'record';
 
   viewData = {
     fireTrainingCompleteBanner,
