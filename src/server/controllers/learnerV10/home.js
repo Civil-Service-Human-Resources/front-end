@@ -16,8 +16,8 @@ export function homeGet(req, res) {
     willBeRemoved,
     hasBeenAdded,
     hasLeftFeedback,
-    newNav,
-    useNewNav;
+    showNewNav,
+    navItem;
 
   // anotherTestVar = global.anotherTestVar;
   // console.log('anotherTestVar = ' + anotherTestVar);
@@ -66,11 +66,8 @@ export function homeGet(req, res) {
     req.session.hasLeftFeedback = null;
   }
 
-  // console.log('removeMessage = ' + removeMessage + ' and id = ' + courseId);
-
-  // newNav = 'testing';
-  // newNav = true;
-  // useNewNav = true;
+  showNewNav = req.session.showNewNav;
+  navItem = 'home';
 
   viewData = {
     hideHomeStars,
@@ -82,8 +79,8 @@ export function homeGet(req, res) {
     hasBeenRemoved,
     hasLeftFeedback,
     isAdmin,
-    newNav,
-    useNewNav,
+    showNewNav,
+    navItem,
   };
 
   return res.render('prototypes/learner/v10/home/index', viewData);
@@ -91,10 +88,19 @@ export function homeGet(req, res) {
 
 // planned GET
 export function plannedGet(req, res) {
-  let viewData, addedToLearningPlan, removedFromLearningPlan, removedFromLearningPlanWarning, hasBeenAdded, hasBeenRemoved, willBeRemoved;
+  let viewData,
+    addedToLearningPlan,
+    removedFromLearningPlan,
+    removedFromLearningPlanWarning,
+    hasBeenAdded,
+    hasBeenRemoved,
+    showNewNav,
+    willBeRemoved;
 
   // action = req.param('action');
   // type = req.param('type');
+
+  showNewNav = req.session.showNewNav;
 
   removedFromLearningPlanWarning = req.session.removedFromLearningPlanWarning;
   addedToLearningPlan = req.session.addedToLearningPlan;
@@ -121,6 +127,7 @@ export function plannedGet(req, res) {
     hasBeenAdded,
     willBeRemoved,
     hasBeenRemoved,
+    showNewNav,
   };
 
   return res.render('prototypes/learner/v10/learning-plan/index', viewData);
@@ -137,7 +144,12 @@ export function profileGet(req, res) {
     hasAddedContractManagement,
     showUpdatedOtherWorkArea,
     hasBeenUpdatedOther,
-    hasBeenUpdatedInterests;
+    hasBeenUpdatedInterests,
+    showNewNav,
+    navItem;
+
+  showNewNav = req.session.showNewNav;
+  navItem = 'profile';
 
   workAreaHasBeenUpdated = req.session.workAreaHasBeenUpdated;
   showUpdatedPrimaryWorkArea = req.session.showUpdatedPrimaryWorkArea;
@@ -174,6 +186,8 @@ export function profileGet(req, res) {
     hasBeenUpdatedOther,
     hasBeenUpdatedInterests,
     showUpdatedOtherWorkArea,
+    showNewNav,
+    navItem,
   };
 
   return res.render('prototypes/learner/v10/profile/index', viewData);
@@ -181,7 +195,7 @@ export function profileGet(req, res) {
 
 // learning record GET
 export function recordGet(req, res) {
-  let viewData, fireTrainingComplete, fireTrainingCompleteBanner, trainingEndDate, hasLeftFeedback;
+  let viewData, fireTrainingComplete, fireTrainingCompleteBanner, trainingEndDate, hasLeftFeedback, showNewNav, navItem;
 
   fireTrainingCompleteBanner = req.session.fireTrainingCompleteBanner;
   fireTrainingComplete = req.session.fireTrainingComplete;
@@ -193,11 +207,16 @@ export function recordGet(req, res) {
     req.session.hasLeftFeedback = null;
   }
 
+  showNewNav = req.session.showNewNav;
+  navItem = '';
+
   viewData = {
     fireTrainingCompleteBanner,
     fireTrainingComplete,
     trainingEndDate,
     hasLeftFeedback,
+    showNewNav,
+    navItem,
   };
 
   req.session.fireTrainingCompleteBanner = null;
@@ -207,7 +226,7 @@ export function recordGet(req, res) {
 
 // suggested learning GET
 export function suggestedGet(req, res) {
-  let viewData, hideHomeStars, showUpdatedPrimaryWorkArea, hasAddedContractManagement, templateVersion, type;
+  let viewData, hideHomeStars, showUpdatedPrimaryWorkArea, hasAddedContractManagement, templateVersion, type, showNewNav, navItem;
 
   showUpdatedPrimaryWorkArea = req.session.showUpdatedPrimaryWorkArea;
   hasAddedContractManagement = req.session.hasAddedContractManagement;
@@ -225,10 +244,15 @@ export function suggestedGet(req, res) {
 
   hideHomeStars = true;
 
+  showNewNav = req.session.showNewNav;
+  navItem = 'suggested';
+
   viewData = {
     hideHomeStars,
     showUpdatedPrimaryWorkArea,
     hasAddedContractManagement,
+    showNewNav,
+    navItem,
   };
 
   return res.render(templateVersion, viewData);
@@ -264,14 +288,19 @@ export function suggestedAllHMRCColsGet(req, res) {
 
 // search
 export function searchGet(req, res) {
-  let viewData, searchTerm, showPreFilteredResults;
+  let viewData, searchTerm, showPreFilteredResults, showNewNav, navItem;
 
   searchTerm = req.session.searchTerm;
   showPreFilteredResults = req.session.showPreFilteredResults;
 
+  showNewNav = req.session.showNewNav;
+  navItem = '';
+
   viewData = {
     searchTerm,
     showPreFilteredResults,
+    showNewNav,
+    navItem,
   };
 
   return res.render('prototypes/learner/v10/search/index', viewData);
@@ -290,9 +319,15 @@ export function searchPost(req, res) {
 
 // FEEDBACK
 export function feedbackGet(req, res) {
-  let viewData;
+  let viewData, showNewNav, navItem;
 
-  viewData = {};
+  showNewNav = req.session.showNewNav;
+  navItem = '';
+
+  viewData = {
+    showNewNav,
+    navItem,
+  };
 
   return res.render('prototypes/learner/v10/feedback/index', viewData);
 }
@@ -317,4 +352,32 @@ export function privacyGet(req, res) {
   let viewData;
   viewData = {};
   return res.render('prototypes/learner/v10/privacy/index', viewData);
+}
+
+export function feedbackFormalGet(req, res) {
+  let viewData, showNewNav, navItem;
+
+  showNewNav = req.session.showNewNav;
+  navItem = '';
+
+  viewData = {
+    showNewNav,
+    navItem,
+  };
+
+  return res.render('prototypes/learner/v10/feedback/formal', viewData);
+}
+
+export function feedbackInformalGet(req, res) {
+  let viewData, showNewNav, navItem;
+
+  showNewNav = req.session.showNewNav;
+  navItem = '';
+
+  viewData = {
+    showNewNav,
+    navItem,
+  };
+
+  return res.render('prototypes/learner/v10/feedback/informal', viewData);
 }

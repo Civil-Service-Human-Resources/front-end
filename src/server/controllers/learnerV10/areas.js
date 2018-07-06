@@ -2,7 +2,7 @@ let generalData = require('./data');
 
 // Primary areas of work radios areasGET
 export function areasGet(req, res) {
-  let viewData, professionSelectOptions, profession;
+  let viewData, professionSelectOptions, profession, showNewNav, navItem;
 
   // profession = 'Digital, Data and Technology';
   // profession = '4';
@@ -11,9 +11,14 @@ export function areasGet(req, res) {
   req.session.setWorkAreaCommercial = null;
   req.session.setWorkAreadigital = null;
 
+  showNewNav = req.session.showNewNav;
+  navItem = 'profile';
+
   viewData = {
     professionSelectOptions,
     profession,
+    showNewNav,
+    navItem,
   };
 
   return res.render('prototypes/learner/v10/area-of-work/index', viewData);
@@ -47,7 +52,7 @@ export function areasPost(req, res) {
 
 // Levels
 export function areasLevelsGet(req, res) {
-  let viewData, level2, level3, showLevel2, showLevel3, setWorkAreaCommercial, setWorkAreaDigital;
+  let viewData, level2, level3, showLevel2, showLevel3, setWorkAreaCommercial, setWorkAreaDigital, showNewNav, navItem;
 
   level2 = req.param('level2');
   level3 = req.param('level3');
@@ -63,11 +68,16 @@ export function areasLevelsGet(req, res) {
     showLevel3 = true;
   }
 
+  showNewNav = req.session.showNewNav;
+  navItem = 'profile';
+
   viewData = {
     showLevel2,
     showLevel3,
     setWorkAreaCommercial,
     setWorkAreaDigital,
+    showNewNav,
+    navItem,
   };
 
   return res.render('prototypes/learner/v10/area-of-work/levels', viewData);
@@ -83,7 +93,7 @@ export function areasLevelsPost(req, res) {
 
 // Joined levels
 export function areasJoinedLevelsGet(req, res) {
-  let viewData, level1, level2, level3, showLevel1, showLevel2, showLevel3;
+  let viewData, level1, level2, level3, showLevel1, showLevel2, showLevel3, showNewNav, navItem;
 
   level1 = req.param('level1');
   level2 = req.param('level2');
@@ -100,10 +110,16 @@ export function areasJoinedLevelsGet(req, res) {
   if (level3 == 'true') {
     showLevel3 = true;
   }
+
+  showNewNav = req.session.showNewNav;
+  navItem = 'profile';
+
   viewData = {
     showLevel1,
     showLevel2,
     showLevel3,
+    showNewNav,
+    navItem,
   };
 
   return res.render('prototypes/learner/v10/area-of-work/joined-levels', viewData);
@@ -111,7 +127,7 @@ export function areasJoinedLevelsGet(req, res) {
 
 // Joined levels
 export function areasJoinedLevelsPMGet(req, res) {
-  let viewData, level1, level2, level3, showLevel1, showLevel2, showLevel3;
+  let viewData, level1, level2, level3, showLevel1, showLevel2, showLevel3, showNewNav, navItem;
 
   level1 = req.param('level1');
   level2 = req.param('level2');
@@ -128,10 +144,16 @@ export function areasJoinedLevelsPMGet(req, res) {
   if (level3 == 'true') {
     showLevel3 = true;
   }
+
+  showNewNav = req.session.showNewNav;
+  navItem = 'profile';
+
   viewData = {
     showLevel1,
     showLevel2,
     showLevel3,
+    showNewNav,
+    navItem,
   };
 
   return res.render('prototypes/learner/v10/area-of-work/joined-levels-pm', viewData);
@@ -154,12 +176,17 @@ export function areasJoinedLevelsPost(req, res) {
 
 // Other areas
 export function otherAreasGet(req, res) {
-  let viewData, professionSelectOptions;
+  let viewData, professionSelectOptions, showNewNav, navItem;
 
   professionSelectOptions = generalData.allProfessions;
 
+  showNewNav = req.session.showNewNav;
+  navItem = 'profile';
+
   viewData = {
     professionSelectOptions,
+    showNewNav,
+    navItem,
   };
 
   return res.render('prototypes/learner/v10/area-of-work/others', viewData);
@@ -175,12 +202,16 @@ export function otherAreasPost(req, res) {
 
 // Other areas
 export function interestsGet(req, res) {
-  let viewData, extraInterests;
+  let viewData, extraInterests, showNewNav, navItem;
+
+  showNewNav = req.session.showNewNav;
+  navItem = 'profile';
 
   extraInterests = generalData.extraInterests;
 
   viewData = {
     extraInterests,
+    navItem,
   };
 
   return res.render('prototypes/learner/v10/area-of-work/interests', viewData);

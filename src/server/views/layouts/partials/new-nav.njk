@@ -1,44 +1,32 @@
-{% set useNewNav = useNewNav if useNewNav %}
-{#{% set testVar = global.testVar if global.testVar %}
-{% set someVar = njglobals.someVar if njglobals.someVar %}
-{% set someVar = njglobals.someVar if njglobals.someVar %}#}
+{% set showNewNav = showNewNav if showNewNav %}
+{% set navItem = navItem if navItem %}
+{% set isAdmin = isAdmin if isAdmin %}
+{#<p>showNewNav = {{ showNewNav }}</p>
+<p>navItem = {{ navItem }}</p>#}
 
-{% set testingVar = env2.testingVar if env2.testingVar %}
-
-{#{% if useNewNav %}
-    <div>we're using new nav :)</div>
-{% else %}
-    <div>we're NOT using new nav :(</div>
-{% endif %}#}
-
-{#<div>
-    test var  = {{ testVar }}
-    <br>
-    someVar1 = {{ njglobals.someVar }}
-    <br>
-    someVar2 = {{ globals.someVar }}
-    <br>
-    testingVar = {{ testingVar }}
-</div>#}
-
-{% if useNewNav %}
+{% if showNewNav %}
     {% call components.gridRow() %}
         {% call components.columnFull() %}
             <nav id="nav">
                 <div class="navbar">
                     <ul class="navbar__list-items">
-                        <li class="active">
+                        <li class="{% if (navItem == 'home') %}active{% endif %}">
                             <a href="/prototypes/learner/{{ learnerPrototypeVersion }}/home">Home</a>
                         </li>
-                        <li>
+                        <li class="{% if (navItem == 'suggested') %}active{% endif %}">
                             <a href="/prototypes/learner/{{ learnerPrototypeVersion }}/suggested-learning">Suggestions for you</a>
                         </li>
                         <li>
                             <a href="/prototypes/learner/{{ learnerPrototypeVersion }}/learning-record">Learning record</a>
                         </li>
-                        <li>
-                            <a href="/prototypes/learner/{{ learnerPrototypeVersion }}/profile">Profile</a>
+                        <li class="{% if (navItem == 'profile') %}active{% endif %}">
+                            <a href="/prototypes/learner/{{ learnerPrototypeVersion }}/your-profile">Profile</a>
                         </li>
+                        {% if isAdmin %}
+                            <li class="{% if (navItem == 'admin') %}active{% endif %}">
+                                <a href="/prototypes/learner/{{ learnerPrototypeVersion }}/profile">Admin</a>
+                            </li>
+                        {% endif %}
                         <li>
                             <a href="/prototypes/learner/{{ learnerPrototypeVersion }}/">Sign out</a>
                         </li>
