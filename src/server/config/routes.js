@@ -1135,6 +1135,8 @@ router.post('/prototypes/learner/v10/search', learnerV10Controller.searchPost);
 // feedback
 router.get('/prototypes/learner/v10/feedback', learnerV10Controller.feedbackGet);
 router.post('/prototypes/learner/v10/feedback', learnerV10Controller.feedbackPost);
+router.get('/prototypes/learner/v10/feedback/informal', learnerV10Controller.feedbackInformalGet);
+router.get('/prototypes/learner/v10/feedback/formal', learnerV10Controller.feedbackFormalGet);
 
 // edit areas of work with levels
 router.get('/prototypes/learner/v10/your-profile/area-of-work', learnerV10Controller.areasGet);

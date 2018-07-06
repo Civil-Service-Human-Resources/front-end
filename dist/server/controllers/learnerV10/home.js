@@ -17,11 +17,13 @@ exports.searchPost = searchPost;
 exports.feedbackGet = feedbackGet;
 exports.feedbackPost = feedbackPost;
 exports.privacyGet = privacyGet;
+exports.feedbackFormalGet = feedbackFormalGet;
+exports.feedbackInformalGet = feedbackInformalGet;
 
 var _validationFunctions = require('./validation-functions');
 
 function homeGet(req, res) {
-  let viewData, hideHomeStars, action, courseId, removeCheckMessage, removeMessage, fireTrainingComplete, removedFromLearningPlanWarning, addedToLearningPlan, removedFromLearningPlan, hasBeenRemoved, willBeRemoved, hasBeenAdded, hasLeftFeedback, newNav, useNewNav;
+  let viewData, hideHomeStars, action, courseId, removeCheckMessage, removeMessage, fireTrainingComplete, removedFromLearningPlanWarning, addedToLearningPlan, removedFromLearningPlan, hasBeenRemoved, willBeRemoved, hasBeenAdded, hasLeftFeedback, showNewNav, navItem;
 
   // anotherTestVar = global.anotherTestVar;
   // console.log('anotherTestVar = ' + anotherTestVar);
@@ -70,11 +72,8 @@ function homeGet(req, res) {
     req.session.hasLeftFeedback = null;
   }
 
-  // console.log('removeMessage = ' + removeMessage + ' and id = ' + courseId);
-
-  // newNav = 'testing';
-  newNav = true;
-  useNewNav = true;
+  showNewNav = req.session.showNewNav;
+  navItem = 'home';
 
   viewData = {
     hideHomeStars,
@@ -86,8 +85,8 @@ function homeGet(req, res) {
     hasBeenRemoved,
     hasLeftFeedback,
     isAdmin,
-    newNav,
-    useNewNav
+    showNewNav,
+    navItem
   };
 
   return res.render('prototypes/learner/v10/home/index', viewData);
@@ -96,10 +95,12 @@ function homeGet(req, res) {
 // planned GET
 // home GET
 function plannedGet(req, res) {
-  let viewData, addedToLearningPlan, removedFromLearningPlan, removedFromLearningPlanWarning, hasBeenAdded, hasBeenRemoved, willBeRemoved;
+  let viewData, addedToLearningPlan, removedFromLearningPlan, removedFromLearningPlanWarning, hasBeenAdded, hasBeenRemoved, showNewNav, willBeRemoved;
 
   // action = req.param('action');
   // type = req.param('type');
+
+  showNewNav = req.session.showNewNav;
 
   removedFromLearningPlanWarning = req.session.removedFromLearningPlanWarning;
   addedToLearningPlan = req.session.addedToLearningPlan;
@@ -125,7 +126,8 @@ function plannedGet(req, res) {
   viewData = {
     hasBeenAdded,
     willBeRemoved,
-    hasBeenRemoved
+    hasBeenRemoved,
+    showNewNav
   };
 
   return res.render('prototypes/learner/v10/learning-plan/index', viewData);
@@ -133,7 +135,10 @@ function plannedGet(req, res) {
 
 // profile GET
 function profileGet(req, res) {
-  let viewData, workAreaHasBeenUpdated, setWorkAreaCommercial, setWorkAreaDigital, showRolesJoined, showUpdatedPrimaryWorkArea, hasAddedContractManagement, showUpdatedOtherWorkArea, hasBeenUpdatedOther, hasBeenUpdatedInterests;
+  let viewData, workAreaHasBeenUpdated, setWorkAreaCommercial, setWorkAreaDigital, showRolesJoined, showUpdatedPrimaryWorkArea, hasAddedContractManagement, showUpdatedOtherWorkArea, hasBeenUpdatedOther, hasBeenUpdatedInterests, showNewNav, navItem;
+
+  showNewNav = req.session.showNewNav;
+  navItem = 'profile';
 
   workAreaHasBeenUpdated = req.session.workAreaHasBeenUpdated;
   showUpdatedPrimaryWorkArea = req.session.showUpdatedPrimaryWorkArea;
@@ -169,7 +174,9 @@ function profileGet(req, res) {
     hasAddedContractManagement,
     hasBeenUpdatedOther,
     hasBeenUpdatedInterests,
-    showUpdatedOtherWorkArea
+    showUpdatedOtherWorkArea,
+    showNewNav,
+    navItem
   };
 
   return res.render('prototypes/learner/v10/profile/index', viewData);
@@ -177,7 +184,7 @@ function profileGet(req, res) {
 
 // learning record GET
 function recordGet(req, res) {
-  let viewData, fireTrainingComplete, fireTrainingCompleteBanner, trainingEndDate, hasLeftFeedback;
+  let viewData, fireTrainingComplete, fireTrainingCompleteBanner, trainingEndDate, hasLeftFeedback, showNewNav, navItem;
 
   fireTrainingCompleteBanner = req.session.fireTrainingCompleteBanner;
   fireTrainingComplete = req.session.fireTrainingComplete;
@@ -189,11 +196,16 @@ function recordGet(req, res) {
     req.session.hasLeftFeedback = null;
   }
 
+  showNewNav = req.session.showNewNav;
+  navItem = '';
+
   viewData = {
     fireTrainingCompleteBanner,
     fireTrainingComplete,
     trainingEndDate,
-    hasLeftFeedback
+    hasLeftFeedback,
+    showNewNav,
+    navItem
   };
 
   req.session.fireTrainingCompleteBanner = null;
@@ -203,7 +215,7 @@ function recordGet(req, res) {
 
 // suggested learning GET
 function suggestedGet(req, res) {
-  let viewData, hideHomeStars, showUpdatedPrimaryWorkArea, hasAddedContractManagement, templateVersion, type;
+  let viewData, hideHomeStars, showUpdatedPrimaryWorkArea, hasAddedContractManagement, templateVersion, type, showNewNav, navItem;
 
   showUpdatedPrimaryWorkArea = req.session.showUpdatedPrimaryWorkArea;
   hasAddedContractManagement = req.session.hasAddedContractManagement;
@@ -221,10 +233,15 @@ function suggestedGet(req, res) {
 
   hideHomeStars = true;
 
+  showNewNav = req.session.showNewNav;
+  navItem = 'suggested';
+
   viewData = {
     hideHomeStars,
     showUpdatedPrimaryWorkArea,
-    hasAddedContractManagement
+    hasAddedContractManagement,
+    showNewNav,
+    navItem
   };
 
   return res.render(templateVersion, viewData);
@@ -260,14 +277,19 @@ function suggestedAllHMRCColsGet(req, res) {
 
 // search
 function searchGet(req, res) {
-  let viewData, searchTerm, showPreFilteredResults;
+  let viewData, searchTerm, showPreFilteredResults, showNewNav, navItem;
 
   searchTerm = req.session.searchTerm;
   showPreFilteredResults = req.session.showPreFilteredResults;
 
+  showNewNav = req.session.showNewNav;
+  navItem = '';
+
   viewData = {
     searchTerm,
-    showPreFilteredResults
+    showPreFilteredResults,
+    showNewNav,
+    navItem
   };
 
   return res.render('prototypes/learner/v10/search/index', viewData);
@@ -286,9 +308,15 @@ function searchPost(req, res) {
 
 // FEEDBACK
 function feedbackGet(req, res) {
-  let viewData;
+  let viewData, showNewNav, navItem;
 
-  viewData = {};
+  showNewNav = req.session.showNewNav;
+  navItem = '';
+
+  viewData = {
+    showNewNav,
+    navItem
+  };
 
   return res.render('prototypes/learner/v10/feedback/index', viewData);
 }
@@ -313,4 +341,32 @@ function privacyGet(req, res) {
   let viewData;
   viewData = {};
   return res.render('prototypes/learner/v10/privacy/index', viewData);
+}
+
+function feedbackFormalGet(req, res) {
+  let viewData, showNewNav, navItem;
+
+  showNewNav = req.session.showNewNav;
+  navItem = '';
+
+  viewData = {
+    showNewNav,
+    navItem
+  };
+
+  return res.render('prototypes/learner/v10/feedback/formal', viewData);
+}
+
+function feedbackInformalGet(req, res) {
+  let viewData, showNewNav, navItem;
+
+  showNewNav = req.session.showNewNav;
+  navItem = '';
+
+  viewData = {
+    showNewNav,
+    navItem
+  };
+
+  return res.render('prototypes/learner/v10/feedback/informal', viewData);
 }

@@ -10,7 +10,7 @@ var _validationFunctions = require('./validation-functions');
 
 // Different types pf learning resource pages
 function resourceGet(req, res) {
-  let viewData, resourceType, returnPath, availableTypes, hideDetailStars, resourceID, hideHomeStars;
+  let viewData, resourceType, returnPath, availableTypes, hideDetailStars, resourceID, hideHomeStars, showNewNav, navItem;
 
   hideDetailStars = true;
   hideHomeStars = true;
@@ -31,10 +31,15 @@ function resourceGet(req, res) {
     returnPath = 'prototypes/learner/v10/resource/index';
   }
 
+  showNewNav = req.session.showNewNav;
+  navItem = '';
+
   viewData = {
     resourceID,
     resourceType,
-    hideDetailStars
+    hideDetailStars,
+    showNewNav,
+    navItem
   };
 
   return res.render(returnPath, viewData);

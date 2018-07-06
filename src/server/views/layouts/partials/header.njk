@@ -1,4 +1,4 @@
-{% set useNewNav = useNewNav if useNewNav %}
+{% set showNewNav = showNewNav if showNewNav %}
 
 {#{% if useNewNav %}
   <div>we're using new nav :)</div>
@@ -28,6 +28,9 @@
               Prototype kit
             {% endif %}
           </a>
+
+
+          {% if not showNewNav %}
 
           {% if blackBarTitle == 'Civil Service Learning' %}
 
@@ -88,6 +91,8 @@
                 <a href="https://github.com/Civil-Service-Human-Resources/lpg-prototypes">Github</a>
               </li>
             </ul>
+          {% endif %}
+
           {% endif %}
 
         </nav>

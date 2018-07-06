@@ -37,11 +37,6 @@ export function configPost(req, res) {
   if (newNavConfig === 'newNavYes') {
     console.log('showNewNav should be true = ' + showNewNav);
     req.session.showNewNav = true;
-    /*res.locals({
-      testString: 'bollocks',
-    });*/
-    global.testVar = 'test value';
-    // req.locals.testing123 = 'wonderful';
   } else {
     console.log('showNewNav should be false = ' + showNewNav);
     req.session.showNewNav = null;
@@ -75,11 +70,11 @@ export function configPost(req, res) {
     req.session.showRolesJoined = showRolesJoined;
   }
 
-  /*res.local = {
+  /* /!*res.local = {
     testingLocals: 'testing 123',
   };
 
-  res.locals.testingVars = 'my value';*/
+  res.locals.testingVars = 'my value';*!/
 
   let env2 = new nunjucks.Environment();
 
@@ -88,10 +83,10 @@ export function configPost(req, res) {
 
   console.log('testingVar = ' + env2.testingVar);
 
-  /*let njglobals = require('nunjucks/src/globals');
+  /!*let njglobals = require('nunjucks/src/globals');
   njglobals.someVar = 'someValue';
   console.log('njglobals below: ***************************');
-  console.log(njglobals);*/
+  console.log(njglobals);*!/*/
 
   if (!regConfig) {
     req.session.configError = true;
