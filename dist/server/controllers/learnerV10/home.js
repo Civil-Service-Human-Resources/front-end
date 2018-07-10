@@ -219,7 +219,7 @@ function recordGet(req, res) {
 
 // suggested learning GET
 function suggestedGet(req, res) {
-  let viewData, hideHomeStars, showUpdatedPrimaryWorkArea, hasAddedContractManagement, templateVersion, type, showNewNav, navItem;
+  let viewData, hideHomeStars, showUpdatedPrimaryWorkArea, hasAddedContractManagement, templateVersion, type, showNewNav, navItem, showRemoveX;
 
   showUpdatedPrimaryWorkArea = req.session.showUpdatedPrimaryWorkArea;
   hasAddedContractManagement = req.session.hasAddedContractManagement;
@@ -240,12 +240,15 @@ function suggestedGet(req, res) {
   showNewNav = req.session.showNewNav;
   navItem = 'suggested';
 
+  showRemoveX = req.session.showRemoveX;
+
   viewData = {
     hideHomeStars,
     showUpdatedPrimaryWorkArea,
     hasAddedContractManagement,
     showNewNav,
-    navItem
+    navItem,
+    showRemoveX
   };
 
   return res.render(templateVersion, viewData);
