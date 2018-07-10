@@ -22,10 +22,10 @@ export function configGet(req, res) {
 }
 
 export function configPost(req, res) {
-  const { regConfig, clearSession, scormConfig, rolesConfig, newNavConfig } = req.body;
+  const { regConfig, clearSession, scormConfig, rolesConfig, newNavConfig, tileRemoveConfig } = req.body;
 
   // console.log('regConfig');
-  let showAllStars, hideDetailStars, hideHomeStars, showMeTheScormScreenShot, showRolesJoined, showNewNav;
+  let showAllStars, hideDetailStars, hideHomeStars, showMeTheScormScreenShot, showRolesJoined, showNewNav, tileRemove;
 
   showAllStars = false;
   hideDetailStars = true;
@@ -52,6 +52,13 @@ export function configPost(req, res) {
     hideHomeStars = true;
   } else if (regConfig === 'home') {
     hideHomeStars = true;
+  }
+
+  tileRemove = tileRemoveConfig;
+  if (tileRemove === 'showXYes') {
+    req.session.showRemoveX = true;
+  } else {
+    req.session.showRemoveX = null;
   }
 
   req.session.showAllStars = showAllStars;

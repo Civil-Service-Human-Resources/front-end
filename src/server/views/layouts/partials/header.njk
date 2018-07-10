@@ -18,7 +18,10 @@
     </div>
     <div class="header-proposition">
       <div class="content">
-        <a href="#proposition-links" class="js-header-toggle menu">Menu</a>
+
+        {#{% if not showNewNav %}#}
+          <a href="#proposition-links" class="js-header-toggle menu">Menu</a>
+        {#{% endif %}#}
 
         <nav id="proposition-menu">
           <a href="{% if homePath %}{{ homePath }}{% else %}/{% endif %}" id="proposition-name">
@@ -28,7 +31,6 @@
               Prototype kit
             {% endif %}
           </a>
-
 
           {% if not showNewNav %}
 

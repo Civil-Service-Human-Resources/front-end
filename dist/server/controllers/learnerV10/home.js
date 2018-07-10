@@ -23,7 +23,7 @@ exports.feedbackInformalGet = feedbackInformalGet;
 var _validationFunctions = require('./validation-functions');
 
 function homeGet(req, res) {
-  let viewData, hideHomeStars, action, courseId, removeCheckMessage, removeMessage, fireTrainingComplete, removedFromLearningPlanWarning, addedToLearningPlan, removedFromLearningPlan, hasBeenRemoved, willBeRemoved, hasBeenAdded, hasLeftFeedback, showNewNav, navItem;
+  let viewData, hideHomeStars, action, courseId, removeCheckMessage, removeMessage, fireTrainingComplete, removedFromLearningPlanWarning, addedToLearningPlan, removedFromLearningPlan, hasBeenRemoved, willBeRemoved, hasBeenAdded, hasLeftFeedback, showNewNav, navItem, showRemoveX;
 
   // anotherTestVar = global.anotherTestVar;
   // console.log('anotherTestVar = ' + anotherTestVar);
@@ -73,7 +73,10 @@ function homeGet(req, res) {
   }
 
   showNewNav = req.session.showNewNav;
+  // showNewNav = true;
   navItem = 'home';
+
+  showRemoveX = req.session.showRemoveX;
 
   viewData = {
     hideHomeStars,
@@ -86,7 +89,8 @@ function homeGet(req, res) {
     hasLeftFeedback,
     isAdmin,
     showNewNav,
-    navItem
+    navItem,
+    showRemoveX
   };
 
   return res.render('prototypes/learner/v10/home/index', viewData);
@@ -197,7 +201,7 @@ function recordGet(req, res) {
   }
 
   showNewNav = req.session.showNewNav;
-  navItem = '';
+  navItem = 'record';
 
   viewData = {
     fireTrainingCompleteBanner,

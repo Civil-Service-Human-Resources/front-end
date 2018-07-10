@@ -6,7 +6,7 @@ $module: 'search-box';
 
   &__group {
     position: relative;
-    padding: 20px 53px 20px 10px;
+    padding: 20px 53px 20px 0;
     width: 100%;
 
     @include media(desktop) {
@@ -21,7 +21,9 @@ $module: 'search-box';
   }
 
   &__input {
+    @include core-19;
     width: 100%;
+    padding-right: 8px;
   }
 
   &__submit {
@@ -30,7 +32,7 @@ $module: 'search-box';
     overflow: hidden;
     width: 33px;
     height: 33px;
-    right: 10px;
+    right: 0px;
     top: 20px;
     border: 0;
     text-indent: 200px;

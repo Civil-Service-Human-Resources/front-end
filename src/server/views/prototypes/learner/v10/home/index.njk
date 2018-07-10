@@ -8,6 +8,7 @@
 {% set homePath = '/prototypes/learner/v10/home' %}
 {% set isAdmin = isAdmin if isAdmin %}
 
+{% set showRemoveX = showRemoveX if showRemoveX %}
 
 {#{% set hideHomeStars = hideHomeStars if hideHomeStars %}#}
 {% set removeMessage = removeMessage if removeMessage %}
@@ -355,6 +356,7 @@
                     cost='£Free',
                     hideStars=hideHomeStars,
                     version='v10',
+                    showRemoveX=showRemoveX,
                     intro='In this module you consider how to work with potential providers and achieve what you require. You\’ll learn about supply chains, pricing. '
                 ) }}
 
@@ -373,6 +375,7 @@
                     hideStars=hideHomeStars,
                     cost='£357',
                     version='v10',
+                    showRemoveX=showRemoveX,
                     intro='Introduces you to the different factors tristique purus sit amet nisi elementum, vel congue nisi pulvinar.'
                 ) }}
 
@@ -391,6 +394,7 @@
                     hideStars=hideHomeStars,
                     cost='£199',
                     version='v10',
+                    showRemoveX=showRemoveX,
                     intro='Introduces you to the different factors tristique purus sit amet nisi elementum, vel congue nisi pulvinar.'
                 ) }}
 
@@ -413,6 +417,7 @@
                     because='Work area: HMRC',
                     hideStars=hideHomeStars,
                     version='v10',
+                    showRemoveX=showRemoveX,
                     intro='This talk explores the idea that starting with "why" helps motivate people to achieve an end goal and increases the chances of  success.'
                 ) }}
 
@@ -431,6 +436,7 @@
                     because='Work area: HMRC',
                     hideStars=hideHomeStars,
                     version='v10',
+                    showRemoveX=showRemoveX,
                     intro='Corporate CEOs and lobbyists have stripped freedoms from workers to negotiate a fair return on their work.'
                 ) }}
 
@@ -450,6 +456,7 @@
                     cost='£Free',
                     targetBlank = true,
                     version='v10',
+                    showRemoveX=showRemoveX,
                     intro='How principled negotiation will get you better results and double your team\'s speed.'
                 ) }}
 
@@ -471,16 +478,21 @@
 
     <script>
 
-    function toggleVisibility(_this, id, className) {
+    function toggleVisibility(_this, id, className, selfToggle) {
         event.preventDefault();
         let toggleSwitch = _this;
         let toggleItem = document.getElementById(id);
+        // let selfToggle =
         if (hasClass(toggleItem, className)) {
-           toggleSwitch.classList.add('toggle-switch--open');
+            if(selfToggle !== 'noSelfToggle') {
+                toggleSwitch.classList.add('toggle-switch--open');
+            }
            toggleItem.classList.remove(className);
         }
         else  {
-            toggleSwitch.classList.remove('toggle-switch--open');
+            if(selfToggle !== 'noSelfToggle') {
+                toggleSwitch.classList.remove('toggle-switch--open');
+            }
             toggleItem.classList.add(className);
         }
         // return false;

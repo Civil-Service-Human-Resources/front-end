@@ -17,7 +17,8 @@ export function homeGet(req, res) {
     hasBeenAdded,
     hasLeftFeedback,
     showNewNav,
-    navItem;
+    navItem,
+    showRemoveX;
 
   // anotherTestVar = global.anotherTestVar;
   // console.log('anotherTestVar = ' + anotherTestVar);
@@ -67,7 +68,10 @@ export function homeGet(req, res) {
   }
 
   showNewNav = req.session.showNewNav;
+  // showNewNav = true;
   navItem = 'home';
+
+  showRemoveX = req.session.showRemoveX;
 
   viewData = {
     hideHomeStars,
@@ -81,6 +85,7 @@ export function homeGet(req, res) {
     isAdmin,
     showNewNav,
     navItem,
+    showRemoveX,
   };
 
   return res.render('prototypes/learner/v10/home/index', viewData);

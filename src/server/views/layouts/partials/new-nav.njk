@@ -9,7 +9,7 @@
         {% call components.columnFull() %}
             <nav id="nav">
                 <div class="navbar">
-                    <ul class="navbar__list-items">
+                    <ul class="navbar__list-items navbar__list-items--hide-small" id="navList">
                         <li class="{% if (navItem == 'home') %}active{% endif %}">
                             <a href="/prototypes/learner/{{ learnerPrototypeVersion }}/home">Home</a>
                         </li>
@@ -31,8 +31,18 @@
                             <a href="/prototypes/learner/{{ learnerPrototypeVersion }}/">Sign out</a>
                         </li>
                     </ul>
+
+                    <a class="navbar__hamburger" id="navBurger" href="#" onclick="toggleVisibility(this, 'navList', 'navbar__list-items--hide-small', 'noSelfToggle')"><span></span> Menu</a>
+
                 </div>
             </nav>
+
+            <script>
+                document.querySelector( "#navBurger" ).addEventListener( "click", function() {
+                    this.classList.toggle( "active" );
+                });
+            </script>
+
         {%- endcall %}
     {%- endcall %}
 {% endif %}

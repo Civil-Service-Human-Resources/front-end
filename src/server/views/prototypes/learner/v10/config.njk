@@ -108,6 +108,22 @@
 
         </fieldset>
 
+        <fieldset class="u-space-b30">
+
+            <legend class="heading-small">Do you want ot see little &#10005; marks in the suggestions tile corners instead of "Remove"?</legend>
+
+            <div class="multiple-choice">
+                <input id="showXYes" type="radio" name="tileRemoveConfig" value="showXYes" checked="checked">
+                <label for="showXYes">Yes, I like the sounds of these &#10005; marks, show me those please.</label>
+            </div>
+
+            <div class="multiple-choice">
+                <input id="showXNo" type="radio" name="tileRemoveConfig" value="showXNo">
+                <label for="showXNo">Gosh, no, I prefer the text "Remove" thanks.</label>
+            </div>
+
+        </fieldset>
+
         {% call components.formGroup() %}
 
             {{ components.button(text='Continue', group=true)}}
