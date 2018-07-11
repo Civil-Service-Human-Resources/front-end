@@ -67,11 +67,13 @@ export function homeGet(req, res) {
     req.session.hasLeftFeedback = null;
   }
 
-  showNewNav = req.session.showNewNav;
-  // showNewNav = true;
+  req.session.showNewNav = true;
+  showNewNav = true;
   navItem = 'home';
 
-  showRemoveX = req.session.showRemoveX;
+  // showRemoveX = req.session.showRemoveX;
+  req.session.showRemoveX = true;
+  showRemoveX = true;
 
   viewData = {
     hideHomeStars,
@@ -153,7 +155,10 @@ export function profileGet(req, res) {
     showNewNav,
     navItem;
 
-  showNewNav = req.session.showNewNav;
+  //showNewNav = req.session.showNewNav;
+  req.session.showNewNav = true;
+  // showNewNav = req.session.showNewNav;
+  showNewNav = true;
   navItem = 'profile';
 
   workAreaHasBeenUpdated = req.session.workAreaHasBeenUpdated;
@@ -256,11 +261,14 @@ export function suggestedGet(req, res) {
   }
 
   hideHomeStars = true;
-
-  showNewNav = req.session.showNewNav;
+  req.session.showNewNav = true;
+  // showNewNav = req.session.showNewNav;
+  showNewNav = true;
   navItem = 'suggested';
 
-  showRemoveX = req.session.showRemoveX;
+  // showRemoveX = req.session.showRemoveX;
+  req.session.showRemoveX = true;
+  showRemoveX = true;
 
   viewData = {
     hideHomeStars,
