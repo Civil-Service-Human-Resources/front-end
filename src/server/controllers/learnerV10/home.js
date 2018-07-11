@@ -217,7 +217,8 @@ export function recordGet(req, res) {
     req.session.hasLeftFeedback = null;
   }
 
-  showNewNav = req.session.showNewNav;
+  req.session.showNewNav = true;
+  showNewNav = true;
   navItem = 'record';
 
   viewData = {
