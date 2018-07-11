@@ -1,0 +1,31 @@
+{% extends 'layouts/default.layout.njk' %}
+
+{% set pageTitle = 'Sorry, there was a problem with the service - Government Learning Platform' %}
+{% set blackBarTitle = 'Learning Platform for Government' %} {% set learnerPrototypeVersion = 'v10' %}
+{% set signOutPath = '/prototypes/learner/v10/' %}
+{% set homePath = '/prototypes/learner/v10/error/service-error' %}
+
+{% set courseDates = courseDates if courseDates %}
+{% set course = course if course %}
+
+{% block content %}
+
+    {% call components.gridRow() %}
+
+      {% call components.columnTwoThirds() %}
+
+      {{ components.pageHeading(heading='Sorry, there is a problem with the service', secondary="") }}
+
+          <p class="govuk-body">Try again later.</p>
+          <p class="govuk-body">We saved your answers.</p>
+          <p class="govuk-body">You can contact the Learning Platform for Government helpdesk on <a class="govuk-link" href="#"><br>020 3640 7985</a> or by email on
+             <a class="govuk-link" href="#">support@civilservicelearning.uk.</a>
+          </p>
+          <p class="govuk-body">The helpdesk phone service is available <strong class="govuk-!-font-weight-bold">Monday to Friday: 8am to 8pm.</strong></p>
+          <p class="govuk-body">Closed Easter Sunday, Christmas Day, Boxing Day and New Year’s Day.</p>
+
+      {%- endcall %}
+
+    {%- endcall %}
+
+{% endblock %}
