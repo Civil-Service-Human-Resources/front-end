@@ -15,8 +15,8 @@
   @include media(desktop) {
     max-width: 360px;
     border-bottom: 0;
-    min-height:310px;
-    padding: 10px 10px 10px;
+    min-height:300px;
+    padding: 6px 8px 6px;
     margin-bottom: 30px;
   }
 
@@ -84,8 +84,8 @@
       content: "\2715";
       position: absolute;
       display: block;
-      top: 0;
-      right: 6px;
+      top: 4px;
+      right: 8px;
       width: 34px;
       height: 40px;
       font-size: 19px;
