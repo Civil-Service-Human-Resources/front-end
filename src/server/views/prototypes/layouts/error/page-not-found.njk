@@ -1,0 +1,33 @@
+{% extends 'layouts/default.layout.njk' %}
+
+{% set pageTitle = 'Page not found - Government Learning Platform' %}
+{% set blackBarTitle = 'Learning Platform for Government' %} {% set learnerPrototypeVersion = 'v10' %}
+{% set signOutPath = '/prototypes/learner/v10/' %}
+{% set homePath = '/prototypes/learner/v10/error/page-not-found' %}
+
+{% set courseDates = courseDates if courseDates %}
+{% set course = course if course %}
+
+{% block content %}
+
+    {% call components.gridRow() %}
+
+      {% call components.columnTwoThirds() %}
+
+      {{ components.pageHeading(heading='Page not found', secondary="") }}
+
+          <p><a href="/prototypes/learner/v10/resource?resourceType=classroom" class="link-back">Back</a></p>
+          <div class="panel panel-border-wide">
+            <p class="govuk-body">If you typed the web address, check it is correct.</p>
+            <p class="govuk-body">If you pasted the web address, check you copied the entire address.</p>
+          </div>
+          <p class="govuk-body">You can contact the Learning Platform for Government helpdesk on <a class="govuk-link" href="#"><br>020 3640 7985</a> or by email on
+            <a class="govuk-link" href="#">support@civilservicelearning.uk.</a></p>
+          <p class="govuk-body">The helpdesk phone service is available <strong classnpm ="govuk-!-font-weight-bold">Monday to Friday: 8am to 8pm.</strong></p>
+          <p class="govuk-body">Closed Easter Sunday, Christmas Day, Boxing Day and New Year’s Day.</p>
+
+      {%- endcall %}
+
+    {%- endcall %}
+
+{% endblock %}
