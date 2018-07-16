@@ -12,7 +12,7 @@
 
       {{ components.heading(text='Home page', tag='h2', size='medium', url='/prototypes/layouts/home-page') }}
       {{ components.paragraph(text='All home page layout design iterations') }}
-      
+
     {%- endcall %}
 
     {% call components.columnOneThird() %}
@@ -37,6 +37,13 @@
 
             {{ components.heading(text='Booking elements', tag='h2', size='medium', url='/prototypes/layouts/booking') }}
             {{ components.paragraph(text='Various interactions for the booking process.') }}
+
+        {%- endcall %}
+
+        {% call components.columnOneThird() %}
+
+            {{ components.heading(text='Error pages', tag='h2', size='medium', url='/prototypes/layouts/error') }}
+            {{ components.paragraph(text='Various types of error.') }}
 
         {%- endcall %}
 
@@ -65,5 +72,5 @@
       {%- endcall %}
 
     {%- endcall %}
-  
+
 {% endblock %}

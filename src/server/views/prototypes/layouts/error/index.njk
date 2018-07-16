@@ -1,0 +1,33 @@
+{% extends 'layouts/default.layout.njk' %}
+
+{% set pageTitle = 'Your learning - Learning Platform for Government' %}
+{% set blackBarTitle = 'Learning Platform for Government' %}
+{% set learnerPrototypeVersion = 'v10' %}
+{% set mainContainerClass = 'has-lower-hero' %}
+{% set signOutPath = '/prototypes/layouts/error' %}
+{% set homePath = '/prototypes/layouts/error' %}
+{% set isAdmin = isAdmin if isAdmin %}
+
+
+{% block content %}
+
+  {{ components.pageHeading('Error pages') }}
+
+    {% call components.gridRow() %}
+
+        {% call components.columnFull() %}
+
+        {{ components.heading(text='Types of errors', tag='h2', size='medium') }}
+
+        <ul>
+            <li><a href="/prototypes/layouts/error/page-not-found">Page not found</a> </li>
+            <li><a href="/prototypes/layouts/error/service-error">Service error</a> </li>
+            <li><a href="/prototypes/layouts/error/service-unavailable">Service unavailable</a> </li>
+        </ul>
+        
+
+        {%- endcall %}
+
+    {%- endcall %}
+
+{% endblock %}
