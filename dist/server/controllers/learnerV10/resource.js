@@ -31,7 +31,11 @@ function resourceGet(req, res) {
     returnPath = 'prototypes/learner/v10/resource/index';
   }
 
-  showNewNav = req.session.showNewNav;
+  req.session.showNewNav = true;
+  // showNewNav = req.session.showNewNav;
+  showNewNav = true;
+
+  // showNewNav = req.session.showNewNav;
   navItem = '';
 
   viewData = {

@@ -26,7 +26,6 @@ export function resourceGet(req, res) {
   // showNewNav = req.session.showNewNav;
   showNewNav = true;
 
-
   // showNewNav = req.session.showNewNav;
   navItem = '';
 
