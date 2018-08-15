@@ -1341,12 +1341,24 @@ router.post('/prototypes/learner/v11/registration/personal-details', learnerV11C
 // registration, job, part 1, department
 router.get('/prototypes/learner/v11/registration/department', learnerV11Controller.registerDepartmentGet);
 router.post('/prototypes/learner/v11/registration/department', learnerV11Controller.registerDepartmentPost);
+
 // registration, job, part 2, profession
 router.get('/prototypes/learner/v11/registration/area-of-work', learnerV11Controller.registerAreaGet);
 router.post('/prototypes/learner/v11/registration/area-of-work', learnerV11Controller.registerAreaPost);
+
+router.get('/prototypes/learner/v11/registration/area-of-work/details', learnerV11Controller.registerAreaDetailsGet);
+router.post('/prototypes/learner/v11/registration/area-of-work/details', learnerV11Controller.registerAreaDetailsPost);
+
+router.get('/prototypes/learner/v11/registration/other-areas', learnerV11Controller.registerOtherAreasGet);
+router.post('/prototypes/learner/v11/registration/other-areas', learnerV11Controller.registerOtherAreasPost);
+
 // registration, job, part 3, grade
 router.get('/prototypes/learner/v11/registration/grade', learnerV11Controller.registerGradeGet);
 router.post('/prototypes/learner/v11/registration/grade', learnerV11Controller.registerGradePost);
+
+// registration, job, part 3, interests
+router.get('/prototypes/learner/v11/registration/interests', learnerV11Controller.registerInterestsGet);
+router.post('/prototypes/learner/v11/registration/interests', learnerV11Controller.registerInterestsPost);
 
 // registration, password
 router.get('/prototypes/learner/v11/registration/password', learnerV11Controller.registerPasswordGet);

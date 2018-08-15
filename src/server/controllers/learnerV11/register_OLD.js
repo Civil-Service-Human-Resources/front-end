@@ -216,13 +216,12 @@ export function registerDepartmentPost(req, res) {
       req.session.editMode = null;
       return res.redirect('/prototypes/learner/v11/registration/review');
     } else {
-      // return res.redirect('/prototypes/learner/v11/registration/area-of-work');
-      return res.redirect('/prototypes/learner/v11/registration/grade');
+      return res.redirect('/prototypes/learner/v11/registration/area-of-work');
     }
   }
 }
 // **************************************************************************************
-// Job2 details 2: GET Profession AKA area-of-work
+// Job2 details 2: GET  Profession AKA area-of-work
 // **************************************************************************************
 export function registerAreaGet(req, res) {
   let viewData, professionSelectOptions, registrationProfessionError, registrationJob2Error, profession, mode, editMode;
@@ -262,11 +261,9 @@ export function registerAreaPost(req, res) {
     registrationProfessionError,
     professionSelectOptions,
     professionName = [],
-    usersProfession,
-    editMode,
-    returnPath;
+    editMode;
 
-  professionSelectOptions = generalData.allNewAreasOfWork;
+  professionSelectOptions = generalData.allProfessions;
   req.session.profession = profession;
   editMode = req.session.editMode;
 
@@ -276,14 +273,8 @@ export function registerAreaPost(req, res) {
     }
   }
 
-  if (profession) {
-    usersProfession = professionSelectOptions[parseInt(profession) - 1].text;
-  }
-
-  // req.session.professionName = professionName;
-  req.session.professionName = usersProfession;
-  // req.session.usersProfession = usersProfession;
-  console.log('usersProfession = ' + usersProfession);
+  req.session.professionName = professionName;
+  // console.log(professionName);
 
   if (!profession) {
     registrationJob2Error = true;
@@ -302,220 +293,10 @@ export function registerAreaPost(req, res) {
       req.session.editMode = null;
       return res.redirect('/prototypes/learner/v11/registration/review');
     } else {
-      // if (usersProfession === 'Operational delivery' || usersProfession === 'Digital, Data and Technology') {
-      if (usersProfession === 'Operational delivery') {
-        return res.redirect('/prototypes/learner/v11/registration/area-of-work/details');
-      } else {
-        return res.redirect('/prototypes/learner/v11/registration/other-areas');
-      }
+      return res.redirect('/prototypes/learner/v11/registration/grade');
     }
   }
 }
-
-// **************************************************************************************
-// Job2 details 2: GET Profession AKA area-of-work DETAILS
-// **************************************************************************************
-export function registerAreaDetailsGet(req, res) {
-  let viewData, mode, editMode, professionName, viewPath, detailsOpsDel;
-
-  professionName = req.session.professionName;
-
-  console.log('************************************************************************************************************');
-
-  console.log('professionName = ' + professionName);
-
-  if (professionName === 'Operational delivery') {
-    viewPath = 'prototypes/learner/v11/registration/area-of-work/details-opsdel';
-  } else if (professionName === 'Digital, Data and Technology') {
-    viewPath = 'prototypes/learner/v11/registration/area-of-work/details-ddat';
-  } else {
-    return res.redirect('/prototypes/learner/v11/registration/other-areas');
-  }
-
-  mode = req.param('mode');
-  if (mode == 'edit') {
-    editMode = true;
-    req.session.editMode = true;
-  }
-
-  detailsOpsDel = generalData.detailsOpsDel;
-
-  /*if (profession) {
-    profession = req.session.profession;
-  } else {
-    profession = '';
-  }*/
-
-  viewData = {
-    editMode,
-    detailsOpsDel,
-  };
-
-  return res.render(viewPath, viewData);
-}
-
-// Job2 details: POST
-export function registerAreaDetailsPost(req, res) {
-  const { detailsOpsDel } = req.body;
-
-  console.log('detailsOpsDel = ' + detailsOpsDel);
-
-  let editMode, detailsOpsDel2;
-
-  detailsOpsDel2 = detailsOpsDel;
-  req.session.detailsOpsDel = detailsOpsDel2;
-
-  /*professionSelectOptions = generalData.allNewAreasOfWork;
-  req.session.profession = profession;*/
-  editMode = req.session.editMode;
-
-  /* if (profession) {
-    for (let i = 0; i < profession.length; i++) {
-      professionName.push(professionSelectOptions[parseInt(profession[i]) - 1].text);
-    }
-  }
-
-  if (profession) {
-    usersProfession = professionSelectOptions[parseInt(profession) - 1].text;
-  }*/
-
-  // req.session.professionName = professionName;
-  // req.session.professionName = usersProfession;
-  // req.session.usersProfession = usersProfession;
-  // console.log('usersProfession = ' + usersProfession);
-
-  /*if (!profession) {
-    registrationJob2Error = true;
-    registrationProfessionError = true;
-  }*/
-
-  /*if (registrationJob2Error === true) {
-    req.session.registrationJob2Error = registrationJob2Error;
-    req.session.registrationProfessionError = registrationProfessionError;
-    return res.redirect('/prototypes/learner/v11/registration/area-of-work');
-  } else {
-    req.session.registrationJob2Error = false;
-    req.session.registrationJob2Error = req.session.registrationProfessionError = null;*/
-
-  if (editMode === true) {
-    req.session.editMode = null;
-    return res.redirect('/prototypes/learner/v11/registration/review');
-  } else {
-    return res.redirect('/prototypes/learner/v11/registration/other-areas');
-  }
-  //}
-}
-
-// **************************************************************************************
-// Job2 details 2: GET interests
-// **************************************************************************************
-export function registerInterestsGet(req, res) {
-  let viewData, editMode, mode, professionSelectOptions;
-
-  mode = req.param('mode');
-  if (mode == 'edit') {
-    editMode = true;
-    req.session.editMode = true;
-  }
-
-  professionSelectOptions = generalData.allNewAreasOfWork;
-  console.log('professionSelectOptions = ' + professionSelectOptions);
-
-  viewData = {
-    professionSelectOptions,
-  };
-
-  return res.render('prototypes/learner/v11/registration/interests/index', viewData);
-}
-// Job2 details: POST
-export function registerInterestsPost(req, res) {
-  const { extraInterests } = req.body;
-
-  let editMode, allInterests;
-
-  editMode = req.session.editMode;
-
-  allInterests = extraInterests;
-  // console.log('interests = ' + interests);
-  req.session.allInterests = allInterests;
-  console.log('allInterests = ' + allInterests);
-
-  if (editMode === true) {
-    req.session.editMode = null;
-    return res.redirect('/prototypes/learner/v11/registration/review');
-  } else {
-    return res.redirect('/prototypes/learner/v11/registration/password');
-  }
-}
-
-// **************************************************************************************
-// Job2 details 2: GET other areas of work
-// **************************************************************************************
-export function registerOtherAreasGet(req, res) {
-  let viewData, professionSelectOptions;
-
-  professionSelectOptions = generalData.allNewAreasOfWork;
-  console.log('professionSelectOptions = ' + professionSelectOptions);
-
-  viewData = {
-    professionSelectOptions,
-  };
-
-  return res.render('prototypes/learner/v11/registration/other-areas/index', viewData);
-}
-// Job2 details: POST
-export function registerOtherAreasPost(req, res) {
-  const { otherAreas } = req.body;
-
-  console.log('otherAreas = ' + otherAreas);
-
-  let registrationJob2Error, registrationProfessionError, professionSelectOptions, otherAreasList, usersProfession, editMode;
-
-  otherAreasList = otherAreas;
-  req.session.otherAreas = otherAreasList;
-
-  professionSelectOptions = generalData.allNewAreasOfWork;
-  // req.session.profession = profession;
-  editMode = req.session.editMode;
-
-  /*if (otherAreas) {
-    for (let i = 0; i < otherAreas.length; i++) {
-      otherAreasList.push(professionSelectOptions[parseInt(profession[i]) - 1].text);
-    }
-  }*/
-
-  /*if (profession) {
-    usersProfession = professionSelectOptions[parseInt(profession) - 1].text;
-  }*/
-
-  // req.session.professionName = professionName;
-  //req.session.professionName = usersProfession;
-  // req.session.usersProfession = usersProfession;
-  //console.log('usersProfession = ' + usersProfession);
-
-  /*if (!profession) {
-    registrationJob2Error = true;
-    registrationProfessionError = true;
-  }*/
-
-  if (registrationJob2Error === true) {
-    req.session.registrationJob2Error = registrationJob2Error;
-    req.session.registrationProfessionError = registrationProfessionError;
-    return res.redirect('/prototypes/learner/v11/registration/area-of-work');
-  } else {
-    req.session.registrationJob2Error = false;
-    req.session.registrationJob2Error = req.session.registrationProfessionError = null;
-
-    if (editMode === true) {
-      req.session.editMode = null;
-      return res.redirect('/prototypes/learner/v11/registration/review');
-    } else {
-      // return res.redirect('/prototypes/learner/v11/registration/grade');
-      return res.redirect('/prototypes/learner/v11/registration/interests');
-    }
-  }
-}
-
 // **************************************************************************************
 // Job3 details 3: GET  Grade
 // **************************************************************************************
@@ -583,8 +364,7 @@ export function registerGradePost(req, res) {
       req.session.editMode = null;
       return res.redirect('/prototypes/learner/v11/registration/review');
     } else {
-      // return res.redirect('/prototypes/learner/v11/registration/password');
-      return res.redirect('/prototypes/learner/v11/registration/area-of-work');
+      return res.redirect('/prototypes/learner/v11/registration/password');
     }
   }
 }
@@ -661,7 +441,7 @@ export function registerPasswordPost(req, res) {
 // Review GET
 // **************************************************************************************
 export function registerReviewGet(req, res) {
-  let viewData, email, firstName, lastName, departmentName, professionName, gradeName, password, allInterests, otherAreas, detailsOpsDel;
+  let viewData, email, firstName, lastName, departmentName, professionName, gradeName, password;
 
   email = req.session.email;
   firstName = req.session.firstName;
@@ -670,9 +450,6 @@ export function registerReviewGet(req, res) {
   professionName = req.session.professionName;
   gradeName = req.session.gradeName;
   password = req.session.password;
-  allInterests = req.session.allInterests;
-  otherAreas = req.session.otherAreas;
-  detailsOpsDel = req.session.detailsOpsDel;
 
   viewData = {
     email,
@@ -682,9 +459,6 @@ export function registerReviewGet(req, res) {
     professionName,
     gradeName,
     password,
-    otherAreas,
-    allInterests,
-    detailsOpsDel,
   };
 
   return res.render('prototypes/learner/v11/registration/review/index', viewData);

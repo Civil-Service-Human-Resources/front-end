@@ -1,0 +1,60 @@
+{% extends 'layouts/default.layout.njk' %}
+
+{% set pageTitle = 'Interests - Learning Platform for Government' %}
+
+{% set blackBarTitle = 'Learning Platform for Government' %} {% set learnerPrototypeVersion = 'v11' %}
+{% set loggedOut = 'false' %}
+{% set signOutPath = '/prototypes/learner/v11/' %}
+{% set homePath = '/prototypes/learner/v11/' %}
+
+{% set detailsOpsDel = detailsOpsDel if detailsOpsDel %}
+{% set buttonText = 'Continue' %}
+{#{% set profession = profession if profession %}#}
+
+{% block content %}
+
+    {{ components.pageHeading('Area of work details') }}
+
+    {% call components.gridRow() %}
+
+        {% call components.columnTwoThirds() %}
+
+            <p class="lede">Select the most suitable area of work from <strong>Operational delivery</strong>. This will help tailor your suggested learning.</p>
+
+            {% call components.formElement(name='detailsOpsDelForm', method='POST', action="#") %}
+
+                <fieldset class="u-space-b30 {% if registrationJob2Error %} form-group-error {% endif %}">
+
+                    {% for item in detailsOpsDel %}
+
+                        {#{% if item.value in profession %}
+                            {% set checked = true %}
+                        {% else %}
+                            {% set checked = '' %}
+                        {% endif %}#}
+
+                        {% if item.text != 'Other' %}
+                            {{ components.checkbox(text=item.text, value=item.text, id='detailsopsDel'+item.value,name='detailsOpsDel', compareTo=item.value, isChecked=checked) }}
+                        {% endif %}
+
+                    {% endfor %}
+
+                </fieldset>
+
+                {% call components.formGroup() %}
+
+                    {{ components.button(text=buttonText, group=true)}}
+
+                {%- endcall %}
+
+                <p><a href="/prototypes/learner/v11">Cancel</a></p>
+
+            {%- endcall %}
+
+
+        {%- endcall %}
+
+    {%- endcall %}
+
+{% endblock %}
+

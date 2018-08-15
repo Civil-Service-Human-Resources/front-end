@@ -12,17 +12,28 @@
 {% set departmentName = departmentName if departmentName %}
 {% set professionName = professionName if professionName %}
 {% set gradeName = gradeName if gradeName %}
+{% set otherAreas = otherAreas if otherAreas %}
+{% set allInterests = allInterests if allInterests %}
+{% set detailsOpsDel = detailsOpsDel if detailsOpsDel %}
+
+
 
 
 {% block content %}
 
     {{ components.pageHeading('Your registration details', 'Create an account') }}
 
+    <style>
+        .key-value-list__item-action a { display: none; }
+    </style>
+
     {% call components.gridRow() %}
 
         {% call components.columnFull() %}
 
             <p class="lede">Check your details are correct before completing registration.</p>
+
+            <h2 class="heading-medium">Personal details</h2>
 
             <table class="key-value-list key-value-list--auto u-space-b30 table--top">
 
@@ -34,25 +45,12 @@
 
                 <tbody>
                     <tr>
-                        <td class="key-value-list__key ">Email</td>
-                        <td class="key-value-list__value">
-                            {% if email %}
-                                {{ email }}
-                            {% else %}
-                                r.connery@mi6.gov.uk
-                            {% endif %}
-                        </td>
-                        <td class="key-value-list__item-action">
-                            <a href="/prototypes/learner/v11/registration?mode=edit">Change<span class="visuallyhidden"> your email</span></a>
-                        </td>
-                    </tr>
-                    <tr>
                         <td class="key-value-list__key ">Name</td>
                         <td class="key-value-list__value">
                             {% if firstName %}
                                 {{ firstName }} {{ lastName }}
                             {% else %}
-                                Marjorie Dawes
+                                None recorded
                             {% endif %}
                         </td>
                         <td class="key-value-list__item-action">
@@ -60,31 +58,50 @@
                         </td>
                     </tr>
                     <tr>
+                        <td class="key-value-list__key ">Email</td>
+                        <td class="key-value-list__value">
+                            {% if email %}
+                                {{ email }}
+                            {% else %}
+                                None recorded
+                            {% endif %}
+                        </td>
+                        <td class="key-value-list__item-action">
+                            <a href="/prototypes/learner/v11/registration?mode=edit">Change<span class="visuallyhidden"> your email</span></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="key-value-list__key ">Password</td>
+                        <td class="key-value-list__value">&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;</td>
+                        <td class="key-value-list__item-action">
+                            <a href="/prototypes/learner/v11/registration/password?mode=edit">Change<span class="visuallyhidden"> your password</span></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 class="heading-medium">Job details</h2>
+
+            <table class="key-value-list key-value-list--auto u-space-b30 table--top">
+
+                <thead class="visuallyhidden">
+                    <th>Detail</th>
+                    <th>Your entered value</th>
+                    <th>Action</th>
+                </thead>
+
+                <tbody>
+                    <tr>
                         <td class="key-value-list__key ">Organisation</td>
                         <td class="key-value-list__value">
                             {% if departmentName %}
                                 {{ departmentName }}
                             {% else %}
-                                Cabinet Office
+                                None recorded
                             {% endif %}
                         </td>
                         <td class="key-value-list__item-action">
                             <a href="/prototypes/learner/v11/registration/department?mode=edit">Change<span class="visuallyhidden"> your job department</span></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="key-value-list__key ">Area of work</td>
-                        <td class="key-value-list__value">
-                            {% if professionName %}
-                                {% for item in professionName %}
-                                    {{ item }}<br>
-                                {% endfor %}
-                            {% else %}
-                                Legal<br>Communications
-                            {% endif %}
-                        </td>
-                        <td class="key-value-list__item-action">
-                            <a href="/prototypes/learner/v11/registration/area-of-work?mode=edit">Change<span class="visuallyhidden"> your area of work</span></a>
                         </td>
                     </tr>
                     <tr>
@@ -101,12 +118,55 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="key-value-list__key ">Password</td>
-                        <td class="key-value-list__value">&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;</td>
+                        <td class="key-value-list__key ">Primary area of work</td>
+                        <td class="key-value-list__value">
+                            {% if professionName %}
+                                {{ professionName }}
+
+                                {% if detailsOpsDel %}
+                                    {% for item in detailsOpsDel %}<br> {{ item }}{% endfor %}
+                                {% endif %}
+
+                            {% else %}
+                                None recorded
+                            {% endif %}
+                        </td>
                         <td class="key-value-list__item-action">
-                            <a href="/prototypes/learner/v11/registration/password?mode=edit">Change<span class="visuallyhidden"> your password</span></a>
+                            <a href="/prototypes/learner/v11/registration/area-of-work?mode=edit">Change<span class="visuallyhidden"> your area of work</span></a>
                         </td>
                     </tr>
+
+                    <tr>
+                        <td class="key-value-list__key ">Other areas of work</td>
+                        <td class="key-value-list__value">
+                            {% if otherAreas %}
+                                {% for item in otherAreas %}
+                                    {{ item }}<br>
+                                {% endfor %}
+                            {% else %}
+                                None recorded
+                            {% endif %}
+                        </td>
+                        <td class="key-value-list__item-action">
+                            <a href="/prototypes/learner/v11/registration/other-areas?mode=edit">Change<span class="visuallyhidden"> your other areas of work</span></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="key-value-list__key ">Interests</td>
+                        <td class="key-value-list__value">
+                            {% if allInterests %}
+                                {% for item in allInterests %}
+                                    {{ item }}<br>
+                                {% endfor %}
+                            {% else %}
+                                None recorded
+                            {% endif %}
+                        </td>
+                        <td class="key-value-list__item-action">
+                            <a href="/prototypes/learner/v11/registration/interests?mode=edit">Change<span class="visuallyhidden"> your intersts</span></a>
+                        </td>
+                    </tr>
+
                 </tbody>
 
             </table>

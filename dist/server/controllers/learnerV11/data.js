@@ -2,7 +2,7 @@
 
 var _register = require('./register');
 
-let allDepartments = [{ value: '0', text: 'Select an organisation' }, { value: '1', text: 'Cabinet Office' }, { value: '2', text: 'Department of Health and Social Care' }, { value: '3', text: 'HM Revenue & Customs' }, { value: '4', text: 'Other' }];
+let allDepartments = [{ value: '0', text: 'Select an organisation' }, { value: '1', text: 'Cabinet Office' }, { value: '2', text: 'DEFRA' }, { value: '3', text: 'Department of Health and Social Care' }, { value: '4', text: 'HM Revenue & Customs' }, { value: '5', text: 'Home Office' }, { value: '6', text: 'Other' }];
 
 module.exports.allDepartments = allDepartments;
 
@@ -10,9 +10,17 @@ let allProfessions = [{ value: '0', text: 'Analysis' }, { value: '1', text: 'Com
 
 module.exports.allProfessions = allProfessions;
 
+let allNewAreasOfWork = [{ value: '1', text: 'Commercial' }, { value: '2', text: 'Communication' }, { value: '3', text: 'Corporate finance' }, { value: '4', text: 'Counter-fraud standards' }, { value: '5', text: 'Digital, Data and Technology' }, { value: '6', text: 'Economics' }, { value: '7', text: 'Finance' }, { value: '8', text: 'Human resources' }, { value: '9', text: 'Intelligence analysis' }, { value: '10', text: 'Internal audit' }, { value: '11', text: 'Knowledge and information management' }, { value: '12', text: 'Legal' }, { value: '13', text: 'Medical' }, { value: '14', text: 'Occupational psychology' }, { value: '15', text: 'Operational delivery' }, { value: '16', text: 'Operational research' }, { value: '17', text: 'Planning' }, { value: '18', text: 'Planning inspectors' }, { value: '19', text: 'Policy' }, { value: '20', text: 'Procurement' }, { value: '21', text: 'Profession' }, { value: '22', text: 'Project delivery' }, { value: '23', text: 'Property' }, { value: '24', text: 'Science and engineering' }, { value: '25', text: 'Security' }, { value: '26', text: 'Social research' }, { value: '27', text: 'Statistical' }, { value: '28', text: 'Veterinary' }, { value: '29', text: 'Other' }];
+
+module.exports.allNewAreasOfWork = allNewAreasOfWork;
+
 let allProfessionsInterest = [{ value: '1', text: 'Commercial' }, { value: '2', text: 'Communications' }, { value: '3', text: 'Corporate finance' }, { value: '4', text: 'Digital, Data and Technology' }, { value: '5', text: 'Finance' }, { value: '6', text: 'Fraud, error, debt and grants' }, { value: '7', text: 'Human resources' }, { value: '8', text: 'Internal audit' }, { value: '9', text: 'Legal' }, { value: '10', text: 'Project delivery' }, { value: '11', text: 'Property' }, { value: '12', text: 'Other' }, { value: '12', text: 'Leadership' }, { value: '12', text: 'Fast stream' }, { value: '12', text: 'Contract management' }];
 
 module.exports.allProfessionsInterest = allProfessionsInterest;
+
+let detailsOpsDel = [{ value: '1', text: 'Case ownership' }, { value: '2', text: 'Help and Advice' }, { value: '3', text: 'Leadership and Management' }, { value: '4', text: 'Operational Design and Support' }, { value: '5', text: 'Safety and G7 Enforcement' }, { value: '6', text: 'Validation and Compliance' }];
+
+module.exports.detailsOpsDel = detailsOpsDel;
 
 // **************************************************************
 // DDAT

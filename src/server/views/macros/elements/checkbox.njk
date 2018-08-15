@@ -3,4 +3,4 @@
         <input {{ 'id="' + id + '"' if id }} type="checkbox" name="{{ name if name else id }}" {{ 'value="' + value + '"' if value }} {{ ' checked' if isChecked }}>
         <label {{ 'for="' + id + '"' if id }}>{{ text }}</label>
     </div>
-{% endmacro %}§
+{% endmacro %}
