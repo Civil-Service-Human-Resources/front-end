@@ -5,9 +5,10 @@ let allDepartments = [
   { value: '1', text: 'Cabinet Office' },
   { value: '2', text: 'DEFRA' },
   { value: '3', text: 'Department of Health and Social Care' },
-  { value: '4', text: 'HM Revenue & Customs' },
-  { value: '5', text: 'Home Office' },
-  { value: '6', text: 'Other' },
+  { value: '4', text: 'Fast Stream' },
+  { value: '5', text: 'HM Revenue & Customs' },
+  { value: '6', text: 'Home Office' },
+  { value: '7', text: 'Other' },
 ];
 
 module.exports.allDepartments = allDepartments;
