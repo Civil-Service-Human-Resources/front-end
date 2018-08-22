@@ -478,32 +478,15 @@ export function registerOtherAreasPost(req, res) {
 
   let registrationJob2Error, registrationProfessionError, professionSelectOptions, otherAreasList, usersProfession, editMode;
 
-  otherAreasList = otherAreas;
+  if (typeof otherAreas === 'string' || otherAreas instanceof String) {
+    otherAreasList = [otherAreas];
+  } else {
+    otherAreasList = otherAreas;
+  }
+
   req.session.otherAreas = otherAreasList;
 
-  professionSelectOptions = generalData.allNewAreasOfWork;
-  // req.session.profession = profession;
   editMode = req.session.editMode;
-
-  /*if (otherAreas) {
-    for (let i = 0; i < otherAreas.length; i++) {
-      otherAreasList.push(professionSelectOptions[parseInt(profession[i]) - 1].text);
-    }
-  }*/
-
-  /*if (profession) {
-    usersProfession = professionSelectOptions[parseInt(profession) - 1].text;
-  }*/
-
-  // req.session.professionName = professionName;
-  //req.session.professionName = usersProfession;
-  // req.session.usersProfession = usersProfession;
-  //console.log('usersProfession = ' + usersProfession);
-
-  /*if (!profession) {
-    registrationJob2Error = true;
-    registrationProfessionError = true;
-  }*/
 
   if (registrationJob2Error === true) {
     req.session.registrationJob2Error = registrationJob2Error;
