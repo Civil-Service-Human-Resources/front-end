@@ -431,12 +431,19 @@ export function registerInterestsGet(req, res) {
 export function registerInterestsPost(req, res) {
   const { extraInterests } = req.body;
 
-  let editMode, allInterests;
+  let editMode,
+    allInterests = [];
+
+  console.log('extraInterests = ' + extraInterests);
 
   editMode = req.session.editMode;
 
-  allInterests = extraInterests;
-  // console.log('interests = ' + interests);
+  if (typeof extraInterests === 'string' || extraInterests instanceof String) {
+    allInterests = [extraInterests];
+  } else {
+    allInterests = extraInterests;
+  }
+
   req.session.allInterests = allInterests;
   console.log('allInterests = ' + allInterests);
 
