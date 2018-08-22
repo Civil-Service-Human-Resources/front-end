@@ -102,9 +102,9 @@
 
                 {{ components.field(label='Retype your password', id='passwordTwo', hint="", group=true, type='password', error=registrationPasswordErrorTwoMessage)}}#}
 
-        {{ components.field(label='Create a password', id='password', hint="", group=true, type='password', value=password, error=registrationPasswordErrorOneMessage)}}
+                {{ components.field(label='Create a password', id='password', hint="", name='passwordOne', group=true, type='password', value=password, error=registrationPasswordErrorOneMessage)}}
 
-        {{ components.field(label='Retype your password', id='passwordConfirm', hint="", group=true, type='password', error=registrationPasswordErrorTwoMessage)}}
+                {{ components.field(label='Retype your password', id='passwordConfirm', name='passwordTwo', hint="", group=true, type='password', error=registrationPasswordErrorTwoMessage)}}
 
 
                 {% call components.formGroup() %}
