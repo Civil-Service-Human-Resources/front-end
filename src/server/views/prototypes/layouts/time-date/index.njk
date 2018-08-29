@@ -1,0 +1,108 @@
+{% extends 'layouts/default.layout.njk' %}
+
+{% set pageTitle = 'Time/date - Civil Service Learning Platform' %}
+{% set blackBarTitle = 'Civil Service Learning' %} {% set learnerPrototypeVersion = 'v1' %}
+
+{% block content %}
+
+    {{ components.pageHeading('Time/date thingumy') }}
+
+    {% call components.gridRow() %}
+
+        {% call components.columnTwoThirds() %}
+
+            {{ components.heading(text='Enter the start time of your event', tag='h2', size='medium', extraClass='') }}
+
+            <form>
+
+                <fieldset>
+                    <legend class="heading-small">Start time</legend>
+                    <div class="form-group--times-wrapper u-clearfix">
+                        <div class="form-group form-group--times">
+                            <label class="form-label" for="startTimeHours">Hours</label>
+                            <select class="form-control form-control--time" id="startTimeHours" name="startTimeHours">
+                                <option value="6">06:00</option>
+                                <option value="7">07:00</option>
+                                <option value="8">08:00</option>
+                                <option value="9">09:00</option>
+                                <option value="10">10:00</option>
+                                <option value="11">11:00</option>
+                                <option value="12">12:00</option>
+                                <option value="13">13:00</option>
+                                <option value="14">14:00</option>
+                                <option value="15">15:00</option>
+                                <option value="16">16:00</option>
+                                <option value="17">17:00</option>
+                                <option value="18">18:00</option>
+                                <option value="19">19:00</option>
+                                <option value="20">20:00</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group form-group--times">
+                            <label class="form-label" for="startTimeMinutes">Minutes</label>
+                            <select class="form-control form-control--time" id="startTimeMinutes" name="startTimeMinutes">
+                                <option value="00">00</option>
+                                <option value="15">15</option>
+                                <option value="30">30</option>
+                                <option value="45">45</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                </fieldset>
+
+                <fieldset>
+                    <legend class="heading-small">End time</legend>
+                    <div class="form-group--times-wrapper u-clearfix">
+                        <div class="form-group form-group--times">
+                            <label class="form-label" for="endTimeHours">Hours</label>
+                            <select class="form-control form-control--time" id="endTimeHours" name="endTimeHours">
+                                <option value="6">06:00</option>
+                                <option value="7">07:00</option>
+                                <option value="8">08:00</option>
+                                <option value="9">09:00</option>
+                                <option value="10">10:00</option>
+                                <option value="11">11:00</option>
+                                <option value="12">12:00</option>
+                                <option value="13">13:00</option>
+                                <option value="14">14:00</option>
+                                <option value="15">15:00</option>
+                                <option value="16">16:00</option>
+                                <option value="17">17:00</option>
+                                <option value="18">18:00</option>
+                                <option value="19">19:00</option>
+                                <option value="20">20:00</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group form-group--times">
+                            <label class="form-label" for="endTimeMinutes">Minutes</label>
+                            <select class="form-control form-control--time" id="endTimeMinutes" name="endTimeMinutes">
+                                <option value="00">00</option>
+                                <option value="15">15</option>
+                                <option value="30">30</option>
+                                <option value="45">45</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                </fieldset>
+
+
+
+
+
+                <div class="form-group">
+                    <input class="button " type="submit" value="Clickety click">
+                </div>
+
+            </form>
+
+        {%- endcall %}
+
+    {%- endcall %}
+
+{% endblock %}
