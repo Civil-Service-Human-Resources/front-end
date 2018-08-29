@@ -1,0 +1,72 @@
+{% extends 'layouts/default.layout.njk' %}
+
+{% set pageTitle = 'Email test - Civil Service Learning Platform' %}
+{% set blackBarTitle = 'Civil Service Learning' %} {% set learnerPrototypeVersion = 'v1' %}
+
+{% block content %}
+
+    {{ components.pageHeading('Email test') }}
+
+    {% call components.gridRow() %}
+
+        {% call components.columnTwoThirds() %}
+
+            {{ components.heading(text='Cut \'n\' pasteable email list', tag='h2', size='medium', extraClass='') }}
+
+            {{ components.heading(text='Vertical', tag='h2', size='small', extraClass='') }}
+
+            <p>
+
+                bob.smith@cabinetoffice.gov.uk<br>
+                rachel.jones@defra.gov.uk<br>
+                ewef.colander@ea.gov.uk<br>
+                jill.jillings@hmrc.gov.uk<br>
+                aldous.huxley@nhs.gov.uk<br>
+                jim.jenson@dvsa.gov.uk<br>
+                tabitha.blanco@ceh.gov.uk<br>
+                bob.burnquest@dcms.gov.uk<br>
+                matilda.flomo@hmrc.gov.uk<br>
+                terrence.trent@mod.gov.uk<br>
+                annie.lennox@dvla.gov.uk<br>
+            </p>
+
+            {{ components.heading(text='Plain list', tag='h2', size='small', extraClass='') }}
+
+            <p>
+
+                bob.smith@cabinetoffice.gov.uk
+                rachel.jones@defra.gov.uk
+                ewef.colander@ea.gov.uk
+                jill.jillings@hmrc.gov.uk
+                aldous.huxley@nhs.gov.uk
+                jim.jenson@dvsa.gov.uk
+                tabitha.blanco@ceh.gov.uk
+                bob.burnquest@dcms.gov.uk
+                matilda.flomo@hmrc.gov.uk
+                terrence.trent@mod.gov.uk
+                annie.lennox@dvla.gov.uk
+            </p>
+
+            {{ components.heading(text='CSV', tag='h2', size='small', extraClass='') }}
+
+            <p>
+
+                bob.smith@cabinetoffice.gov.uk,
+                rachel.jones@defra.gov.uk,
+                ewef.colander@ea.gov.uk,
+                jill.jillings@hmrc.gov.uk,
+                aldous.huxley@nhs.gov.uk,
+                jim.jenson@dvsa.gov.uk,
+                tabitha.blanco@ceh.gov.uk,
+                bob.burnquest@dcms.gov.uk,
+                matilda.flomo@hmrc.gov.uk,
+                terrence.trent@mod.gov.uk,
+                annie.lennox@dvla.gov.uk,
+            </p>
+
+
+        {%- endcall %}
+
+    {%- endcall %}
+
+{% endblock %}
