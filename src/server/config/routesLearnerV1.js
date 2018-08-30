@@ -1,165 +1,177 @@
 //******************************************************
 //
-//      v11 end-to-end learner journey custom routes
+//      v12 end-to-end learner journey custom routes
 //
 //******************************************************
 // learner config
 
-import * as learnerV11Controller from '../controllers/learnerV11';
+import * as learnerV12Controller from '../controllers/learnerV12';
 
-router.get('/prototypes/learner/v11/config', learnerV11Controller.configGet);
-router.post('/prototypes/learner/v11/config', learnerV11Controller.configPost);
+router.get('/prototypes/learner/v12/config', learnerV12Controller.configGet);
+router.post('/prototypes/learner/v12/config', learnerV12Controller.configPost);
 
 //******************************************************
 //      Various smaller sections
 //******************************************************
 // start
-router.get('/prototypes/learner/v11', learnerV11Controller.indexGet);
-router.post('/prototypes/learner/v11', learnerV11Controller.indexPost);
+router.get('/prototypes/learner/v12', learnerV12Controller.indexGet);
+router.post('/prototypes/learner/v12', learnerV12Controller.indexPost);
 // home
-router.get('/prototypes/learner/v11/home', learnerV11Controller.homeGet);
-// router.post('/prototypes/learner/v11/home', learnerV11Controller.homePost);
+router.get('/prototypes/learner/v12/home', learnerV12Controller.homeGet);
+// router.post('/prototypes/learner/v12/home', learnerV12Controller.homePost);
 
 // profile
-router.get('/prototypes/learner/v11/your-profile', learnerV11Controller.profileGet);
+router.get('/prototypes/learner/v12/your-profile', learnerV12Controller.profileGet);
 // planned learning
-router.get('/prototypes/learner/v11/learning-plan', learnerV11Controller.plannedGet);
+router.get('/prototypes/learner/v12/learning-plan', learnerV12Controller.plannedGet);
 // learning record
-router.get('/prototypes/learner/v11/learning-record', learnerV11Controller.recordGet);
+router.get('/prototypes/learner/v12/learning-record', learnerV12Controller.recordGet);
 // suggested learning
-router.get('/prototypes/learner/v11/suggested-learning', learnerV11Controller.suggestedGet);
-router.get('/prototypes/learner/v11/suggested-learning-full', learnerV11Controller.suggestedFullGet);
-router.get('/prototypes/learner/v11/suggested-learning-all', learnerV11Controller.suggestedAllGet);
-router.get('/prototypes/learner/v11/suggested-learning-hmrc', learnerV11Controller.suggestedAllHMRCGet);
-router.get('/prototypes/learner/v11/suggested-learning-hmrc-cols', learnerV11Controller.suggestedAllHMRCColsGet);
+router.get('/prototypes/learner/v12/suggested-learning', learnerV12Controller.suggestedGet);
+router.get('/prototypes/learner/v12/suggested-learning-full', learnerV12Controller.suggestedFullGet);
+router.get('/prototypes/learner/v12/suggested-learning-all', learnerV12Controller.suggestedAllGet);
+router.get('/prototypes/learner/v12/suggested-learning-hmrc', learnerV12Controller.suggestedAllHMRCGet);
+router.get('/prototypes/learner/v12/suggested-learning-hmrc-cols', learnerV12Controller.suggestedAllHMRCColsGet);
 
 // profile
-router.get('/prototypes/learner/v11/privacy', learnerV11Controller.privacyGet);
+router.get('/prototypes/learner/v12/privacy', learnerV12Controller.privacyGet);
 
 // search
-router.get('/prototypes/learner/v11/search', learnerV11Controller.searchGet);
-router.post('/prototypes/learner/v11/search', learnerV11Controller.searchPost);
+router.get('/prototypes/learner/v12/search', learnerV12Controller.searchGet);
+router.post('/prototypes/learner/v12/search', learnerV12Controller.searchPost);
 
 // feedback
-router.get('/prototypes/learner/v11/feedback', learnerV11Controller.feedbackGet);
-router.post('/prototypes/learner/v11/feedback', learnerV11Controller.feedbackPost);
-router.get('/prototypes/learner/v11/feedback/informal', learnerV11Controller.feedbackInformalGet);
-router.get('/prototypes/learner/v11/feedback/formal', learnerV11Controller.feedbackFormalGet);
+router.get('/prototypes/learner/v12/feedback', learnerV12Controller.feedbackGet);
+router.post('/prototypes/learner/v12/feedback', learnerV12Controller.feedbackPost);
+router.get('/prototypes/learner/v12/feedback/informal', learnerV12Controller.feedbackInformalGet);
+router.get('/prototypes/learner/v12/feedback/formal', learnerV12Controller.feedbackFormalGet);
 
 // edit areas of work with levels
-router.get('/prototypes/learner/v11/your-profile/area-of-work', learnerV11Controller.areasGet);
-router.post('/prototypes/learner/v11/your-profile/area-of-work', learnerV11Controller.areasPost);
+router.get('/prototypes/learner/v12/your-profile/area-of-work', learnerV12Controller.areasGet);
+router.post('/prototypes/learner/v12/your-profile/area-of-work', learnerV12Controller.areasPost);
 
-router.get('/prototypes/learner/v11/your-profile/area-of-work/levels', learnerV11Controller.areasLevelsGet);
-router.post('/prototypes/learner/v11/your-profile/area-of-work/levels', learnerV11Controller.areasLevelsPost);
+router.get('/prototypes/learner/v12/your-profile/area-of-work/levels', learnerV12Controller.areasLevelsGet);
+router.post('/prototypes/learner/v12/your-profile/area-of-work/levels', learnerV12Controller.areasLevelsPost);
 
-router.get('/prototypes/learner/v11/your-profile/interests', learnerV11Controller.interestsGet);
-router.post('/prototypes/learner/v11/your-profile/interests', learnerV11Controller.interestsPost);
+router.get('/prototypes/learner/v12/your-profile/interests', learnerV12Controller.interestsGet);
+router.post('/prototypes/learner/v12/your-profile/interests', learnerV12Controller.interestsPost);
 
-router.get('/prototypes/learner/v11/your-profile/area-of-work/joined-levels', learnerV11Controller.areasJoinedLevelsGet);
-router.post('/prototypes/learner/v11/your-profile/area-of-work/joined-levels', learnerV11Controller.areasJoinedLevelsPost);
+router.get('/prototypes/learner/v12/your-profile/area-of-work/joined-levels', learnerV12Controller.areasJoinedLevelsGet);
+router.post('/prototypes/learner/v12/your-profile/area-of-work/joined-levels', learnerV12Controller.areasJoinedLevelsPost);
 
 // As product manager for show and tell
-router.get('/prototypes/learner/v11/your-profile/area-of-work/joined-levels-pm', learnerV11Controller.areasJoinedLevelsPMGet);
-router.post('/prototypes/learner/v11/your-profile/area-of-work/joined-levels-pm', learnerV11Controller.areasJoinedLevelsPMPost);
+router.get('/prototypes/learner/v12/your-profile/area-of-work/joined-levels-pm', learnerV12Controller.areasJoinedLevelsPMGet);
+router.post('/prototypes/learner/v12/your-profile/area-of-work/joined-levels-pm', learnerV12Controller.areasJoinedLevelsPMPost);
 
-router.get('/prototypes/learner/v11/your-profile/other-areas-of-work', learnerV11Controller.otherAreasGet);
-router.post('/prototypes/learner/v11/your-profile/other-areas-of-work', learnerV11Controller.otherAreasPost);
+router.get('/prototypes/learner/v12/your-profile/other-areas-of-work', learnerV12Controller.otherAreasGet);
+router.post('/prototypes/learner/v12/your-profile/other-areas-of-work', learnerV12Controller.otherAreasPost);
 
 // Actions
-router.get('/prototypes/learner/v11/actions', learnerV11Controller.actionsGet);
-router.post('/prototypes/learner/v11/actions', learnerV11Controller.actionsPost);
+router.get('/prototypes/learner/v12/actions', learnerV12Controller.actionsGet);
+router.post('/prototypes/learner/v12/actions', learnerV12Controller.actionsPost);
 
 //******************************************************
 //      Registration stuff
 //******************************************************
 // registration, email
-router.get('/prototypes/learner/v11/registration', learnerV11Controller.registerEmailGet);
-router.post('/prototypes/learner/v11/registration', learnerV11Controller.registerEmailPost);
+router.get('/prototypes/learner/v12/registration', learnerV12Controller.registerEmailGet);
+router.post('/prototypes/learner/v12/registration', learnerV12Controller.registerEmailPost);
 // registration, name
-router.get('/prototypes/learner/v11/registration/personal-details', learnerV11Controller.registerPersonalGet);
-router.post('/prototypes/learner/v11/registration/personal-details', learnerV11Controller.registerPersonalPost);
+router.get('/prototypes/learner/v12/registration/personal-details', learnerV12Controller.registerPersonalGet);
+router.post('/prototypes/learner/v12/registration/personal-details', learnerV12Controller.registerPersonalPost);
 
 // registration, job, part 1, department
-router.get('/prototypes/learner/v11/registration/department', learnerV11Controller.registerDepartmentGet);
-router.post('/prototypes/learner/v11/registration/department', learnerV11Controller.registerDepartmentPost);
+router.get('/prototypes/learner/v12/registration/department', learnerV12Controller.registerDepartmentGet);
+router.post('/prototypes/learner/v12/registration/department', learnerV12Controller.registerDepartmentPost);
+
 // registration, job, part 2, profession
-router.get('/prototypes/learner/v11/registration/area-of-work', learnerV11Controller.registerAreaGet);
-router.post('/prototypes/learner/v11/registration/area-of-work', learnerV11Controller.registerAreaPost);
+router.get('/prototypes/learner/v12/registration/area-of-work', learnerV12Controller.registerAreaGet);
+router.post('/prototypes/learner/v12/registration/area-of-work', learnerV12Controller.registerAreaPost);
+
+router.get('/prototypes/learner/v12/registration/area-of-work/details', learnerV12Controller.registerAreaDetailsGet);
+router.post('/prototypes/learner/v12/registration/area-of-work/details', learnerV12Controller.registerAreaDetailsPost);
+
+router.get('/prototypes/learner/v12/registration/other-areas', learnerV12Controller.registerOtherAreasGet);
+router.post('/prototypes/learner/v12/registration/other-areas', learnerV12Controller.registerOtherAreasPost);
+
 // registration, job, part 3, grade
-router.get('/prototypes/learner/v11/registration/grade', learnerV11Controller.registerGradeGet);
-router.post('/prototypes/learner/v11/registration/grade', learnerV11Controller.registerGradePost);
+router.get('/prototypes/learner/v12/registration/grade', learnerV12Controller.registerGradeGet);
+router.post('/prototypes/learner/v12/registration/grade', learnerV12Controller.registerGradePost);
+
+// registration, job, part 3, interests
+router.get('/prototypes/learner/v12/registration/interests', learnerV12Controller.registerInterestsGet);
+router.post('/prototypes/learner/v12/registration/interests', learnerV12Controller.registerInterestsPost);
 
 // registration, password
-router.get('/prototypes/learner/v11/registration/password', learnerV11Controller.registerPasswordGet);
-router.post('/prototypes/learner/v11/registration/password', learnerV11Controller.registerPasswordPost);
+router.get('/prototypes/learner/v12/registration/password', learnerV12Controller.registerPasswordGet);
+router.post('/prototypes/learner/v12/registration/password', learnerV12Controller.registerPasswordPost);
 // registration, review
-router.get('/prototypes/learner/v11/registration/review', learnerV11Controller.registerReviewGet);
-router.post('/prototypes/learner/v11/registration/review', learnerV11Controller.registerReviewPost);
+router.get('/prototypes/learner/v12/registration/review', learnerV12Controller.registerReviewGet);
+router.post('/prototypes/learner/v12/registration/review', learnerV12Controller.registerReviewPost);
 // registration, complete
-router.get('/prototypes/learner/v11/registration/complete', learnerV11Controller.registerCompleteGet);
-// router.post('/prototypes/learner/v11/registration/complete', learnerV11Controller.registerCompletePost);
+router.get('/prototypes/learner/v12/registration/complete', learnerV12Controller.registerCompleteGet);
+// router.post('/prototypes/learner/v12/registration/complete', learnerV12Controller.registerCompletePost);
 
 // registration, complete
-router.get('/prototypes/learner/v11/resource', learnerV11Controller.resourceGet);
-router.post('/prototypes/learner/v11/resource', learnerV11Controller.resourcePost);
+router.get('/prototypes/learner/v12/resource', learnerV12Controller.resourceGet);
+router.post('/prototypes/learner/v12/resource', learnerV12Controller.resourcePost);
 
 //******************************************************
 //      Booking stuff
 //******************************************************
-router.get('/prototypes/learner/v11/booking', learnerV11Controller.bookingDateGet);
-router.post('/prototypes/learner/v11/booking', learnerV11Controller.bookingDatePost);
-router.get('/prototypes/learner/v11/booking/payment', learnerV11Controller.bookingPaymentGet);
-router.post('/prototypes/learner/v11/booking/payment', learnerV11Controller.bookingPaymentPost);
-router.get('/prototypes/learner/v11/booking/confirm', learnerV11Controller.bookingConfirmGet);
-router.get('/prototypes/learner/v11/booking/complete', learnerV11Controller.bookingCompleteGet);
+router.get('/prototypes/learner/v12/booking', learnerV12Controller.bookingDateGet);
+router.post('/prototypes/learner/v12/booking', learnerV12Controller.bookingDatePost);
+router.get('/prototypes/learner/v12/booking/payment', learnerV12Controller.bookingPaymentGet);
+router.post('/prototypes/learner/v12/booking/payment', learnerV12Controller.bookingPaymentPost);
+router.get('/prototypes/learner/v12/booking/confirm', learnerV12Controller.bookingConfirmGet);
+router.get('/prototypes/learner/v12/booking/complete', learnerV12Controller.bookingCompleteGet);
 
 // Booking elements page in Library
-router.get('/prototypes/layouts/booking', learnerV11Controller.bookingPOCGet);
+router.get('/prototypes/layouts/booking', learnerV12Controller.bookingPOCGet);
 
 //******************************************************
 //      authentication, forgotten/reset/create password etc
 //******************************************************
-router.get('/prototypes/learner/v11/reset-password', learnerV11Controller.resetPasswordGet);
-router.post('/prototypes/learner/v11/reset-password', learnerV11Controller.resetPasswordPost);
-router.get('/prototypes/learner/v11/email-sent', learnerV11Controller.emailSentGet);
-router.get('/prototypes/learner/v11/enter-new-password', learnerV11Controller.enterNewPasswordGet);
-router.post('/prototypes/learner/v11/enter-new-password', learnerV11Controller.enterNewPasswordPost);
-router.get('/prototypes/learner/v11/reset-success', learnerV11Controller.resetSuccessGet);
+router.get('/prototypes/learner/v12/reset-password', learnerV12Controller.resetPasswordGet);
+router.post('/prototypes/learner/v12/reset-password', learnerV12Controller.resetPasswordPost);
+router.get('/prototypes/learner/v12/email-sent', learnerV12Controller.emailSentGet);
+router.get('/prototypes/learner/v12/enter-new-password', learnerV12Controller.enterNewPasswordGet);
+router.post('/prototypes/learner/v12/enter-new-password', learnerV12Controller.enterNewPasswordPost);
+router.get('/prototypes/learner/v12/reset-success', learnerV12Controller.resetSuccessGet);
 
-router.get('/prototypes/learner/v11/create-new-password', learnerV11Controller.createNewPasswordGet);
-router.post('/prototypes/learner/v11/create-new-password', learnerV11Controller.createNewPasswordPost);
-router.get('/prototypes/learner/v11/create-success', learnerV11Controller.createSuccessGet);
+router.get('/prototypes/learner/v12/create-new-password', learnerV12Controller.createNewPasswordGet);
+router.post('/prototypes/learner/v12/create-new-password', learnerV12Controller.createNewPasswordPost);
+router.get('/prototypes/learner/v12/create-success', learnerV12Controller.createSuccessGet);
 
 // SCORMS fire safety
-router.get('/prototypes/learner/v11/scorms/basic-fire-safety', learnerV11Controller.basicFireSafetyGet);
-router.post('/prototypes/learner/v11/scorms/basic-fire-safety', learnerV11Controller.basicFireSafetyPost);
+router.get('/prototypes/learner/v12/scorms/basic-fire-safety', learnerV12Controller.basicFireSafetyGet);
+router.post('/prototypes/learner/v12/scorms/basic-fire-safety', learnerV12Controller.basicFireSafetyPost);
 // scorm done
-router.get('/prototypes/learner/v11/scorms/basic-fire-safety/complete', learnerV11Controller.scormCompleteGet);
+router.get('/prototypes/learner/v12/scorms/basic-fire-safety/complete', learnerV12Controller.scormCompleteGet);
 
 //******************************************************
 //      admin section
 //******************************************************
-router.get('/prototypes/learner/v11/admin', learnerV11Controller.adminGet);
-router.post('/prototypes/learner/v11/admin', learnerV11Controller.adminPost);
+router.get('/prototypes/learner/v12/admin', learnerV12Controller.adminGet);
+router.post('/prototypes/learner/v12/admin', learnerV12Controller.adminPost);
 
-router.get('/prototypes/learner/v11/admin/course-list', learnerV11Controller.adminCourseListGet);
-router.post('/prototypes/learner/v11/admin/course-list', learnerV11Controller.adminCourseListPost);
+router.get('/prototypes/learner/v12/admin/course-list', learnerV12Controller.adminCourseListGet);
+router.post('/prototypes/learner/v12/admin/course-list', learnerV12Controller.adminCourseListPost);
 
-router.get('/prototypes/learner/v11/admin/events-list', learnerV11Controller.adminEventsListGet);
-router.post('/prototypes/learner/v11/admin/events-list', learnerV11Controller.adminEventsListPost);
+router.get('/prototypes/learner/v12/admin/events-list', learnerV12Controller.adminEventsListGet);
+router.post('/prototypes/learner/v12/admin/events-list', learnerV12Controller.adminEventsListPost);
 
-router.get('/prototypes/learner/v11/admin/edit', learnerV11Controller.adminEditGet);
-router.post('/prototypes/learner/v11/admin/edit', learnerV11Controller.adminEditPost);
-router.get('/prototypes/learner/v11/admin/add', learnerV11Controller.adminAddGet);
-router.post('/prototypes/learner/v11/admin/add', learnerV11Controller.adminAddPost);
-router.get('/prototypes/learner/v11/admin/add-details', learnerV11Controller.adminAddDetailsGet);
-router.post('/prototypes/learner/v11/admin/add-details', learnerV11Controller.adminAddDetailsPost);
+router.get('/prototypes/learner/v12/admin/edit', learnerV12Controller.adminEditGet);
+router.post('/prototypes/learner/v12/admin/edit', learnerV12Controller.adminEditPost);
+router.get('/prototypes/learner/v12/admin/add', learnerV12Controller.adminAddGet);
+router.post('/prototypes/learner/v12/admin/add', learnerV12Controller.adminAddPost);
+router.get('/prototypes/learner/v12/admin/add-details', learnerV12Controller.adminAddDetailsGet);
+router.post('/prototypes/learner/v12/admin/add-details', learnerV12Controller.adminAddDetailsPost);
 
-router.get('/prototypes/learner/v11/admin/add-assets', learnerV11Controller.adminAddAssetsGet);
-router.post('/prototypes/learner/v11/admin/add-assets', learnerV11Controller.adminAddAssetsPost);
+router.get('/prototypes/learner/v12/admin/add-assets', learnerV12Controller.adminAddAssetsGet);
+router.post('/prototypes/learner/v12/admin/add-assets', learnerV12Controller.adminAddAssetsPost);
 
-router.get('/prototypes/learner/v11/admin/add-review', learnerV11Controller.adminAddReviewGet);
-router.post('/prototypes/learner/v11/admin/add-review', learnerV11Controller.adminAddReviewPost);
-router.get('/prototypes/learner/v11/admin/add-complete', learnerV11Controller.adminAddCompleteGet);
-router.post('/prototypes/learner/v11/admin/add-complete', learnerV11Controller.adminAddCompletePost);
+router.get('/prototypes/learner/v12/admin/add-review', learnerV12Controller.adminAddReviewGet);
+router.post('/prototypes/learner/v12/admin/add-review', learnerV12Controller.adminAddReviewPost);
+router.get('/prototypes/learner/v12/admin/add-complete', learnerV12Controller.adminAddCompleteGet);
+router.post('/prototypes/learner/v12/admin/add-complete', learnerV12Controller.adminAddCompletePost);
