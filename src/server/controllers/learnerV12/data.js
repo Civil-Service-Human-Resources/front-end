@@ -31,6 +31,24 @@ let allProfessions = [
 
 module.exports.allProfessions = allProfessions;
 
+let newCoreInterests = [
+  { value: '0', text: 'Commercial' },
+  { value: '1', text: 'Customer service' },
+  { value: '2', text: 'Contract management' },
+  { value: '3', text: 'Digital' },
+  { value: '4', text: 'Finance' },
+  { value: '5', text: 'Inclusion and diversity' },
+  { value: '6', text: 'Leadership' },
+  { value: '7', text: 'Management' },
+  { value: '8', text: 'Personal effectiveness' },
+  { value: '9', text: 'Policy skills' },
+  { value: '10', text: 'Project delivery' },
+  { value: '11', text: 'Technology' },
+  { value: '12', text: ' Working essentials' },
+];
+
+module.exports.newCoreInterests = newCoreInterests;
+
 let allNewAreasOfWork = [
   { value: '1', text: 'Commercial' },
   { value: '2', text: 'Communication' },

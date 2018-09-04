@@ -5,7 +5,10 @@
 {% set learnerPrototypeVersion = 'v12' %}
 {% set signOutPath = '/prototypes/learner/v12/' %}
 {% set homePath = '/prototypes/learner/v12/home' %}
-{% set hasBeenUpdated = workAreaHasBeenUpdated if workAreaHasBeenUpdated %}
+
+{% set departmentSelectOptions = departmentSelectOptions if departmentSelectOptions %}
+{% set registrationDepartmentError = registrationDepartmentError if registrationDepartmentError %}
+{% set department = department if department%}
 
 
 
@@ -13,17 +16,62 @@
 
     {{ components.pageHeading('Change organistion') }}
 
+    {% if registrationDepartmentError %}
+
+        {% set departmentErrorMessage = 'Select your organisation'%}
+
+        <div class="error-summary" role="alert" aria-labelledby="nameErrors" tabindex="-1">
+            <h2 class="heading-medium error-summary-heading" id="nameErrors">There was a problem with your information</h2>
+            <ul class="error-summary-list">
+                <li><a href="#department">Your organisation does not appear to be valid</a></li>
+            </ul>
+        </div>
+
+    {% endif %}
+
     {% call components.gridRow() %}
 
         {% call components.columnTwoThirds() %}
 
-            {#{{ components.heading(text='Personal details', tag='h2', size='medium', extraClass='') }}#}
+            {% call components.formElement(name='profileOrganisation', method='POST', action="#") %}
 
+                {{ components.select(
+                    options=departmentSelectOptions,
+                    label='Organisation',
+                    id='department',
+                    name='organisation',
+                    hint='Start typing to find your organisation name',
+                    group=true,
+                    extraClass='autocomplete-wrapper',
+                    error=departmentErrorMessage,
+                    selectedValue=department)
+                }}
 
+                {% call components.formGroup() %}
 
+                    {{ components.button(text='Save changes', group=true)}}
+
+                {%- endcall %}
+
+                <p>
+                    <a href="/prototypes/learner/v12">Cancel</a>
+                </p>
+
+            {%- endcall %}
 
         {%- endcall %}
 
     {%- endcall %}
+
+    <script type="text/javascript" src="/javascripts/accessible-autocomplete/accessible-autocomplete.min.js"></script>
+    <script type="text/javascript">
+        var selectEl = document.querySelector('#department');
+        accessibleAutocomplete.enhanceSelectElement({
+            autoselect: true,
+            defaultValue: selectEl.options[selectEl.options.selectedIndex].innerHTML,
+            minLength: 1,
+            selectElement: selectEl
+        });
+    </script>
 
 {% endblock %}

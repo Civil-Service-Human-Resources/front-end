@@ -7,6 +7,9 @@
 {% set searchTerm = searchTerm if searchTerm %}
 {% set showPreFilteredResults = showPreFilteredResults if showPreFilteredResults %}
 
+{% set newCoreInterests = newCoreInterests if newCoreInterests %}
+
+
 
 {% block content %}
 
@@ -209,7 +212,33 @@
                         <h2 class="filter__title filter__title--closed" tabindex="0" onclick="toggleVisibility(this, 'toggleOtherInterestsList', 'js-hidden')">Other areas of interest</h2>
                         <span class="filter__toggle"></span>
                         <ul class="filter__list u-clearfix js-hidden" id="toggleOtherInterestsList">
-                            <li class="filter__item">
+                           {# <li class="filter__item">
+                                <div class="multiple-choice filter__switch">
+                                    {% if newCoreInterests %}
+                                        <input id="extraInterests4" name="extraInterests4" type="checkbox" value="4"> <label for="extraInterests4" class=" u-display-ib">BLAH</label>
+                                    {% endif %}
+
+
+
+                                </div>
+                            </li>#}
+
+                            {% if newCoreInterests %}
+
+                                {% for item in newCoreInterests %}
+                                    <li class="filter__item">
+                                        <div class="multiple-choice filter__switch">
+                                            <input id="extraInterests_{{ item.value }}" name="extraInterests" type="checkbox" value="{{ item.value }}">
+                                            <label for="extraInterests_{{ item.value }}" class=" u-display-ib">{{ item.text }}</label>
+                                        </div>
+                                    </li>
+
+                                {% endfor %}
+                            {% endif %}
+
+
+
+                            {#<li class="filter__item">
                                 <div class="multiple-choice filter__switch">
                                     <input id="extraInterests1" name="extraInterests1" type="checkbox" value="1"> <label for="extraInterests1" class=" u-display-ib">Coaching &amp; mentoring</label>
                                 </div>
@@ -238,7 +267,7 @@
                                 <div class="multiple-choice filter__switch">
                                     <input id="extraInterests7" name="extraInterests7" type="checkbox" value="7"> <label for="extraInterests7" class=" u-display-ib">Well being &amp; Diversity</label>
                                 </div>
-                            </li>
+                            </li>#}
                         </ul>
                     </div>
 

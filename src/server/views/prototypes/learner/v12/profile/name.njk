@@ -7,8 +7,6 @@
 {% set homePath = '/prototypes/learner/v12/home' %}
 {% set hasBeenUpdated = workAreaHasBeenUpdated if workAreaHasBeenUpdated %}
 
-
-
 {% block content %}
 
     {{ components.pageHeading('Change name') }}
@@ -17,10 +15,23 @@
 
         {% call components.columnTwoThirds() %}
 
-            {#{{ components.heading(text='Personal details', tag='h2', size='medium', extraClass='') }}#}
+            {% call components.formElement(name='profileName', method='POST', action="#") %}
 
+                {{ components.field(label='First name', id='firstName', hint="", group=true, value=firstName)}}
 
+                {{ components.field(label='Last name', id='lastName', hint="", group=true, value=lastName)}}
 
+                {% call components.formGroup() %}
+
+                    {{ components.button(text='Save changes', group=true)}}
+
+                {%- endcall %}
+
+                <p>
+                    <a href="/prototypes/learner/v12">Cancel</a>
+                </p>
+
+            {%- endcall %}
 
         {%- endcall %}
 

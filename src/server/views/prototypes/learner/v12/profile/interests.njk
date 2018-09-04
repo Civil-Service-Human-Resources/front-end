@@ -1,30 +1,37 @@
 {% extends 'layouts/default.layout.njk' %}
 
-{% set pageTitle = 'Change other areas of work - Learning Platform for Government' %}
+{% set pageTitle = 'Change interests - Learning Platform for Government' %}
 {% set blackBarTitle = 'Learning Platform for Government' %}
 {% set learnerPrototypeVersion = 'v12' %}
 {% set signOutPath = '/prototypes/learner/v12/' %}
 {% set homePath = '/prototypes/learner/v12/home' %}
 {% set hasBeenUpdated = workAreaHasBeenUpdated if workAreaHasBeenUpdated %}
 
-{% set profileOthers = profileOthers if profileOthers %}
+{# new profile stuff #}
+{% set newCoreInterests = newCoreInterests if newCoreInterests %}
 
 {% block content %}
 
-    {{ components.pageHeading('Change other areas of work') }}
+    {{ components.pageHeading('Change interests') }}
 
     {% call components.gridRow() %}
 
         {% call components.columnTwoThirds() %}
 
-            {% call components.formElement(name='profileOthers', method='POST', action="#") %}
 
-                {% if profileOthers %}
+            {% call components.formElement(name='profileInterests', method='POST', action="#") %}
 
-                    <fieldset class="u-space-b30 {% if registrationJob2Error %} form-group-error {% endif %}">
+                {% if newCoreInterests %}
 
-                        {% for item in profileOthers %}
-                            {{ components.checkbox(item.text, item.text, 'others'+item.value, name='others') }}
+                    <fieldset class="u-space-b30">
+
+                        {% for item in newCoreInterests %}
+
+                            <div class="multiple-choice filter__switch">
+                                <input id="extraInterests_{{ item.value }}" name="extraInterests" type="checkbox" value="{{ item.value }}">
+                                <label for="extraInterests_{{ item.value }}" class=" u-display-ib">{{ item.text }}</label>
+                            </div>
+
                         {% endfor %}
 
                     </fieldset>

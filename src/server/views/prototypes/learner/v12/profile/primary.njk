@@ -7,7 +7,7 @@
 {% set homePath = '/prototypes/learner/v12/home' %}
 {% set hasBeenUpdated = workAreaHasBeenUpdated if workAreaHasBeenUpdated %}
 
-
+{% set profilePrimary = profilePrimary if profilePrimary %}
 
 {% block content %}
 
@@ -19,6 +19,31 @@
 
             {#{{ components.heading(text='Personal details', tag='h2', size='medium', extraClass='') }}#}
 
+            {% call components.formElement(name='profilePrimary', method='POST', action="#") %}
+
+                {% if profilePrimary %}
+
+                    <fieldset class="u-space-b30">
+
+                        {% for item in profilePrimary %}
+                            {{ components.radio(text=item.text, value=item.text, id='primary'+item.value,name='primary') }}
+                        {% endfor %}
+
+                    </fieldset>
+
+                {% endif %}
+
+                {% call components.formGroup() %}
+
+                    {{ components.button(text='Save changes', group=true)}}
+
+                {%- endcall %}
+
+                <p>
+                    <a href="/prototypes/learner/v12">Cancel</a>
+                </p>
+
+            {%- endcall %}
 
 
 

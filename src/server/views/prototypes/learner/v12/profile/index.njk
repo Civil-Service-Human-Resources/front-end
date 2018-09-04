@@ -1,7 +1,8 @@
 {% extends 'layouts/default.layout.njk' %}
 
 {% set pageTitle = 'Your profile - Learning Platform for Government' %}
-{% set blackBarTitle = 'Learning Platform for Government' %} {% set learnerPrototypeVersion = 'v12' %}
+{% set blackBarTitle = 'Learning Platform for Government' %}
+{% set learnerPrototypeVersion = 'v12' %}
 {% set signOutPath = '/prototypes/learner/v12/' %}
 {% set homePath = '/prototypes/learner/v12/home' %}
 {% set hasBeenUpdated = workAreaHasBeenUpdated if workAreaHasBeenUpdated %}
@@ -14,6 +15,17 @@
 {% set hasBeenUpdatedInterests = hasBeenUpdatedInterests if hasBeenUpdatedInterests %}
 {% set showUpdatedOtherWorkArea = showUpdatedOtherWorkArea if showUpdatedOtherWorkArea %}
 
+{# New stuff #}
+{% set departmentName = departmentName if departmentName %}
+{% set profileInterestsArray = profileInterestsArray if profileInterestsArray %}
+{% set gradeName = profileGrades if profileGrades %}
+{% set profileOthersArray = profileOthersArray if profileOthersArray %}
+{% set professionName = primaryChoice if primaryChoice %}
+{% set combinedName = combinedName if combinedName %}
+{% set primaryOpsDelChoiceArray = primaryOpsDelChoiceArray if primaryOpsDelChoiceArray %}
+{% set email = email if email %}
+{% set anythingUpdated = anythingUpdated if anythingUpdated %}
+
 
 {% block content %}
 
@@ -22,6 +34,12 @@
     {% call components.gridRow() %}
 
         {% call components.columnFull() %}
+
+            {% if anythingUpdated %}
+
+                {{ components.banner(mainText='Your profile has been updated', secondaryText='', type="confirmation")}}
+
+            {% endif %}
 
             {% if hasBeenUpdated %}
 
@@ -63,14 +81,14 @@
                     <tr>
                         <td class="key-value-list__key ">Name</td>
                         <td class="key-value-list__value">
-                            {% if firstName %}
-                                {{ firstName }} {{ lastName }}
+                            {% if combinedName %}
+                                {{ combinedName }}
                             {% else %}
-                                Marjorie Dawes
+                                Lucy Pevensie
                             {% endif %}
                         </td>
                         <td class="key-value-list__item-action">
-                            <a href="#">Change<span class="visuallyhidden"> your first  or last name</span></a>
+                            <a href="/prototypes/learner/v12/your-profile/name">Change<span class="visuallyhidden"> your first  or last name</span></a>
                         </td>
                     </tr>
 
@@ -80,11 +98,11 @@
                             {% if email %}
                                 {{ email }}
                             {% else %}
-                                m.dawes@&#8203;dwp.&#8203;gov.uk
+                                l.pevensie@&#8203;hmrc.&#8203;gov.uk
                             {% endif %}
                         </td>
                         <td class="key-value-list__item-action">
-                            <a href="#">Change<span class="visuallyhidden"> your email</span></a>
+                            <a href="/prototypes/learner/v12/your-profile/email">Change<span class="visuallyhidden"> your email</span></a>
                         </td>
                     </tr>
 
@@ -117,11 +135,11 @@
                             {% if departmentName %}
                                 {{ departmentName }}
                             {% else %}
-                                DVLA
+                                Unknown
                             {% endif %}
                         </td>
                         <td class="key-value-list__item-action">
-                            <a href="#">Change<span class="visuallyhidden"> your organisation</span></a>
+                            <a href="/prototypes/learner/v12/your-profile/organisation">Change<span class="visuallyhidden"> your organisation</span></a>
                         </td>
                     </tr>
 
@@ -129,20 +147,21 @@
                         <td class="key-value-list__key ">Primary area of work</td>
                         <td class="key-value-list__value">
                             {% if professionName %}
-                                {% for item in professionName %}
-                                    {{ item }}<br>
-                                {% endfor %}
+                                {{ professionName }}
                             {% else %}
-
-                                {% if setWorkAreaCommercial %}
-                                    Commercial{% if hasBeenUpdated %}, Commercial Specialist{% endif %}
-                                {% else %}
-                                    Operational delivery{#Digital, Data and Technology#}{% if showUpdatedPrimaryWorkArea %}, Product manager{% endif %}
-                                {% endif %}
+                                Unknown
                             {% endif %}
+
+                            {% if primaryOpsDelChoiceArray %}
+                                <br>
+                                {% for item in primaryOpsDelChoiceArray %}
+                                    {{ item }},
+                                {% endfor %}
+                            {% endif %}
+
                         </td>
                         <td class="key-value-list__item-action">
-                            {% if showRolesJoined %}
+                            {#{% if showRolesJoined %}
                                 <a href="/prototypes/learner/v12/your-profile/area-of-work/joined-levels">Change<span class="visuallyhidden"> your primary area of work</span></a>
                             {% else %}
                                 <a href="/prototypes/learner/v12/your-profile/area-of-work/joined-levels-pm">Change<span class="visuallyhidden"> your primary area of work</span></a>
@@ -154,56 +173,45 @@
                             <span>standard link below</span> <br>
                             <a href="/prototypes/learner/v12/your-profile/area-of-work">Change<span class="visuallyhidden"> your primary area of work</span></a>
 
+
+                            <br>
+                            <span>new onw</span> <br>#}
+                            <a href="/prototypes/learner/v12/your-profile/primary">Change<span class="visuallyhidden"> your primary area of work</span></a>
+
                         </td>
                     </tr>
 
                     <tr>
                         <td class="key-value-list__key ">Other areas of work</td>
                         <td class="key-value-list__value">
-                            {% if professionName %}
-                                {% for item in professionName %}
+                            {% if profileOthersArray %}
+                                {% for item in profileOthersArray %}
                                     {{ item }}<br>
                                 {% endfor %}
                             {% else %}
-                                Legal<br>Communications
+                                Unknown
                             {% endif %}
                         </td>
                         <td class="key-value-list__item-action">
-                            <a href="/prototypes/learner/v12/your-profile/other-areas-of-work">Change<span class="visuallyhidden"> your other areas of work</span></a>
+                            <a href="/prototypes/learner/v12/your-profile/other-areas">Change<span class="visuallyhidden"> your other areas of work</span></a>
                         </td>
                     </tr>
 
                     <tr>
                         <td class="key-value-list__key ">Interests</td>
                         <td class="key-value-list__value">
-                            Leadership<br>
-                            {% if hasAddedContractManagement %} Contract management {% endif %}
+                            {% if profileInterestsArray %}
+                                {% for item in profileInterestsArray %}
+                                    {{ item }}<br>
+                                {% endfor %}
+                            {% else %}
+                                Unknown
+                            {% endif %}
                         </td>
                         <td class="key-value-list__item-action">
-                            <a href="/prototypes/learner/v12/your-profile/interests">Change<span class="visuallyhidden"> your interests</span></a>
+                            <a href="/prototypes/learner/v12/your-profile/core-interests">Change<span class="visuallyhidden"> your interests</span></a>
                         </td>
                     </tr>
-
-                    {#<tr>#}
-                        {#<td class="key-value-list__key ">Interests</td>#}
-                        {#<td class="key-value-list__value" colspan="2">#}
-                            {#<ul class="interests">#}
-                                {#<li class="interests__item">#}
-                                    {#Customer service <a href="/prototypes/learner/v12/actions?action=hasRemovedInterest" class="interests__link">Remove<span class="visuallyhidden"> from my areas of interest</span></a>#}
-                                {#</li>#}
-                                {#<li class="interests__item">#}
-                                    {#Contract management <a href="/prototypes/learner/v12/actions?action=hasRemovedInterest" class="interests__link">Remove<span class="visuallyhidden"> from my areas of interest</span></a>#}
-                                {#</li>#}
-                                {#<li class="interests__item">#}
-                                    {#Leadership <a href="/prototypes/learner/v12/actions?action=hasRemovedInterest" class="interests__link">Remove<span class="visuallyhidden"> from my areas of interest</span></a>#}
-                                {#</li>#}
-                                {#<li class="interests__item">#}
-                                    {#<a href="/prototypes/learner/v12/your-profile/interests" class="interests__link--add">Add another<span class="visuallyhidden"> interest</span></a>#}
-                                    {#<br><span class="meta">You can add up to 10 different interests</span>#}
-                                {#</li>#}
-                            {#</ul>#}
-                        {#</td>#}
-                    {#</tr>#}
 
                     <tr>
                         <td class="key-value-list__key ">Grade</td>
@@ -211,11 +219,11 @@
                             {% if gradeName %}
                                 {{ gradeName }}
                             {% else %}
-                                Higher Executive Officer
+                                Unknown
                             {% endif %}
                         </td>
                         <td class="key-value-list__item-action">
-                            <a href="#">Change<span class="visuallyhidden"> your job grade</span></a>
+                            <a href="/prototypes/learner/v12/your-profile/grade">Change<span class="visuallyhidden"> your job grade</span></a>
                         </td>
                     </tr>
 

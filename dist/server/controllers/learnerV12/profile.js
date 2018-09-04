@@ -1,13 +1,37 @@
-// import generic validation functions
-import { validateEmail, validateWord } from './validation-functions';
+'use strict';
 
-let generalData = require('./data');
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.profileNameGet = profileNameGet;
+exports.profileNamePost = profileNamePost;
+exports.profileEmailGet = profileEmailGet;
+exports.profileEmailPost = profileEmailPost;
+exports.profilePasswordGet = profilePasswordGet;
+exports.profilePasswordPost = profilePasswordPost;
+exports.profileOrganisationGet = profileOrganisationGet;
+exports.profileOrganistionPost = profileOrganistionPost;
+exports.profilePrimaryGet = profilePrimaryGet;
+exports.profilePrimaryPost = profilePrimaryPost;
+exports.profilePrimaryOpsDelGet = profilePrimaryOpsDelGet;
+exports.profilePrimaryOpsDelPost = profilePrimaryOpsDelPost;
+exports.profileOthersGet = profileOthersGet;
+exports.profileOthersPost = profileOthersPost;
+exports.profileInterestsGet = profileInterestsGet;
+exports.profileInterestsPost = profileInterestsPost;
+exports.profileGradeGet = profileGradeGet;
+exports.profileGradePost = profileGradePost;
+
+var _validationFunctions = require('./validation-functions');
+
+let generalData = require('./data'); // import generic validation functions
+
 let profileURL = '/prototypes/learner/v12/your-profile';
 
 // **************************************************************************************
 // Name: change name
 // **************************************************************************************
-export function profileNameGet(req, res) {
+function profileNameGet(req, res) {
   let viewData, navItem, showNewNav;
 
   showNewNav = true;
@@ -15,14 +39,14 @@ export function profileNameGet(req, res) {
 
   viewData = {
     showNewNav,
-    navItem,
+    navItem
   };
 
   return res.render('prototypes/learner/v12/profile/name', viewData);
 }
 
 // Email: POST
-export function profileNamePost(req, res) {
+function profileNamePost(req, res) {
   const { firstName, lastName } = req.body;
 
   req.session.combinedName = firstName + ' ' + lastName;
@@ -33,7 +57,7 @@ export function profileNamePost(req, res) {
 // **************************************************************************************
 // Email
 // **************************************************************************************
-export function profileEmailGet(req, res) {
+function profileEmailGet(req, res) {
   let viewData, navItem, showNewNav;
 
   showNewNav = true;
@@ -41,14 +65,14 @@ export function profileEmailGet(req, res) {
 
   viewData = {
     showNewNav,
-    navItem,
+    navItem
   };
 
   return res.render('prototypes/learner/v12/profile/email', viewData);
 }
 
 // Email: POST
-export function profileEmailPost(req, res) {
+function profileEmailPost(req, res) {
   const { email } = req.body;
 
   req.session.anythingUpdated = true;
@@ -60,7 +84,7 @@ export function profileEmailPost(req, res) {
 // **************************************************************************************
 // Password
 // **************************************************************************************
-export function profilePasswordGet(req, res) {
+function profilePasswordGet(req, res) {
   let viewData, navItem, showNewNav;
 
   showNewNav = true;
@@ -68,14 +92,14 @@ export function profilePasswordGet(req, res) {
 
   viewData = {
     showNewNav,
-    navItem,
+    navItem
   };
 
   return res.render('prototypes/learner/v12/profile/password', viewData);
 }
 
 // Email: POST
-export function profilePasswordPost(req, res) {
+function profilePasswordPost(req, res) {
   const {} = req.body;
 
   return res.redirect(profileURL);
@@ -84,7 +108,7 @@ export function profilePasswordPost(req, res) {
 // **************************************************************************************
 // Organisation
 // **************************************************************************************
-export function profileOrganisationGet(req, res) {
+function profileOrganisationGet(req, res) {
   let viewData, navItem, showNewNav, departmentSelectOptions;
 
   showNewNav = true;
@@ -95,14 +119,14 @@ export function profileOrganisationGet(req, res) {
   viewData = {
     showNewNav,
     navItem,
-    departmentSelectOptions,
+    departmentSelectOptions
   };
 
   return res.render('prototypes/learner/v12/profile/organisation', viewData);
 }
 
 // Org POST
-export function profileOrganistionPost(req, res) {
+function profileOrganistionPost(req, res) {
   const { organisation } = req.body;
 
   console.log(req.body);
@@ -125,7 +149,7 @@ export function profileOrganistionPost(req, res) {
 // **************************************************************************************
 // Primary area of work
 // **************************************************************************************
-export function profilePrimaryGet(req, res) {
+function profilePrimaryGet(req, res) {
   let viewData, navItem, showNewNav, profilePrimary;
 
   showNewNav = true;
@@ -136,14 +160,14 @@ export function profilePrimaryGet(req, res) {
   viewData = {
     showNewNav,
     navItem,
-    profilePrimary,
+    profilePrimary
   };
 
   return res.render('prototypes/learner/v12/profile/primary', viewData);
 }
 
 // primary: POST
-export function profilePrimaryPost(req, res) {
+function profilePrimaryPost(req, res) {
   const { primary } = req.body;
 
   let primaryChoice, newRedirectURL;
@@ -167,7 +191,7 @@ export function profilePrimaryPost(req, res) {
 // **************************************************************************************
 // Primary area of work OPERATIONAL DELIVERY
 // **************************************************************************************
-export function profilePrimaryOpsDelGet(req, res) {
+function profilePrimaryOpsDelGet(req, res) {
   let viewData, navItem, showNewNav, profilePrimaryOpsDel;
 
   showNewNav = true;
@@ -178,18 +202,18 @@ export function profilePrimaryOpsDelGet(req, res) {
   viewData = {
     showNewNav,
     navItem,
-    profilePrimaryOpsDel,
+    profilePrimaryOpsDel
   };
 
   return res.render('prototypes/learner/v12/profile/primary-opsdel', viewData);
 }
 
 // primary: POST
-export function profilePrimaryOpsDelPost(req, res) {
+function profilePrimaryOpsDelPost(req, res) {
   const { detailsOpsDel } = req.body;
 
   let primaryOpsDelChoice,
-    primaryOpsDelChoiceArray = [];
+      primaryOpsDelChoiceArray = [];
 
   primaryOpsDelChoice = detailsOpsDel;
   console.log(primaryOpsDelChoice);
@@ -213,7 +237,7 @@ export function profilePrimaryOpsDelPost(req, res) {
 // **************************************************************************************
 // Other areas of work
 // **************************************************************************************
-export function profileOthersGet(req, res) {
+function profileOthersGet(req, res) {
   let viewData, navItem, showNewNav, profileOthers;
 
   showNewNav = true;
@@ -226,18 +250,18 @@ export function profileOthersGet(req, res) {
   viewData = {
     showNewNav,
     navItem,
-    profileOthers,
+    profileOthers
   };
 
   return res.render('prototypes/learner/v12/profile/others', viewData);
 }
 
 // Other: POST
-export function profileOthersPost(req, res) {
+function profileOthersPost(req, res) {
   const { others } = req.body;
 
   let profileOthersSelected,
-    profileOthersArray = [];
+      profileOthersArray = [];
 
   profileOthersSelected = others;
 
@@ -260,7 +284,7 @@ export function profileOthersPost(req, res) {
 // **************************************************************************************
 // Interests
 // **************************************************************************************
-export function profileInterestsGet(req, res) {
+function profileInterestsGet(req, res) {
   let viewData, newCoreInterests, navItem, showNewNav;
 
   showNewNav = true;
@@ -271,18 +295,18 @@ export function profileInterestsGet(req, res) {
   viewData = {
     newCoreInterests,
     showNewNav,
-    navItem,
+    navItem
   };
 
   return res.render('prototypes/learner/v12/profile/interests', viewData);
 }
 
 // interests: POST
-export function profileInterestsPost(req, res) {
+function profileInterestsPost(req, res) {
   const { extraInterests } = req.body;
 
   let newCoreInterests,
-    profileInterestsArray = [];
+      profileInterestsArray = [];
 
   newCoreInterests = generalData.newCoreInterests;
 
@@ -310,7 +334,7 @@ export function profileInterestsPost(req, res) {
 // **************************************************************************************
 // Grade
 // **************************************************************************************
-export function profileGradeGet(req, res) {
+function profileGradeGet(req, res) {
   let viewData, navItem, showNewNav, profileGrades;
 
   showNewNav = true;
@@ -322,14 +346,14 @@ export function profileGradeGet(req, res) {
   viewData = {
     showNewNav,
     navItem,
-    profileGrades,
+    profileGrades
   };
 
   return res.render('prototypes/learner/v12/profile/grade', viewData);
 }
 
 // Email: POST
-export function profileGradePost(req, res) {
+function profileGradePost(req, res) {
   const { grades } = req.body;
 
   let profileGrades;

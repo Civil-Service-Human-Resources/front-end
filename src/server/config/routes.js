@@ -1510,17 +1510,32 @@ router.post('/prototypes/learner/v12/actions', learnerV12Controller.actionsPost)
 //      New profile stuff
 //******************************************************
 // name
-router.get('/prototypes/learner/v12/profile/name', learnerV12Controller.profileNameGet);
-router.post('/prototypes/learner/v12/profile/name', learnerV12Controller.profileNamePost);
+router.get('/prototypes/learner/v12/your-profile/name', learnerV12Controller.profileNameGet);
+router.post('/prototypes/learner/v12/your-profile/name', learnerV12Controller.profileNamePost);
+// email
+router.get('/prototypes/learner/v12/your-profile/email', learnerV12Controller.profileEmailGet);
+router.post('/prototypes/learner/v12/your-profile/email', learnerV12Controller.profileEmailPost);
+// password
+router.get('/prototypes/learner/v12/your-profile/password', learnerV12Controller.profilePasswordGet);
+router.post('/prototypes/learner/v12/your-profile/password', learnerV12Controller.profilePasswordPost);
 // organisation
-router.get('/prototypes/learner/v12/profile/organisation', learnerV12Controller.profileOrganisationGet);
-router.post('/prototypes/learner/v12/profile/organisation', learnerV12Controller.profileOrganistionPost);
+router.get('/prototypes/learner/v12/your-profile/organisation', learnerV12Controller.profileOrganisationGet);
+router.post('/prototypes/learner/v12/your-profile/organisation', learnerV12Controller.profileOrganistionPost);
 // primary
-router.get('/prototypes/learner/v12/profile/primary', learnerV12Controller.profilePrimaryGet);
-router.post('/prototypes/learner/v12/profile/primary', learnerV12Controller.profilePrimaryPost);
-// primary
-router.get('/prototypes/learner/v12/profile/other-areas', learnerV12Controller.profileOthersGet);
-router.post('/prototypes/learner/v12/profile/other-areas', learnerV12Controller.profileOthersPost);
+router.get('/prototypes/learner/v12/your-profile/primary', learnerV12Controller.profilePrimaryGet);
+router.post('/prototypes/learner/v12/your-profile/primary', learnerV12Controller.profilePrimaryPost);
+// primary, ops del
+router.get('/prototypes/learner/v12/your-profile/primary/operational-delivery', learnerV12Controller.profilePrimaryOpsDelGet);
+router.post('/prototypes/learner/v12/your-profile/primary/operational-delivery', learnerV12Controller.profilePrimaryOpsDelPost);
+// other areas
+router.get('/prototypes/learner/v12/your-profile/other-areas', learnerV12Controller.profileOthersGet);
+router.post('/prototypes/learner/v12/your-profile/other-areas', learnerV12Controller.profileOthersPost);
+// interests
+router.get('/prototypes/learner/v12/your-profile/core-interests', learnerV12Controller.profileInterestsGet);
+router.post('/prototypes/learner/v12/your-profile/core-interests', learnerV12Controller.profileInterestsPost);
+// Grade
+router.get('/prototypes/learner/v12/your-profile/grade', learnerV12Controller.profileGradeGet);
+router.post('/prototypes/learner/v12/your-profile/grade', learnerV12Controller.profileGradePost);
 
 //******************************************************
 //      Registration stuff
@@ -1627,7 +1642,6 @@ router.get('/prototypes/learner/v12/admin/add-review', learnerV12Controller.admi
 router.post('/prototypes/learner/v12/admin/add-review', learnerV12Controller.adminAddReviewPost);
 router.get('/prototypes/learner/v12/admin/add-complete', learnerV12Controller.adminAddCompleteGet);
 router.post('/prototypes/learner/v12/admin/add-complete', learnerV12Controller.adminAddCompletePost);
-
 
 // Create route from view path
 router.get('*', miscController.viewFileRoute);

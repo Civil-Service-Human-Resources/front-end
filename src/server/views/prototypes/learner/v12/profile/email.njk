@@ -1,35 +1,27 @@
 {% extends 'layouts/default.layout.njk' %}
 
-{% set pageTitle = 'Change other areas of work - Learning Platform for Government' %}
+{% set pageTitle = 'Change email - Learning Platform for Government' %}
 {% set blackBarTitle = 'Learning Platform for Government' %}
 {% set learnerPrototypeVersion = 'v12' %}
 {% set signOutPath = '/prototypes/learner/v12/' %}
 {% set homePath = '/prototypes/learner/v12/home' %}
 {% set hasBeenUpdated = workAreaHasBeenUpdated if workAreaHasBeenUpdated %}
 
-{% set profileOthers = profileOthers if profileOthers %}
+
 
 {% block content %}
 
-    {{ components.pageHeading('Change other areas of work') }}
+    {{ components.pageHeading('Change email') }}
 
     {% call components.gridRow() %}
 
         {% call components.columnTwoThirds() %}
 
-            {% call components.formElement(name='profileOthers', method='POST', action="#") %}
+            {% call components.formElement(name='registerName', method='POST', action="#") %}
 
-                {% if profileOthers %}
+                {{ components.field(label='Email address', id='email', hint="", group=true)}}
 
-                    <fieldset class="u-space-b30 {% if registrationJob2Error %} form-group-error {% endif %}">
-
-                        {% for item in profileOthers %}
-                            {{ components.checkbox(item.text, item.text, 'others'+item.value, name='others') }}
-                        {% endfor %}
-
-                    </fieldset>
-
-                {% endif %}
+                {{ components.field(label='Confirm email address', id='email2', hint="", group=true)}}
 
                 {% call components.formGroup() %}
 
