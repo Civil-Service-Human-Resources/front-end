@@ -13,6 +13,16 @@
 
 {% set showRemoveX = showRemoveX if showRemoveX %}
 
+{# new stuff relating to profile #}
+{% set department = department if department %}
+{% set primaryChoice = primaryChoice if primaryChoice %}
+{% set primaryOpsDelChoiceArray = primaryOpsDelChoiceArray if primaryOpsDelChoiceArray %}
+
+{% set isG6 = isG6 if isG6 %}
+{% set isHEO = isHEO if isHEO %}
+
+
+
 
 {% block content %}
     <style> body, .smooth-container { scroll-behavior: smooth }</style>
@@ -81,7 +91,16 @@
 
             <p id="top">organisation</p>
             <ul class="list-bullet">
-                <li><a href="#DWP">Home Office</a> </li>
+
+                <li><a href="#DWP">
+                    {% if department %}
+                        {{ department }}
+                    {% else %}
+                        Home Office
+                    {% endif %}
+                    </a>
+                </li>
+
             </ul>
 
         {%- endcall %}
@@ -90,7 +109,13 @@
 
             <p id="top">primary area of work</p>
             <ul class="list-bullet">
-                <li><a href="#ddat">Operational delivery</a> </li>
+                <li><a href="#ddat">
+                    {% if primaryChoice %}
+                        {{ primaryChoice }}
+                    {% else %}
+                        Operational delivery
+                    {% endif %}
+                </a></li>
             </ul>
 
         {%- endcall %}
@@ -128,178 +153,151 @@
 
     {%- endcall  %}
 
-    <h2 class="heading heading-medium heading--red-top" id="DWP">From Home Office</h2>
+    <h2 class="heading heading-medium heading--red-top" id="DWP">
+        From
+        {% if department %}
+            {{ department }}
+        {% else %}
+            DEFRA
+        {% endif %}
+    </h2>
 
-    {% call components.gridRow() %}
+    {% if department == 'Home Office' %}
 
-        {% call components.columnOneThird() %}
 
-            {#{{ components.tile(
-                title='Managing contractors',
-                url='/prototypes/learner/v12/resource?resourceID=1',
-                starPercent='61%',
-                starTotal='25',
-                type='Classroom',
-                duration='1 day',
-                cost='£465',
-                hideStars=hideHomeStars,
-                version='v12',
-                intro='An introduction to contract management principles, this course is suitable if you have responsibility for managing contracts or suppliers. '
-            ) }}#}
+        {% if isG6 %}
 
-            {{ components.tile(
-                title='Unconscious bias',
-                url='/prototypes/learner/v12/resource?resourceID=1',
-                starPercent='61%',
-                starTotal='25',
-                type='Classroom',
-                duration='3 hours',
-                cost='£249',
-                hideStars=hideHomeStars,
-                version='v12',
-                showRemoveX=showRemoveX,
-                intro='Biased decision-making has no place in any modern, progressive organisation.'
-            ) }}
+            
 
-        {%- endcall %}
+        {% elseif isHEO  %}
 
-        {% call components.columnOneThird() %}
 
-            {#{{ components.tile(
-                title='Outcomes and Benefits',
-                url='/prototypes/learner/v12/resource?resourceID=13',
-                starPercent='80%',
-                starTotal='237',
-                type='Online',
-                duration='1 hour',
-                cost='£Free',
-                hideStars=hideHomeStars,
-                version='v12',
-                intro='This topic introduces you to the role of projects in government, helping you to understand what we mean by outcomes and benefits and how these are achieved and realised.'
-            ) }}#}
 
-            {{ components.tile(
-                title='Tips for having difficult conversations',
-                url='/prototypes/learner/v12/resource?resourceID=13',
-                starPercent='80%',
-                starTotal='237',
-                type='Online',
-                duration='1 hour',
-                cost='£Free',
-                hideStars=hideHomeStars,
-                version='v12',
-                showRemoveX=showRemoveX,
-                intro='Practicable help for managers facing difficult conversations with their staff.'
-            ) }}
+        {% endif %}
 
-        {%- endcall %}
 
-        {% call components.columnOneThird() %}
 
-           {# {{ components.tile(
-                title='Growth Mindset',
-                url='/prototypes/learner/v12/resource?resourceID=14',
-                starPercent='61%',
-                starTotal='25',
-                type='Video',
-                cost='£Free',
-                duration='10 minutes',
-                hideStars=hideHomeStars,
-                version='v12',
-                intro='Carol Dweck researches “growth mindset” — the idea that we can grow our brain\'s capacity to learn and to solve problems.'
-            ) }}#}
 
-            {{ components.tile(
-                title='Interview techniques (as interviewee)',
-                url='/prototypes/learner/v12/resource?resourceID=31',
-                starPercent='61%',
-                starTotal='25',
-                type='Online',
-                duration='3 hours',
-                cost='£Free',
-                hideStars=hideHomeStars,
-                version='v12',
-                showRemoveX=showRemoveX,
-                intro='Few things in life are more stressful than a job interview.'
-            ) }}
+
+
+
+
+
+
+
+    {% else %}
+
+        {% call components.gridRow() %}
+
+            {% call components.columnOneThird() %}
+
+                {{ components.tile(
+                    title='Unconscious bias',
+                    url='/prototypes/learner/v12/resource?resourceID=1',
+                    starPercent='61%',
+                    starTotal='25',
+                    type='Classroom',
+                    duration='3 hours',
+                    cost='£249',
+                    hideStars=hideHomeStars,
+                    version='v12',
+                    showRemoveX=showRemoveX,
+                    intro='Biased decision-making has no place in any modern, progressive organisation.'
+                ) }}
+
+            {%- endcall %}
+
+            {% call components.columnOneThird() %}
+
+                {{ components.tile(
+                    title='Tips for having difficult conversations',
+                    url='/prototypes/learner/v12/resource?resourceID=13',
+                    starPercent='80%',
+                    starTotal='237',
+                    type='Online',
+                    duration='1 hour',
+                    cost='£Free',
+                    hideStars=hideHomeStars,
+                    version='v12',
+                    showRemoveX=showRemoveX,
+                    intro='Practicable help for managers facing difficult conversations with their staff.'
+                ) }}
+
+            {%- endcall %}
+
+            {% call components.columnOneThird() %}
+
+                {{ components.tile(
+                    title='Interview techniques (as interviewee)',
+                    url='/prototypes/learner/v12/resource?resourceID=31',
+                    starPercent='61%',
+                    starTotal='25',
+                    type='Online',
+                    duration='3 hours',
+                    cost='£Free',
+                    hideStars=hideHomeStars,
+                    version='v12',
+                    showRemoveX=showRemoveX,
+                    intro='Few things in life are more stressful than a job interview.'
+                ) }}
+
+            {%- endcall %}
 
         {%- endcall %}
 
-    {%- endcall %}
+    {% endif %}
 
-    {#{% call components.gridRow() %}
 
-        {% call components.columnOneThird() %}
 
-            {{ components.tile(
-                title='Getting It Right: Scope and Change',
-                url='#',
-                starPercent='80%',
-                starTotal='128',
-                type='Online',
-                duration='2 hours',
-                cost='£Free',
-                hideStars=hideHomeStars,
-                version='v12',
-                intro='As a project develops, change is inevitable. Changes occurring in the scope of a project are perfectly natural, not a sign of something going wrong.'
-            ) }}
 
-        {%- endcall %}
 
-        {% call components.columnOneThird() %}
 
-            #}{#{{ components.tile(
-                title='Contract management: building relationships in business (MOOC)',
-                url='#',
-                starPercent='80%',
-                starTotal='128',
-                type='Online',
-                duration='3 hours',
-                cost='£Free',
-                hideStars=hideHomeStars,
-                version='v12',
-                intro='A MOOC or massive open online course is a free online learning activity open to everyone.'
-            ) }}#}{#
 
-            {{ components.tile(
-                title='Interview techniques (as interviewee)',
-                url='https://projects.invisionapp.com/share/X4JAPY9RBCF#/screens/291474540',
-                starPercent='61%',
-                starTotal='25',
-                type='Online',
-                duration='3 hours',
-                cost='£Free',
-                hideStars=hideHomeStars,
-                version='v12',
-                intro='Few things in life are more stressful than a job interview.'
-            ) }}
 
-        {%- endcall %}
 
-        {% call components.columnOneThird() %}
 
-            {{ components.tile(
-                title='Managing Risks Issues and Dependencies',
-                url='/prototypes/learner/v12/resource?resourceType=classroom',
-                starPercent='61%',
-                starTotal='25',
-                type='Online',
-                duration='3 hours',
-                cost='£Free',
-                hideStars=hideHomeStars,
-                version='v12',
-                intro='Risks can never be completely avoided; only ever managed and mitigated.'
-            ) }}
 
-        {%- endcall %}
 
-    {%- endcall %}#}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     {% call components.gridRow() %}
 
         {% call components.columnFull() %}
 
-            <p class="bold"><a href="/prototypes/learner/v12/actions?action=showPreFilteredResults">Show all suggestions from Home Office</a> </p>
+            <p class="bold">
+                <a href="/prototypes/learner/v12/actions?action=showPreFilteredResults">
+                    Show all suggestions from
+                    {% if department %}
+                        {{ department }}
+                    {% else %}
+                        Home Office
+                    {% endif %}
+                </a>
+            </p>
 
         {%- endcall %}
 
@@ -317,7 +315,21 @@
 
     {%- endcall %}
 
-    <h2 class="heading heading-medium heading--red-top" id="ddat">From Operational delivery</h2>
+    <h2 class="heading heading-medium heading--red-top" id="ddat">
+        From
+        {% if primaryChoice %}
+            {{ primaryChoice }}
+        {% else %}
+            Digital, Data and Technology
+        {% endif %}
+    </h2>
+    {% if primaryOpsDelChoiceArray %}
+        <h3 class="heading-small u-space-b30" style="margin-top:-10px!important;">
+            {% for item in primaryOpsDelChoiceArray %}
+                {{ item }},
+            {% endfor %}
+        </h3>
+    {% endif %}
 
     {% call components.gridRow() %}
 

@@ -245,7 +245,7 @@ function recordGet(req, res) {
 
 // suggested learning GET
 function suggestedGet(req, res) {
-  let viewData, hideHomeStars, showUpdatedPrimaryWorkArea, hasAddedContractManagement, templateVersion, type, showNewNav, navItem, showRemoveX;
+  let viewData, hideHomeStars, showUpdatedPrimaryWorkArea, hasAddedContractManagement, templateVersion, type, showNewNav, navItem, showRemoveX, primaryChoice, primaryOpsDelChoiceArray, isG6, isHEO, department;
 
   showUpdatedPrimaryWorkArea = req.session.showUpdatedPrimaryWorkArea;
   hasAddedContractManagement = req.session.hasAddedContractManagement;
@@ -271,13 +271,25 @@ function suggestedGet(req, res) {
   req.session.showRemoveX = true;
   showRemoveX = true;
 
+  /* new stuff relating to profile */
+  department = req.session.departmentName;
+  primaryChoice = req.session.primaryChoice;
+  primaryOpsDelChoiceArray = req.session.primaryOpsDelChoiceArray;
+  isHEO = req.session.isHEO;
+  isG6 = req.session.isG6;
+
   viewData = {
     hideHomeStars,
     showUpdatedPrimaryWorkArea,
     hasAddedContractManagement,
     showNewNav,
     navItem,
-    showRemoveX
+    showRemoveX,
+    department,
+    primaryChoice,
+    primaryOpsDelChoiceArray,
+    isG6,
+    isHEO
   };
 
   return res.render(templateVersion, viewData);

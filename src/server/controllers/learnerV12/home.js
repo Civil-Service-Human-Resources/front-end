@@ -276,7 +276,12 @@ export function suggestedGet(req, res) {
     type,
     showNewNav,
     navItem,
-    showRemoveX;
+    showRemoveX,
+    primaryChoice,
+    primaryOpsDelChoiceArray,
+    isG6,
+    isHEO,
+    department;
 
   showUpdatedPrimaryWorkArea = req.session.showUpdatedPrimaryWorkArea;
   hasAddedContractManagement = req.session.hasAddedContractManagement;
@@ -302,6 +307,13 @@ export function suggestedGet(req, res) {
   req.session.showRemoveX = true;
   showRemoveX = true;
 
+  /* new stuff relating to profile */
+  department = req.session.departmentName;
+  primaryChoice = req.session.primaryChoice;
+  primaryOpsDelChoiceArray = req.session.primaryOpsDelChoiceArray;
+  isHEO = req.session.isHEO;
+  isG6 = req.session.isG6;
+
   viewData = {
     hideHomeStars,
     showUpdatedPrimaryWorkArea,
@@ -309,6 +321,11 @@ export function suggestedGet(req, res) {
     showNewNav,
     navItem,
     showRemoveX,
+    department,
+    primaryChoice,
+    primaryOpsDelChoiceArray,
+    isG6,
+    isHEO,
   };
 
   return res.render(templateVersion, viewData);

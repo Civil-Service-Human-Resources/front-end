@@ -1,0 +1,66 @@
+{% extends 'layouts/default.layout.njk' %}
+
+{% set pageTitle = 'How the European Union works - Learning Platform for Government' %}
+{% set blackBarTitle = 'Learning Platform for Government' %} {% set learnerPrototypeVersion = 'v12' %}
+{% set mainContainerClass = 'has-lower-hero' %}
+{% set signOutPath = '/prototypes/learner/v12/' %}
+{% set homePath = '/prototypes/learner/v12/home' %}
+
+{% set resourceType = resourceType if resourceType %}
+{% set hideDetailStars = hideDetailStars if hideDetailStars %}
+
+
+{% block content %}
+
+    {{ components.pageHeading(heading='How the European Union works') }}
+
+    {% call components.gridRow() %}
+
+        {% call components.columnTwoThirds() %}
+
+            {% call components.formElement(name='startLearning', method='POST', action="#") %}
+
+                <p>In this near-Brexit world, it's important to understand how the EU really works.</p>
+
+                {% call components.formGroup() %}
+                    {{ components.button(text='View article', start=false, group=true, url='https://publications.europa.eu/en/publication-detail/-/publication/d7031407-61e7-4797-99a7-e05369dab332')}}
+                {%- endcall %}
+
+                <p>
+                    <a href="/prototypes/learner/v12/actions?action=addedToLearningPlan&type=blog">Add to learning plan</a>
+                </p>
+
+            {%- endcall %}
+
+        {%- endcall %}
+
+        {% call components.columnOneThird() %}
+
+            <aside class="govuk-related-items govuk-related-items--flush govuk-related-items--keylined" role="complementary">
+                <h2 class="heading-small visuallyhidden">Key information</h2>
+
+                <table class="table-simple table--top u-space-b30">
+                    <caption class="visuallyhidden">Details about the course</caption>
+                    <tbody>
+                        <tr>
+                            <th>Course type</th>
+                            <td>Link</td>
+                        </tr>
+
+                            <th>Level</th>
+                            <td>EO to Grade 6</td>
+                        </tr>
+                        <tr class="table--snuggled-row">
+                            <th>Cost</th>
+                            <td>£Free</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </aside>
+
+        {%- endcall %}
+
+    {%- endcall %}
+
+{% endblock %}

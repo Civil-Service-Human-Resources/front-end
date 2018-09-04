@@ -356,9 +356,18 @@ function profileGradeGet(req, res) {
 function profileGradePost(req, res) {
   const { grades } = req.body;
 
-  let profileGrades;
+  let profileGrades, isHEO, isG6;
 
   profileGrades = grades;
+  console.log(profileGrades);
+
+  if (profileGrades === 'Higher executive officer') {
+    req.session.isHEO = true;
+  }
+
+  if (profileGrades === 'Grade 6') {
+    req.session.isG6 = true;
+  }
 
   req.session.anythingUpdated = true;
   req.session.profileGrades = profileGrades;
