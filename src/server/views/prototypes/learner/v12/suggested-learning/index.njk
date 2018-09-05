@@ -96,7 +96,7 @@
                     {% if department %}
                         {{ department }}
                     {% else %}
-                        Home Office
+                        DEFRA
                     {% endif %}
                     </a>
                 </li>
@@ -153,6 +153,8 @@
 
     {%- endcall  %}
 
+    {#{% set department = 'Home Office' %}#}
+
     <h2 class="heading heading-medium heading--red-top" id="DWP">
         From
         {% if department %}
@@ -164,26 +166,234 @@
 
     {% if department == 'Home Office' %}
 
+       {# {% set isHEO = true %}#}
 
         {% if isG6 %}
 
-            
+            <h3 class="heading-small u-space-b30" style="margin-top:-10px!important;">For Grade 6</h3>
+
+
+            {% call components.gridRow() %}
+
+                {% call components.columnOneThird() %}
+
+                    {{ components.tile(
+                        title='Collaboration across departments, government and beyond',
+                        url='/prototypes/learner/v12/resource?resourceID=38',
+                        starPercent='61%',
+                        starTotal='25',
+                        type='Online',
+                        duration='1 hour',
+                        cost='£Free',
+                        hideStars=hideHomeStars,
+                        version='v12',
+                        showRemoveX=showRemoveX,
+                        intro='Working collaboratively is a regular part of any civil servant’s life, regardless of profession or grade.'
+                    ) }}
+
+                {%- endcall %}
+
+                {% call components.columnOneThird() %}
+
+                    {{ components.tile(
+                        title='The secret ingredient that makes some teams better than others',
+                        url='/prototypes/learner/v12/resource?resourceID=39',
+                        starPercent='61%',
+                        starTotal='25',
+                        type='Video',
+                        duration='30 minutes',
+                        cost='£Free',
+                        hideStars=hideHomeStars,
+                        version='v12',
+                        showRemoveX=showRemoveX,
+                        intro='Make your team awesome with these key insights'
+                    ) }}
+
+                {%- endcall %}
+
+                {% call components.columnOneThird() %}
+
+                    {{ components.tile(
+                        title='Why you think you’re right, even when you’re wrong',
+                        url='/prototypes/learner/v12/resource?resourceID=36',
+                        starPercent='61%',
+                        starTotal='25',
+                        type='Video',
+                        duration='15 minutes',
+                        cost='£Free',
+                        hideStars=hideHomeStars,
+                        version='v12',
+                        showRemoveX=showRemoveX,
+                        intro='You\'re not always right - discover how your team really sees you.'
+                    ) }}
+
+                {%- endcall %}
+
+            {%- endcall %}
 
         {% elseif isHEO  %}
 
+            <h3 class="heading-small u-space-b30" style="margin-top:-10px!important;">For Higher executive officers</h3>
 
+            {% call components.gridRow() %}
+
+                {% call components.columnOneThird() %}
+
+                    {{ components.tile(
+                        title='No.1 Identifying an organisation’s stakeholders',
+                        url='/prototypes/learner/v12/resource?resourceID=33',
+                        starPercent='61%',
+                        starTotal='25',
+                        type='Blog',
+                        duration='15 minutes hour',
+                        cost='£Free',
+                        hideStars=hideHomeStars,
+                        version='v12',
+                        showRemoveX=showRemoveX,
+                        intro='Making government-scale projects successful relies on knowing who you\'re working with - help identify the mostimportant stakeholders'
+                    ) }}
+
+                {%- endcall %}
+
+                {% call components.columnOneThird() %}
+
+                    {{ components.tile(
+                        title='Identifying Customer and Stakeholder Requirements',
+                        url='/prototypes/learner/v12/resource?resourceID=34',
+                        starPercent='61%',
+                        starTotal='25',
+                        type='Online',
+                        duration='2 hours 30 minutes',
+                        cost='£Free',
+                        hideStars=hideHomeStars,
+                        version='v12',
+                        showRemoveX=showRemoveX,
+                        intro='Establishing, who the most important customers and stakeholders are is critically important for successfully delivering a project.'
+                    ) }}
+
+                {%- endcall %}
+
+                {% call components.columnOneThird() %}
+
+                    {{ components.tile(
+                        title='Continuous Improvement and Lean',
+                        url='/prototypes/learner/v12/resource?resourceID=35',
+                        starPercent='61%',
+                        starTotal='25',
+                        type='Classroom',
+                        duration='2 days',
+                        cost='£459',
+                        hideStars=hideHomeStars,
+                        version='v12',
+                        showRemoveX=showRemoveX,
+                        intro='An introduction to continuous improvement and lean, demonstrating how a collaborative team effort can lead to improved performance.'
+                    ) }}
+
+                {%- endcall %}
+
+            {%- endcall %}
+
+            {% call components.gridRow() %}
+
+                {% call components.columnOneThird() %}
+
+                    {{ components.tile(
+                        title='Why you think you’re right, even when you’re wrong',
+                        url='/prototypes/learner/v12/resource?resourceID=36',
+                        starPercent='61%',
+                        starTotal='25',
+                        type='Video',
+                        duration='15 minutes',
+                        cost='£Free',
+                        hideStars=hideHomeStars,
+                        version='v12',
+                        showRemoveX=showRemoveX,
+                        intro='You\'re not always right - discover how your team really sees you.'
+                    ) }}
+
+                {%- endcall %}
+
+                {% call components.columnOneThird() %}
+
+                    {{ components.tile(
+                        title='How the European Union works',
+                        url='/prototypes/learner/v12/resource?resourceID=37',
+                        starPercent='61%',
+                        starTotal='25',
+                        type='Blog',
+                        duration='12 minutes',
+                        cost='£Free',
+                        hideStars=hideHomeStars,
+                        version='v12',
+                        showRemoveX=showRemoveX,
+                        intro='A guide on how the EU works and how decisions are made in Brussels.'
+                    ) }}
+
+                {%- endcall %}
+
+            {%- endcall %}
+
+        {% else %}
+
+            {% call components.gridRow() %}
+
+                {% call components.columnOneThird() %}
+
+                    {{ components.tile(
+                        title='Unconscious bias',
+                        url='/prototypes/learner/v12/resource?resourceID=1',
+                        starPercent='61%',
+                        starTotal='25',
+                        type='Classroom',
+                        duration='3 hours',
+                        cost='£249',
+                        hideStars=hideHomeStars,
+                        version='v12',
+                        showRemoveX=showRemoveX,
+                        intro='Biased decision-making has no place in any modern, progressive organisation.'
+                    ) }}
+
+                {%- endcall %}
+
+                {% call components.columnOneThird() %}
+
+                    {{ components.tile(
+                        title='Tips for having difficult conversations',
+                        url='/prototypes/learner/v12/resource?resourceID=13',
+                        starPercent='80%',
+                        starTotal='237',
+                        type='Online',
+                        duration='1 hour',
+                        cost='£Free',
+                        hideStars=hideHomeStars,
+                        version='v12',
+                        showRemoveX=showRemoveX,
+                        intro='Practicable help for managers facing difficult conversations with their staff.'
+                    ) }}
+
+                {%- endcall %}
+
+                {% call components.columnOneThird() %}
+
+                    {{ components.tile(
+                        title='Interview techniques (as interviewee)',
+                        url='/prototypes/learner/v12/resource?resourceID=31',
+                        starPercent='61%',
+                        starTotal='25',
+                        type='Online',
+                        duration='3 hours',
+                        cost='£Free',
+                        hideStars=hideHomeStars,
+                        version='v12',
+                        showRemoveX=showRemoveX,
+                        intro='Few things in life are more stressful than a job interview.'
+                    ) }}
+
+                {%- endcall %}
+
+            {%- endcall %}
 
         {% endif %}
-
-
-
-
-
-
-
-
-
-
 
     {% else %}
 
@@ -246,42 +456,6 @@
         {%- endcall %}
 
     {% endif %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     {% call components.gridRow() %}

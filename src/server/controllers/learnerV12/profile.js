@@ -25,6 +25,8 @@ export function profileNameGet(req, res) {
 export function profileNamePost(req, res) {
   const { firstName, lastName } = req.body;
 
+  console.log('firstName = ' + firstName);
+  req.session.firstName = firstName;
   req.session.combinedName = firstName + ' ' + lastName;
   req.session.anythingUpdated = true;
   return res.redirect(profileURL);

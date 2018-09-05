@@ -141,7 +141,7 @@ function plannedGet(req, res) {
 
 // profile GET
 function profileGet(req, res) {
-  let viewData, workAreaHasBeenUpdated, setWorkAreaCommercial, setWorkAreaDigital, showRolesJoined, showUpdatedPrimaryWorkArea, hasAddedContractManagement, showUpdatedOtherWorkArea, hasBeenUpdatedOther, hasBeenUpdatedInterests, showNewNav, navItem, departmentName, profileGrades, profileOthersArray, primaryChoice, primaryOpsDelChoiceArray, combinedName, email, anythingUpdated, profileInterestsArray;
+  let viewData, workAreaHasBeenUpdated, setWorkAreaCommercial, setWorkAreaDigital, showRolesJoined, showUpdatedPrimaryWorkArea, hasAddedContractManagement, showUpdatedOtherWorkArea, hasBeenUpdatedOther, hasBeenUpdatedInterests, showNewNav, navItem, departmentName, profileGrades, profileOthersArray, primaryChoice, primaryOpsDelChoiceArray, combinedName, email, anythingUpdated, firstName, profileInterestsArray;
 
   //showNewNav = req.session.showNewNav;
   req.session.showNewNav = true;
@@ -184,6 +184,7 @@ function profileGet(req, res) {
   email = req.session.email;
   anythingUpdated = req.session.anythingUpdated;
   req.session.anythingUpdated = null;
+  firstName = req.session.firstName;
 
   viewData = {
     workAreaHasBeenUpdated,
@@ -205,7 +206,8 @@ function profileGet(req, res) {
     primaryOpsDelChoiceArray,
     combinedName,
     email,
-    anythingUpdated
+    anythingUpdated,
+    firstName
   };
 
   return res.render('prototypes/learner/v12/profile/index', viewData);
@@ -245,7 +247,7 @@ function recordGet(req, res) {
 
 // suggested learning GET
 function suggestedGet(req, res) {
-  let viewData, hideHomeStars, showUpdatedPrimaryWorkArea, hasAddedContractManagement, templateVersion, type, showNewNav, navItem, showRemoveX, primaryChoice, primaryOpsDelChoiceArray, isG6, isHEO, department;
+  let viewData, hideHomeStars, showUpdatedPrimaryWorkArea, hasAddedContractManagement, templateVersion, type, showNewNav, navItem, showRemoveX, primaryChoice, primaryOpsDelChoiceArray, isG6, isHEO, firstName, department;
 
   showUpdatedPrimaryWorkArea = req.session.showUpdatedPrimaryWorkArea;
   hasAddedContractManagement = req.session.hasAddedContractManagement;
@@ -277,6 +279,7 @@ function suggestedGet(req, res) {
   primaryOpsDelChoiceArray = req.session.primaryOpsDelChoiceArray;
   isHEO = req.session.isHEO;
   isG6 = req.session.isG6;
+  firstName = req.session.firstName;
 
   viewData = {
     hideHomeStars,
@@ -289,7 +292,8 @@ function suggestedGet(req, res) {
     primaryChoice,
     primaryOpsDelChoiceArray,
     isG6,
-    isHEO
+    isHEO,
+    firstName
   };
 
   return res.render(templateVersion, viewData);

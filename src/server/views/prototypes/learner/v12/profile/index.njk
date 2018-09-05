@@ -25,11 +25,19 @@
 {% set primaryOpsDelChoiceArray = primaryOpsDelChoiceArray if primaryOpsDelChoiceArray %}
 {% set email = email if email %}
 {% set anythingUpdated = anythingUpdated if anythingUpdated %}
+{% set firstName = firstName if firstName %}
 
 
 {% block content %}
 
-    {{ components.pageHeading('Hello, Marjorie') }}
+    <h1 class="heading-xlarge heading heading--page-heading ">
+        Hello,
+        {% if firstName %}
+         {{ firstName }}
+        {% else %}
+            Lucy
+        {% endif %}
+    </h1>
 
     {% call components.gridRow() %}
 

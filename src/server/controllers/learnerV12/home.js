@@ -164,6 +164,7 @@ export function profileGet(req, res) {
     combinedName,
     email,
     anythingUpdated,
+    firstName,
     profileInterestsArray;
 
   //showNewNav = req.session.showNewNav;
@@ -207,6 +208,7 @@ export function profileGet(req, res) {
   email = req.session.email;
   anythingUpdated = req.session.anythingUpdated;
   req.session.anythingUpdated = null;
+  firstName = req.session.firstName;
 
   viewData = {
     workAreaHasBeenUpdated,
@@ -229,6 +231,7 @@ export function profileGet(req, res) {
     combinedName,
     email,
     anythingUpdated,
+    firstName,
   };
 
   return res.render('prototypes/learner/v12/profile/index', viewData);
@@ -281,6 +284,7 @@ export function suggestedGet(req, res) {
     primaryOpsDelChoiceArray,
     isG6,
     isHEO,
+    firstName,
     department;
 
   showUpdatedPrimaryWorkArea = req.session.showUpdatedPrimaryWorkArea;
@@ -313,6 +317,7 @@ export function suggestedGet(req, res) {
   primaryOpsDelChoiceArray = req.session.primaryOpsDelChoiceArray;
   isHEO = req.session.isHEO;
   isG6 = req.session.isG6;
+  firstName = req.session.firstName;
 
   viewData = {
     hideHomeStars,
@@ -326,6 +331,7 @@ export function suggestedGet(req, res) {
     primaryOpsDelChoiceArray,
     isG6,
     isHEO,
+    firstName,
   };
 
   return res.render(templateVersion, viewData);
