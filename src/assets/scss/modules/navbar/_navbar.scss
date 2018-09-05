@@ -19,7 +19,7 @@ $module: 'navbar';
   &__list-items {
 
     &--hide-small {
-      display: none;
+      // display: none;
     }
 
     @include media(desktop) {
@@ -114,7 +114,7 @@ $module: 'navbar';
     span,
     span:before,
     span:after {
-      transition: all 500ms ease-in-out;
+      // transition: all 500ms ease-in-out;
     }
 
     span {
