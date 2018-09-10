@@ -78,7 +78,7 @@ let allNewAreasOfWork = [
   { value: '26', text: 'Social research' },
   { value: '27', text: 'Statistical' },
   { value: '28', text: 'Veterinary' },
-  { value: '29', text: 'Other' },
+  { value: '29', text: 'I don\'t know' },
 ];
 
 module.exports.allNewAreasOfWork = allNewAreasOfWork;
