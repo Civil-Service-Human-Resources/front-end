@@ -2,9 +2,20 @@
 
 var _register = require('./register');
 
-let allDepartments = [{ value: '0', text: 'Select an organisation' }, { value: '1', text: 'Cabinet Office' }, { value: '2', text: 'DEFRA' }, { value: '3', text: 'Department of Health and Social Care' }, { value: '4', text: 'Fast Stream' }, { value: '5', text: 'HM Revenue & Customs' }, { value: '6', text: 'Home Office' }, { value: '7', text: 'Other' }];
+/* ////////////////////////////////////////
+
+  ** organisations/departments **
+
+//////////////////////////////////////// */
+
+let allDepartments = [{ value: '0', text: 'Select an organisation' }, { value: '1', text: 'Cabinet Office' }, { value: '2', text: 'DEFRA' }, { value: '3', text: 'Department of Health and Social Care' }, { value: '4', text: 'DWP' }, { value: '5', text: 'Fast Stream' }, { value: '6', text: 'HM Revenue & Customs' }, { value: '7', text: 'Home Office' }, { value: '8', text: 'Other' }, { value: '8', text: 'Ministry Of Defence MoD, Tanks' }, { value: '8', text: 'Ministry Of Defence MoD, Planes' }, { value: '8', text: 'Ministry Of Defence MoD, Ships' }, { value: '8', text: 'Ministry Of Defence MoD, Subs' }, { value: '8', text: 'Ministry Of Defence MoD, Bikes' }, { value: '8', text: 'Ministry Of Defence MoD, Cavalry' }, { value: '8', text: 'Ministry Of Defence MoD, Helicopters' }, { value: '8', text: 'Ministry Of Defence MoD, Infantry' }];
 
 module.exports.allDepartments = allDepartments;
+
+// DWP
+let allSubDivisionsDWP = [{ value: '0', text: 'Select a sub division of DWP' }, { value: '1', text: 'Disability And Carers Service' }, { value: '2', text: 'DWP Core' }, { value: '3', text: 'Jobcentre Plus' }, { value: '5', text: 'Pension Service' }];
+
+module.exports.allSubDivisionsDWP = allSubDivisionsDWP;
 
 let allProfessions = [{ value: '0', text: 'Analysis' }, { value: '1', text: 'Commercial' }, { value: '2', text: 'Communications' }, { value: '3', text: 'Corporate finance' }, { value: '4', text: 'Digital, Data and Technology' }, { value: '5', text: 'Finance' }, { value: '6', text: 'Fraud, error, debt and grants' }, { value: '7', text: 'Human resources' }, { value: '8', text: 'Internal audit' }, { value: '9', text: 'Legal' }, { value: '10', text: 'Project delivery' }, { value: '11', text: 'Property' }, { value: '12', text: 'Other' }];
 

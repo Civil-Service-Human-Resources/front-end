@@ -11,6 +11,7 @@ exports.profilePasswordGet = profilePasswordGet;
 exports.profilePasswordPost = profilePasswordPost;
 exports.profileOrganisationGet = profileOrganisationGet;
 exports.profileOrganistionPost = profileOrganistionPost;
+exports.profileOrganisationSubDivisionsGet = profileOrganisationSubDivisionsGet;
 exports.profilePrimaryGet = profilePrimaryGet;
 exports.profilePrimaryPost = profilePrimaryPost;
 exports.profilePrimaryOpsDelGet = profilePrimaryOpsDelGet;
@@ -146,6 +147,25 @@ function profileOrganistionPost(req, res) {
   req.session.departmentName = department;
 
   return res.redirect(profileURL);
+}
+
+// Organisation sub divisions
+
+function profileOrganisationSubDivisionsGet(req, res) {
+  let viewData, navItem, showNewNav, departmentSelectOptions;
+
+  showNewNav = true;
+  navItem = 'profile';
+
+  departmentSelectOptions = generalData.allDepartments;
+
+  viewData = {
+    showNewNav,
+    navItem,
+    departmentSelectOptions
+  };
+
+  return res.render('prototypes/learner/v12/profile/organisation', viewData);
 }
 
 // **************************************************************************************

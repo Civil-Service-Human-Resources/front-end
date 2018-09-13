@@ -1,37 +1,30 @@
 {% extends 'layouts/default.layout.njk' %}
 
-{% set pageTitle = 'Change core learning - Learning Platform for Government' %}
+{% set pageTitle = 'Change organisation sub division - Learning Platform for Government' %}
 {% set blackBarTitle = 'Learning Platform for Government' %}
 {% set learnerPrototypeVersion = 'v12' %}
 {% set signOutPath = '/prototypes/learner/v12/' %}
 {% set homePath = '/prototypes/learner/v12/home' %}
 {% set hasBeenUpdated = workAreaHasBeenUpdated if workAreaHasBeenUpdated %}
 
-{# new profile stuff #}
-{% set newCoreInterests = newCoreInterests if newCoreInterests %}
+{% set profilePrimary = profilePrimary if profilePrimary %}
 
 {% block content %}
 
-    {{ components.pageHeading('Change core learning') }}
+    {{ components.pageHeading('Change organisation sub division') }}
 
     {% call components.gridRow() %}
 
         {% call components.columnTwoThirds() %}
 
+            {% call components.formElement(name='profileOrganiationSubDivision', method='POST', action="#") %}
 
-            {% call components.formElement(name='profileInterests', method='POST', action="#") %}
-
-                {% if newCoreInterests %}
+                {% if profileSub %}
 
                     <fieldset class="u-space-b30">
 
-                        {% for item in newCoreInterests %}
-
-                            <div class="multiple-choice filter__switch">
-                                <input id="extraInterests_{{ item.value }}" name="extraInterests" type="checkbox" value="{{ item.value }}">
-                                <label for="extraInterests_{{ item.value }}" class=" u-display-ib">{{ item.text }}</label>
-                            </div>
-
+                        {% for item in profilePrimary %}
+                            {{ components.radio(text=item.text, value=item.text, id='primary'+item.value,name='primary') }}
                         {% endfor %}
 
                     </fieldset>
@@ -49,6 +42,8 @@
                 </p>
 
             {%- endcall %}
+
+
 
         {%- endcall %}
 

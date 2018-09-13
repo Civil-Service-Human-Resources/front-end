@@ -124,6 +124,25 @@ export function profileOrganistionPost(req, res) {
   return res.redirect(profileURL);
 }
 
+// Organisation sub divisions
+
+export function profileOrganisationSubDivisionsGet(req, res) {
+  let viewData, navItem, showNewNav, departmentSelectOptions;
+
+  showNewNav = true;
+  navItem = 'profile';
+
+  departmentSelectOptions = generalData.allDepartments;
+
+  viewData = {
+    showNewNav,
+    navItem,
+    departmentSelectOptions,
+  };
+
+  return res.render('prototypes/learner/v12/profile/organisation', viewData);
+}
+
 // **************************************************************************************
 // Primary area of work
 // **************************************************************************************

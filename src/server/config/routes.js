@@ -1521,6 +1521,9 @@ router.post('/prototypes/learner/v12/your-profile/password', learnerV12Controlle
 // organisation
 router.get('/prototypes/learner/v12/your-profile/organisation', learnerV12Controller.profileOrganisationGet);
 router.post('/prototypes/learner/v12/your-profile/organisation', learnerV12Controller.profileOrganistionPost);
+// organisation /sub-divisions
+// router.get('/prototypes/learner/v12/your-profile/organisation/sub-divisions', learnerV12Controller.profileOrganisationSubDivisionsGet);
+// router.post('/prototypes/learner/v12/your-profile/organisation/sub-divisions', learnerV12Controller.profileOrganisationSubDivisionsPost);
 // primary
 router.get('/prototypes/learner/v12/your-profile/primary', learnerV12Controller.profilePrimaryGet);
 router.post('/prototypes/learner/v12/your-profile/primary', learnerV12Controller.profilePrimaryPost);
