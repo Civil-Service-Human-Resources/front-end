@@ -6,7 +6,9 @@ Object.defineProperty(exports, "__esModule", {
 exports.selectaTestRadiosGet = selectaTestRadiosGet;
 exports.selectaTestSelectGet = selectaTestSelectGet;
 exports.selectaTestTypeaheadGet = selectaTestTypeaheadGet;
+exports.selectaTestMegaListGet = selectaTestMegaListGet;
 let generalData = require('./data');
+let orgsData = require('./all-orgs');
 
 // Selecta test pages
 function selectaTestRadiosGet(req, res) {
@@ -58,4 +60,21 @@ function selectaTestTypeaheadGet(req, res) {
   };
 
   return res.render('prototypes/learner/v12/selectas/typeahead', viewData);
+}
+
+function selectaTestMegaListGet(req, res) {
+  let viewData, showNewNav, navItem, profilePrimary;
+
+  showNewNav = req.session.showNewNav;
+  navItem = '';
+
+  profilePrimary = orgsData.allOrgsAndSubDivisions;
+
+  viewData = {
+    profilePrimary,
+    showNewNav,
+    navItem
+  };
+
+  return res.render('prototypes/learner/v12/selectas/all', viewData);
 }

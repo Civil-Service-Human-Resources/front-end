@@ -109,6 +109,50 @@ export function profileOrganistionPost(req, res) {
 
   console.log(req.body);
 
+  let department, departmentSelectOptions, subDivisionData;
+
+  departmentSelectOptions = generalData.allDepartments;
+  department = departmentSelectOptions[organisation].text;
+
+  if (department === '') {
+    profileURL = '/prototypes/learner/v12/your-profile/organisation';
+  } else if (department === 'DWP') {
+    profileURL = '/prototypes/learner/v12/your-profile/organisation/sub-divisions';
+  }
+  req.session.subDivision = subDivision;
+  req.session.anythingUpdated = true;
+  req.session.departmentName = department;
+
+  return res.redirect(profileURL);
+}
+
+// Organisation sub divisions
+
+export function profileOrganisationSubDivisionsGet(req, res) {
+  let viewData, navItem, showNewNav, departmentSelectOptions, profileSubDivision, subDivisionData;
+
+  showNewNav = true;
+  navItem = 'profile';
+
+  subDivisionData = generalData.allSubDivisionsDWP;
+
+  // profileSubDivision = eval('generalData.' + );
+
+  viewData = {
+    showNewNav,
+    navItem,
+    departmentSelectOptions,
+    profileSubDivision,
+  };
+
+  return res.render('prototypes/learner/v12/profile/organisation', viewData);
+}
+
+export function profileOrganisationSubDivisionsPost(req, res) {
+  const { organisation } = req.body;
+
+  console.log(req.body);
+
   let department, departmentSelectOptions;
 
   departmentSelectOptions = generalData.allDepartments;
@@ -123,26 +167,6 @@ export function profileOrganistionPost(req, res) {
 
   return res.redirect(profileURL);
 }
-
-// Organisation sub divisions
-
-export function profileOrganisationSubDivisionsGet(req, res) {
-  let viewData, navItem, showNewNav, departmentSelectOptions;
-
-  showNewNav = true;
-  navItem = 'profile';
-
-  departmentSelectOptions = generalData.allDepartments;
-
-  viewData = {
-    showNewNav,
-    navItem,
-    departmentSelectOptions,
-  };
-
-  return res.render('prototypes/learner/v12/profile/organisation', viewData);
-}
-
 // **************************************************************************************
 // Primary area of work
 // **************************************************************************************

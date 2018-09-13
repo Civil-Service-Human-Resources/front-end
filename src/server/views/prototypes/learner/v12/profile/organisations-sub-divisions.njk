@@ -7,7 +7,7 @@
 {% set homePath = '/prototypes/learner/v12/home' %}
 {% set hasBeenUpdated = workAreaHasBeenUpdated if workAreaHasBeenUpdated %}
 
-{% set profilePrimary = profilePrimary if profilePrimary %}
+{% set profileSubDivision = profileSubDivision if profileSubDivision %}
 
 {% block content %}
 
@@ -23,7 +23,7 @@
 
                     <fieldset class="u-space-b30">
 
-                        {% for item in profilePrimary %}
+                        {% for item in profileSubDivision %}
                             {{ components.radio(text=item.text, value=item.text, id='primary'+item.value,name='primary') }}
                         {% endfor %}
 

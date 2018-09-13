@@ -1,4 +1,5 @@
 let generalData = require('./data');
+let orgsData = require('./all-orgs');
 
 // Selecta test pages
 export function selectaTestRadiosGet(req, res) {
@@ -50,4 +51,21 @@ export function selectaTestTypeaheadGet(req, res) {
   };
 
   return res.render('prototypes/learner/v12/selectas/typeahead', viewData);
+}
+
+export function selectaTestMegaListGet(req, res) {
+  let viewData, showNewNav, navItem, profilePrimary;
+
+  showNewNav = req.session.showNewNav;
+  navItem = '';
+
+  profilePrimary = orgsData.allOrgsAndSubDivisions;
+
+  viewData = {
+    profilePrimary,
+    showNewNav,
+    navItem,
+  };
+
+  return res.render('prototypes/learner/v12/selectas/all', viewData);
 }

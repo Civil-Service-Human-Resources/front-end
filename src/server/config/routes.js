@@ -1522,8 +1522,8 @@ router.post('/prototypes/learner/v12/your-profile/password', learnerV12Controlle
 router.get('/prototypes/learner/v12/your-profile/organisation', learnerV12Controller.profileOrganisationGet);
 router.post('/prototypes/learner/v12/your-profile/organisation', learnerV12Controller.profileOrganistionPost);
 // organisation /sub-divisions
-// router.get('/prototypes/learner/v12/your-profile/organisation/sub-divisions', learnerV12Controller.profileOrganisationSubDivisionsGet);
-// router.post('/prototypes/learner/v12/your-profile/organisation/sub-divisions', learnerV12Controller.profileOrganisationSubDivisionsPost);
+router.get('/prototypes/learner/v12/your-profile/organisation/sub-divisions', learnerV12Controller.profileOrganisationSubDivisionsGet);
+router.post('/prototypes/learner/v12/your-profile/organisation/sub-divisions', learnerV12Controller.profileOrganisationSubDivisionsPost);
 // primary
 router.get('/prototypes/learner/v12/your-profile/primary', learnerV12Controller.profilePrimaryGet);
 router.post('/prototypes/learner/v12/your-profile/primary', learnerV12Controller.profilePrimaryPost);
@@ -1652,6 +1652,7 @@ router.post('/prototypes/learner/v12/admin/add-complete', learnerV12Controller.a
 router.get('/prototypes/learner/v12/selectas/radios', learnerV12Controller.selectaTestRadiosGet);
 router.get('/prototypes/learner/v12/selectas/select', learnerV12Controller.selectaTestSelectGet);
 router.get('/prototypes/learner/v12/selectas/typeahead', learnerV12Controller.selectaTestTypeaheadGet);
+router.get('/prototypes/learner/v12/selectas/all', learnerV12Controller.selectaTestMegaListGet);
 
 // Create route from view path
 router.get('*', miscController.viewFileRoute);
