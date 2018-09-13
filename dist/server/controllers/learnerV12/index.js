@@ -147,3 +147,15 @@ Object.keys(_profile).forEach(function (key) {
     }
   });
 });
+
+var _test = require('./test');
+
+Object.keys(_test).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _test[key];
+    }
+  });
+});

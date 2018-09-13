@@ -1,0 +1,61 @@
+{% extends 'layouts/default.layout.njk' %}
+
+{% set pageTitle = 'Change primary area of work - Learning Platform for Government' %}
+{% set blackBarTitle = 'Learning Platform for Government' %}
+{% set learnerPrototypeVersion = 'v12' %}
+{% set signOutPath = '/prototypes/learner/v12/' %}
+{% set homePath = '/prototypes/learner/v12/home' %}
+{% set hasBeenUpdated = workAreaHasBeenUpdated if workAreaHasBeenUpdated %}
+
+{% set profilePrimary = profilePrimary if profilePrimary %}
+
+{% block content %}
+
+    {{ components.pageHeading('Change primary area of work') }}
+
+    {% call components.gridRow() %}
+
+        {% call components.columnTwoThirds() %}
+
+            {% call components.formElement(name='profilePrimary', method='POST', action="#") %}
+
+                {% if profilePrimary %}
+
+                    <fieldset class="u-space-b30">
+
+                        <div class="form-group">
+
+                            <label for="dropDownPrimaryArea" class="form-label form-label-bold u-space-b15">Primary area of work</label>
+
+                            <select name="" class="form-control" id="dropDownPrimaryArea">
+                                <option>Select your primary area of work</option>
+                                {% for item in profilePrimary %}
+                                    <option value="{{ item.value }}">{{ item.text }}</option>
+                                {% endfor %}
+                            </select>
+
+                        </div>
+
+                    </fieldset>
+
+                {% endif %}
+
+                {% call components.formGroup() %}
+
+                    {{ components.button(text='Save changes', group=true)}}
+
+                {%- endcall %}
+
+                <p>
+                    <a href="/prototypes/learner/v12">Cancel</a>
+                </p>
+
+            {%- endcall %}
+
+
+
+        {%- endcall %}
+
+    {%- endcall %}
+
+{% endblock %}

@@ -10,3 +10,4 @@ export * from './scorms';
 export * from './authentication';
 export * from './admin';
 export * from './profile';
+export * from './test';

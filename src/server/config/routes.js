@@ -1643,6 +1643,13 @@ router.post('/prototypes/learner/v12/admin/add-review', learnerV12Controller.adm
 router.get('/prototypes/learner/v12/admin/add-complete', learnerV12Controller.adminAddCompleteGet);
 router.post('/prototypes/learner/v12/admin/add-complete', learnerV12Controller.adminAddCompletePost);
 
+//******************************************************
+//      drop down test
+//******************************************************
+router.get('/prototypes/learner/v12/selectas/radios', learnerV12Controller.selectaTestRadiosGet);
+router.get('/prototypes/learner/v12/selectas/select', learnerV12Controller.selectaTestSelectGet);
+router.get('/prototypes/learner/v12/selectas/typeahead', learnerV12Controller.selectaTestTypeaheadGet);
+
 // Create route from view path
 router.get('*', miscController.viewFileRoute);
 
