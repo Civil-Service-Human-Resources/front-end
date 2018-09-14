@@ -175,7 +175,6 @@ function profileOrganisationSubDivisionsGet(req, res) {
 }
 
 function profileOrganisationSubDivisionsPost(req, res) {
-
   const { organisation } = req.body;
 
   console.log(req.body);
