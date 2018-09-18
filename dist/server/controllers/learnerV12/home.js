@@ -141,7 +141,7 @@ function plannedGet(req, res) {
 
 // profile GET
 function profileGet(req, res) {
-  let viewData, workAreaHasBeenUpdated, setWorkAreaCommercial, setWorkAreaDigital, showRolesJoined, showUpdatedPrimaryWorkArea, hasAddedContractManagement, showUpdatedOtherWorkArea, hasBeenUpdatedOther, hasBeenUpdatedInterests, showNewNav, navItem, departmentName, profileGrades, profileOthersArray, primaryChoice, primaryOpsDelChoiceArray, combinedName, email, anythingUpdated, firstName, profileInterestsArray;
+  let viewData, workAreaHasBeenUpdated, setWorkAreaCommercial, setWorkAreaDigital, showRolesJoined, showUpdatedPrimaryWorkArea, hasAddedContractManagement, showUpdatedOtherWorkArea, hasBeenUpdatedOther, hasBeenUpdatedInterests, showNewNav, navItem, departmentName, profileGrades, profileOthersArray, primaryChoice, primaryOpsDelChoiceArray, combinedName, email, anythingUpdated, firstName, subDivisionSelection, profileInterestsArray;
 
   //showNewNav = req.session.showNewNav;
   req.session.showNewNav = true;
@@ -185,6 +185,7 @@ function profileGet(req, res) {
   anythingUpdated = req.session.anythingUpdated;
   req.session.anythingUpdated = null;
   firstName = req.session.firstName;
+  subDivisionSelection = req.session.subDivisionSelection;
 
   viewData = {
     workAreaHasBeenUpdated,
@@ -207,7 +208,8 @@ function profileGet(req, res) {
     combinedName,
     email,
     anythingUpdated,
-    firstName
+    firstName,
+    subDivisionSelection
   };
 
   return res.render('prototypes/learner/v12/profile/index', viewData);

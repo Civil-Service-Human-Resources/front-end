@@ -7,7 +7,8 @@
 {% set homePath = '/prototypes/learner/v12/home' %}
 {% set hasBeenUpdated = workAreaHasBeenUpdated if workAreaHasBeenUpdated %}
 
-{% set profileSubDivision = profileSubDivision if profileSubDivision %}
+{% set profileSubDivision = subDivisionData if subDivisionData %}
+{% set department = department if department %}
 
 {% block content %}
 
@@ -17,14 +18,16 @@
 
         {% call components.columnTwoThirds() %}
 
+            <p>Your selected top-level organisations is <strong>{{ department }}</strong></p>
+
             {% call components.formElement(name='profileOrganiationSubDivision', method='POST', action="#") %}
 
-                {% if profileSub %}
+                {% if profileSubDivision %}
 
                     <fieldset class="u-space-b30">
 
                         {% for item in profileSubDivision %}
-                            {{ components.radio(text=item.text, value=item.text, id='primary'+item.value,name='primary') }}
+                            {{ components.radio(text=item.text, value=item.text, id='subDivision'+item.value,name='subDivisions') }}
                         {% endfor %}
 
                     </fieldset>

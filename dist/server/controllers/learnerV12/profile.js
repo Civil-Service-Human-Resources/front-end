@@ -133,63 +133,73 @@ function profileOrganisationGet(req, res) {
 function profileOrganistionPost(req, res) {
   const { organisation } = req.body;
 
-  console.log(req.body);
-
-  let department, departmentSelectOptions, subDivisionData;
+  let department, departmentSelectOptions, altRedirectURL;
 
   departmentSelectOptions = generalData.allDepartments;
   department = departmentSelectOptions[organisation].text;
 
-  if (department === '') {
-    profileURL = '/prototypes/learner/v12/your-profile/organisation';
-  } else if (department === 'DWP') {
-    profileURL = '/prototypes/learner/v12/your-profile/organisation/sub-divisions';
+  if (department === 'DWP' || department === 'dwp') {
+    altRedirectURL = '/prototypes/learner/v12/your-profile/organisation/sub-divisions';
+  } else {
+    altRedirectURL = profileURL;
   }
-  req.session.subDivision = subDivision;
+  // req.session.subDivision = subDivision;
   req.session.anythingUpdated = true;
   req.session.departmentName = department;
 
-  return res.redirect(profileURL);
+  return res.redirect(altRedirectURL);
 }
 
 // Organisation sub divisions
 
 function profileOrganisationSubDivisionsGet(req, res) {
-  let viewData, navItem, showNewNav, departmentSelectOptions, profileSubDivision, subDivisionData;
+  let viewData, navItem, showNewNav, department, subDivisionData, subDivisionsDateSource;
 
   showNewNav = true;
   navItem = 'profile';
 
-  subDivisionData = generalData.allSubDivisionsDWP;
+  department = req.session.departmentName;
 
-  // profileSubDivision = eval('generalData.' + );
+  // console.log('department = ' + department);
+
+  if (department === 'DWP') {
+    subDivisionsDateSource = generalData.allSubDivisionsDWP;
+  }
+
+  // console.log(subDivisionsDateSource);
+
+  subDivisionData = subDivisionsDateSource;
 
   viewData = {
     showNewNav,
     navItem,
-    departmentSelectOptions,
-    profileSubDivision
+    department,
+    subDivisionData
   };
 
-  return res.render('prototypes/learner/v12/profile/organisation', viewData);
+  return res.render('prototypes/learner/v12/profile/organisations-sub-divisions', viewData);
 }
 
 function profileOrganisationSubDivisionsPost(req, res) {
-  const { organisation } = req.body;
+  const { subDivisions } = req.body;
 
   console.log(req.body);
 
-  let department, departmentSelectOptions;
+  let subDivisionSelection;
 
-  departmentSelectOptions = generalData.allDepartments;
-  department = departmentSelectOptions[organisation].text;
+  subDivisionSelection = subDivisions;
+  req.session.subDivisionSelection = subDivisionSelection;
 
-  if (department === '') {
+  // departmentSelectOptions = generalData.allDepartments;
+  // department = departmentSelectOptions[organisation].text;
+
+  /*if (department === '') {
     profileURL = '/prototypes/learner/v12/your-profile/organisation';
-  }
+  }*/
 
-  req.session.anythingUpdated = true;
-  req.session.departmentName = department;
+  // req.session.anythingUpdated = true;
+
+  // req.session.departmentName = department;
 
   return res.redirect(profileURL);
 }

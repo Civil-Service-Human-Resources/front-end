@@ -13,7 +13,7 @@ let allDepartments = [{ value: '0', text: 'Select an organisation' }, { value: '
 module.exports.allDepartments = allDepartments;
 
 // DWP
-let allSubDivisionsDWP = [{ value: '0', text: 'Select a sub division of DWP' }, { value: '1', text: 'Disability And Carers Service' }, { value: '2', text: 'DWP Core' }, { value: '3', text: 'Jobcentre Plus' }, { value: '5', text: 'Pension Service' }];
+let allSubDivisionsDWP = [{ value: '0', text: 'Child Maintenance Group' }, { value: '1', text: 'Disability And Carers Service' }, { value: '2', text: 'DWP Core' }, { value: '3', text: 'Jobcentre Plus' }, { value: '5', text: 'Pension Service' }];
 
 module.exports.allSubDivisionsDWP = allSubDivisionsDWP;
 

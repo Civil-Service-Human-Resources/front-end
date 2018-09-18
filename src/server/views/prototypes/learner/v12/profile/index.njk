@@ -142,6 +142,9 @@
                         <td class="key-value-list__value">
                             {% if departmentName %}
                                 {{ departmentName }}
+                                {% if subDivisionSelection %}
+                                    , {{ subDivisionSelection }}
+                                {% endif %}
                             {% else %}
                                 Unknown
                             {% endif %}
