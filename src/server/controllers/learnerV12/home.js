@@ -288,6 +288,10 @@ export function suggestedGet(req, res) {
     isG6,
     isHEO,
     firstName,
+    subDivisionSelection,
+    courseTitle1,
+    courseTitle2,
+    courseTitle3,
     department;
 
   showUpdatedPrimaryWorkArea = req.session.showUpdatedPrimaryWorkArea;
@@ -321,6 +325,17 @@ export function suggestedGet(req, res) {
   isHEO = req.session.isHEO;
   isG6 = req.session.isG6;
   firstName = req.session.firstName;
+  subDivisionSelection = req.session.subDivisionSelection;
+
+  if (department === 'DWP') {
+    courseTitle1 = 'Effective communication within ' + subDivisionSelection;
+    courseTitle2 = subDivisionSelection + ': management strategies';
+    courseTitle3 = subDivisionSelection + ' and customer service improvement';
+  } else {
+    courseTitle1 = 'Unconscious bias';
+    courseTitle2 = 'Tips for having difficult conversations';
+    courseTitle3 = 'Interview techniques (as interviewee)';
+  }
 
   viewData = {
     hideHomeStars,
@@ -335,6 +350,10 @@ export function suggestedGet(req, res) {
     isG6,
     isHEO,
     firstName,
+    subDivisionSelection,
+    courseTitle1,
+    courseTitle2,
+    courseTitle3,
   };
 
   return res.render(templateVersion, viewData);

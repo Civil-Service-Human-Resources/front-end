@@ -20,8 +20,10 @@
 
 {% set isG6 = isG6 if isG6 %}
 {% set isHEO = isHEO if isHEO %}
-
-
+{% set subDivisionSelection = subDivisionSelection if subDivisionSelection %}
+{% set courseTitle1 = courseTitle1 if courseTitle1 %}
+{% set courseTitle2 = courseTitle2 if courseTitle2 %}
+{% set courseTitle3 = courseTitle3 if courseTitle3 %}
 
 
 {% block content %}
@@ -96,7 +98,7 @@
                     {% if department %}
                         {{ department }}
                     {% else %}
-                        Home Office
+                        DWP
                     {% endif %}
                     </a>
                 </li>
@@ -153,14 +155,14 @@
 
     {%- endcall  %}
 
-    {#{% set department = 'Home Office' %}#}
+    {#{% set department = 'DWP' %}#}
 
     <h2 class="heading heading-medium heading--red-top" id="DWP">
         From
         {% if department %}
-            {{ department }}
+            {{ department }}{% if subDivisionSelection %}, {{ subDivisionSelection }}{% endif %}
         {% else %}
-            Home Office
+            DWP
         {% endif %}
     </h2>
 
@@ -169,7 +171,7 @@
         {% call components.columnOneThird() %}
 
             {{ components.tile(
-                title='Unconscious bias',
+                title=courseTitle1,
                 url='/prototypes/learner/v12/resource?resourceID=1',
                 starPercent='61%',
                 starTotal='25',
@@ -187,7 +189,7 @@
         {% call components.columnOneThird() %}
 
             {{ components.tile(
-                title='Tips for having difficult conversations',
+                title=courseTitle2,
                 url='/prototypes/learner/v12/resource?resourceID=13',
                 starPercent='80%',
                 starTotal='237',
@@ -205,7 +207,7 @@
         {% call components.columnOneThird() %}
 
             {{ components.tile(
-                title='Interview techniques (as interviewee)',
+                title=courseTitle3,
                 url='/prototypes/learner/v12/resource?resourceID=31',
                 starPercent='61%',
                 starTotal='25',
@@ -232,7 +234,7 @@
                     {% if department %}
                         {{ department }}
                     {% else %}
-                        Home Office
+                        DWP
                     {% endif %}
                 </a>
             </p>
