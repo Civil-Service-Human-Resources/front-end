@@ -115,6 +115,7 @@ export function profileOrganistionPost(req, res) {
   if (department === 'DWP' || department === 'dwp') {
     altRedirectURL = '/prototypes/learner/v12/your-profile/organisation/sub-divisions';
   } else {
+    req.session.subDivisionSelection = null;
     altRedirectURL = profileURL;
   }
   // req.session.subDivision = subDivision;
