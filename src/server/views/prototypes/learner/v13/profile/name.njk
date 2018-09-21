@@ -1,0 +1,40 @@
+{% extends 'layouts/default.layout.njk' %}
+
+{% set pageTitle = 'Change name - Learning Platform for Government' %}
+{% set blackBarTitle = 'Learning Platform for Government' %}
+{% set learnerPrototypeVersion = 'v13' %}
+{% set signOutPath = '/prototypes/learner/v13/' %}
+{% set homePath = '/prototypes/learner/v13/home' %}
+{% set hasBeenUpdated = workAreaHasBeenUpdated if workAreaHasBeenUpdated %}
+
+{% block content %}
+
+    {{ components.pageHeading('Change name') }}
+
+    {% call components.gridRow() %}
+
+        {% call components.columnTwoThirds() %}
+
+            {% call components.formElement(name='profileName', method='POST', action="#") %}
+
+                {{ components.field(label='First name', id='firstName', hint="", group=true, value=firstName)}}
+
+                {{ components.field(label='Last name', id='lastName', hint="", group=true, value=lastName)}}
+
+                {% call components.formGroup() %}
+
+                    {{ components.button(text='Save changes', group=true)}}
+
+                {%- endcall %}
+
+                <p>
+                    <a href="/prototypes/learner/v13">Cancel</a>
+                </p>
+
+            {%- endcall %}
+
+        {%- endcall %}
+
+    {%- endcall %}
+
+{% endblock %}

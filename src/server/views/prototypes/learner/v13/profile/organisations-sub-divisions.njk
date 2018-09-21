@@ -1,0 +1,55 @@
+{% extends 'layouts/default.layout.njk' %}
+
+{% set pageTitle = 'Change organisation sub division - Learning Platform for Government' %}
+{% set blackBarTitle = 'Learning Platform for Government' %}
+{% set learnerPrototypeVersion = 'v13' %}
+{% set signOutPath = '/prototypes/learner/v13/' %}
+{% set homePath = '/prototypes/learner/v13/home' %}
+{% set hasBeenUpdated = workAreaHasBeenUpdated if workAreaHasBeenUpdated %}
+
+{% set profileSubDivision = subDivisionData if subDivisionData %}
+{% set department = department if department %}
+
+{% block content %}
+
+    {{ components.pageHeading('Change organisation sub division') }}
+
+    {% call components.gridRow() %}
+
+        {% call components.columnTwoThirds() %}
+
+            <p>Your selected top-level organisations is <strong>{{ department }}</strong></p>
+
+            {% call components.formElement(name='profileOrganiationSubDivision', method='POST', action="#") %}
+
+                {% if profileSubDivision %}
+
+                    <fieldset class="u-space-b30">
+
+                        {% for item in profileSubDivision %}
+                            {{ components.radio(text=item.text, value=item.text, id='subDivision'+item.value,name='subDivisions') }}
+                        {% endfor %}
+
+                    </fieldset>
+
+                {% endif %}
+
+                {% call components.formGroup() %}
+
+                    {{ components.button(text='Save changes', group=true)}}
+
+                {%- endcall %}
+
+                <p>
+                    <a href="/prototypes/learner/v13">Cancel</a>
+                </p>
+
+            {%- endcall %}
+
+
+
+        {%- endcall %}
+
+    {%- endcall %}
+
+{% endblock %}

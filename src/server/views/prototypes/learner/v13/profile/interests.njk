@@ -1,0 +1,57 @@
+{% extends 'layouts/default.layout.njk' %}
+
+{% set pageTitle = 'Change core learning - Learning Platform for Government' %}
+{% set blackBarTitle = 'Learning Platform for Government' %}
+{% set learnerPrototypeVersion = 'v13' %}
+{% set signOutPath = '/prototypes/learner/v13/' %}
+{% set homePath = '/prototypes/learner/v13/home' %}
+{% set hasBeenUpdated = workAreaHasBeenUpdated if workAreaHasBeenUpdated %}
+
+{# new profile stuff #}
+{% set newCoreInterests = newCoreInterests if newCoreInterests %}
+
+{% block content %}
+
+    {{ components.pageHeading('Change core learning') }}
+
+    {% call components.gridRow() %}
+
+        {% call components.columnTwoThirds() %}
+
+
+            {% call components.formElement(name='profileInterests', method='POST', action="#") %}
+
+                {% if newCoreInterests %}
+
+                    <fieldset class="u-space-b30">
+
+                        {% for item in newCoreInterests %}
+
+                            <div class="multiple-choice filter__switch">
+                                <input id="extraInterests_{{ item.value }}" name="extraInterests" type="checkbox" value="{{ item.value }}">
+                                <label for="extraInterests_{{ item.value }}" class=" u-display-ib">{{ item.text }}</label>
+                            </div>
+
+                        {% endfor %}
+
+                    </fieldset>
+
+                {% endif %}
+
+                {% call components.formGroup() %}
+
+                    {{ components.button(text='Save changes', group=true)}}
+
+                {%- endcall %}
+
+                <p>
+                    <a href="/prototypes/learner/v13">Cancel</a>
+                </p>
+
+            {%- endcall %}
+
+        {%- endcall %}
+
+    {%- endcall %}
+
+{% endblock %}

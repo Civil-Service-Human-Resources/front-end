@@ -1,0 +1,42 @@
+{% extends 'layouts/default.layout.njk' %}
+
+{% set pageTitle = 'Change email - Learning Platform for Government' %}
+{% set blackBarTitle = 'Learning Platform for Government' %}
+{% set learnerPrototypeVersion = 'v13' %}
+{% set signOutPath = '/prototypes/learner/v13/' %}
+{% set homePath = '/prototypes/learner/v13/home' %}
+{% set hasBeenUpdated = workAreaHasBeenUpdated if workAreaHasBeenUpdated %}
+
+
+
+{% block content %}
+
+    {{ components.pageHeading('Change email') }}
+
+    {% call components.gridRow() %}
+
+        {% call components.columnTwoThirds() %}
+
+            {% call components.formElement(name='registerName', method='POST', action="#") %}
+
+                {{ components.field(label='Email address', id='email', hint="", group=true)}}
+
+                {{ components.field(label='Confirm email address', id='email2', hint="", group=true)}}
+
+                {% call components.formGroup() %}
+
+                    {{ components.button(text='Save changes', group=true)}}
+
+                {%- endcall %}
+
+                <p>
+                    <a href="/prototypes/learner/v13">Cancel</a>
+                </p>
+
+            {%- endcall %}
+
+        {%- endcall %}
+
+    {%- endcall %}
+
+{% endblock %}

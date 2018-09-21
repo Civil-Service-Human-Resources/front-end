@@ -1,0 +1,72 @@
+{% extends 'layouts/default.layout.njk' %}
+
+{% set pageTitle = 'Change organisation - Learning Platform for Government' %}
+{% set blackBarTitle = 'Learning Platform for Government' %}
+{% set learnerPrototypeVersion = 'v13' %}
+{% set signOutPath = '/prototypes/learner/v13/' %}
+{% set homePath = '/prototypes/learner/v13/home' %}
+{% set hasBeenUpdated = workAreaHasBeenUpdated if workAreaHasBeenUpdated %}
+
+{% set profilePrimary = profilePrimary if profilePrimary %}
+
+{% block content %}
+
+    {{ components.pageHeading('Change organisation') }}
+
+    {% call components.gridRow() %}
+
+        {% call components.columnTwoThirds() %}
+
+            {% call components.formElement(name='profilePrimary', method='POST', action="#") %}
+
+                {% if profilePrimary %}
+
+                    <fieldset class="u-space-b30">
+
+                        <div class="form-group">
+
+                            <label for="dropDownPrimaryArea" class="form-label form-label-bold u-space-b15">
+                                Select your organisation
+                                <span class="form-hint">Start typing to find your organisation</span>
+                            </label>
+                            <select name="" class="form-control" id="dropDownPrimaryArea">
+                                <option>Select your organisation</option>
+                                {% for item in profilePrimary %}
+                                    <option value="{{ item }}">{{ item }}</option>
+                                {% endfor %}
+                            </select>
+
+                        </div>
+
+                    </fieldset>
+
+                {% endif %}
+
+                {% call components.formGroup() %}
+
+                    {{ components.button(text='Save changes', group=true)}}
+
+                {%- endcall %}
+
+                <p>
+                    <a href="/prototypes/learner/v13">Cancel</a>
+                </p>
+
+            {%- endcall %}
+
+        {%- endcall %}
+
+    {%- endcall %}
+
+    <script type="text/javascript" src="/javascripts/accessible-autocomplete/accessible-autocomplete.min.js"></script>
+    <script type="text/javascript">
+      var selectEl = document.querySelector('#dropDownPrimaryArea');
+      accessibleAutocomplete.enhanceSelectElement({
+        autoselect: true,
+        defaultValue: selectEl.options[selectEl.options.selectedIndex].innerHTML,
+        minLength: 1,
+        selectElement: selectEl
+      });
+    </script>
+
+{% endblock %}

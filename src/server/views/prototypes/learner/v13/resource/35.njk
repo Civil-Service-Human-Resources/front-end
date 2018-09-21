@@ -1,0 +1,114 @@
+{% extends 'layouts/default.layout.njk' %}
+
+{% set pageTitle = 'Continuous Improvement and Lean - Learning Platform for Government' %}
+{% set blackBarTitle = 'Learning Platform for Government' %} {% set learnerPrototypeVersion = 'v13' %}
+{% set mainContainerClass = 'has-lower-hero' %}
+{% set signOutPath = '/prototypes/learner/v13/' %}
+{% set homePath = '/prototypes/learner/v13/home' %}
+
+{% set resourceType = resourceType if resourceType %}
+{% set hideDetailStars = hideDetailStars if hideDetailStars %}
+
+
+{% block content %}
+
+    {{ components.pageHeading(heading='Continuous Improvement and Lean') }}
+
+    {% call components.gridRow() %}
+
+    {% call components.columnTwoThirds() %}
+
+        <p>This topic provides you with an introduction to continuous improvement and lean. It will demonstrate how a collaborative team effort to systematically removing waste can lead to improved performance, making this topic ideal for senior customer-facing staff and managers.</p>
+
+        <p> During the course of your learning activities, you’ll see how lean principles can be applied to customer processes to eliminate different kinds of waste, which would otherwise distract time and resource from more valuable, useful work.</p>
+
+        <p> Ideally, you would’ve completed the ‘Introduction to continuous improvement’ and ‘Quality management’ topics, although there is no requirement to do them first. </p>
+
+
+    {% call components.formElement(name='startLearning', method='POST', action="#") %}
+
+        {% call components.formGroup() %}
+            {{ components.button(text='Book this course', start=false, group=true, url='/prototypes/learner/v13/booking/')}}
+        {%- endcall %}
+
+        <p>
+            <a href="/prototypes/learner/v13/actions?action=addedToLearningPlan&type=blog">Add to your learning</a>
+        </p>
+
+    {%- endcall %}
+
+    {%- endcall %}
+
+    {% call components.columnOneThird() %}
+
+        <aside class="govuk-related-items govuk-related-items--flush govuk-related-items--keylined" role="complementary">
+            <h2 class="heading-small">Key information</h2>
+
+            <table class="table-simple table--top">
+                <caption class="visuallyhidden">Details about the course</caption>
+                <tbody>
+                <tr>
+                    <th>Course type</th>
+                    <td>Classroom</td>
+                </tr>
+                <tr>
+                    <th>Level</th>
+                    <td>Administrative Assistant to Grade 6</td>
+                </tr>
+                <tr>
+                    <th>Key area</th>
+                    <td>Leadership</td>
+                </tr>
+                <tr>
+                    <th>Duration</th>
+                    <td>1 day</td>
+                </tr>
+                <tr>
+                    <th>Cost</th>
+                    <td>£238 (ex VAT)</td>
+                </tr>
+                </tbody>
+            </table>
+            <p class="u-space-b30"><a href="#" class="font-xsmall">See cost for group bookings</a> </p>
+
+            <h2 class="heading-small">Availability</h2>
+
+            <table class="table-simple table--top">
+                <caption class="visuallyhidden">Course availability</caption>
+                <tbody>
+                <tr>
+                    <th>Next date</th>
+                    <td>10 October 2018</td>
+                </tr>
+                <tr>
+                    <th>Places remaining</th>
+                    <td>12/20</td>
+                </tr>
+                <tr>
+                    <th>Location</th>
+                    <td>Manchester, M99</td>
+                </tr>
+                </tbody>
+            </table>
+            <p class="u-space-b30"><a href="#" class="font-xsmall">See more available dates</a> </p>
+
+            <h2 class="heading-small">Pre-learning</h2>
+            <ul class="">
+                <li><a href="#">Case study</a> </li>
+                <li><a href="#">MPA review (pre-reading)</a> </li>
+            </ul>
+
+            {% if not hideDetailStars %}
+                <h2 class="heading-small heading--flush">User rating</h2>
+                {{ components.starRating(rating='76%', total='104') }}
+            {% endif %}
+
+        </aside>
+
+
+    {%- endcall %}
+
+    {%- endcall %}
+
+
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends 'layouts/default.layout.njk' %}
+
+{% set pageTitle = 'Online training - Learning Platform for Government' %}
+{% set blackBarTitle = 'Learning Platform for Government' %} {% set learnerPrototypeVersion = 'v13' %}
+{% set mainContainerClass = 'has-lower-hero' %}
+{% set signOutPath = '/prototypes/learner/v13/' %}
+{% set homePath = '/prototypes/learner/v13/home' %}
+
+{% set resourceType = resourceType if resourceType %}
+{% set hideDetailStars = hideDetailStars if hideDetailStars %}
+
+
+{% block content %}
+
+    {{ components.pageHeading(heading='Responsibility for information') }}
+
+    {% call components.gridRow() %}
+
+    {% call components.columnTwoThirds() %}
+
+        <p>Projects are the vehicles through which government policy is translated into public services. Establishing, from the start, who the most important customers and stakeholders are, and what their requirements are, is critically important for successfully delivering a project.</p>
+        <p>Once a project is up and running, maintaining contact with those customer and stakeholder groups is equally important; updating them, managing expectations or even revising the project’s requirements as it develops. </p>
+        <p>This topic covers not only the importance of customer requirements, but also of identifying and consulting the right customers and stakeholders in the first place.</p>
+        <p>
+            You’ll also learn how best to communicate with those groups and how to make the most of their involvement throughout the project lifecycle</p>
+
+    {% call components.formElement(name='startLearning', method='POST', action="#") %}
+
+        {% call components.formGroup() %}
+            {{ components.button(text='Start this learning', start=false, group=true)}}
+        {%- endcall %}
+
+        <p>
+            <a href="/prototypes/learner/v13/actions?action=addedToLearningPlan&type=blog">Add to your learning</a>
+        </p>
+
+    {%- endcall %}
+
+    {%- endcall %}
+
+    {% call components.columnOneThird() %}
+
+        <aside class="govuk-related-items govuk-related-items--flush govuk-related-items--keylined" role="complementary">
+            <h2 class="heading-small">Key information</h2>
+
+            <table class="table-simple table--top u-space-b30">
+                <caption class="visuallyhidden">Details about the course</caption>
+                <tbody>
+                    <tr>
+                        <th>Course type</th>
+                        <td>Online</td>
+                    </tr>
+                    <tr>
+                        <th>Level</th>
+                        <td>AA to Grade 6</td>
+                    </tr>
+                    <tr>
+                        <th>Key area</th>
+                        <td>Digital</td>
+                    </tr>
+                    <tr>
+                        <th>Duration</th>
+                        <td>1 hour</td>
+                    </tr>
+                    <tr>
+                        <th>Cost</th>
+                        <td>£Free</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            {% if not hideDetailStars %}
+                <h2 class="heading-small">User rating</h2>
+                {{ components.starRating(rating='68%', total='97') }}
+            {% endif %}
+
+        </aside>
+
+    {%- endcall %}
+
+    {%- endcall %}
+
+{% endblock %}

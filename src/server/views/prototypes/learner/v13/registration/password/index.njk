@@ -1,0 +1,140 @@
+{% extends 'layouts/default.layout.njk' %}
+
+{% set pageTitle = 'Create a password - Learning Platform for Government' %}
+
+{% set blackBarTitle = 'Learning Platform for Government' %} {% set learnerPrototypeVersion = 'v13' %}
+{% set loggedOut = 'true' %}
+{% set signOutPath = '/prototypes/learner/v13/' %}
+{% set homePath = '/prototypes/learner/v13/' %}
+{% set firstName = firstName if firstName %}
+{% set lastName = lastName if lastName %}
+{% set passwordError = passwordError if passwordError %}
+{% set passwordErrorMessage = passwordErrorMessage if passwordErrorMessage %}
+{% set passwordOneError = passwordOneError if passwordOneError %}
+{% set passwordTwoError = passwordTwoError if passwordTwoError %}
+{% set password = password if password %}
+
+{% set editMode = editMode if editMode %}
+{% if editMode %}
+    {% set buttonText = 'Save changes'  %}
+{% else %}
+    {% set buttonText = 'Continue'  %}
+{% endif %}
+
+{% block content %}
+
+    {{ components.pageHeading('Create a password', 'Create an account') }}
+
+    {% if passwordError %}
+
+        <div class="error-summary" role="alert" aria-labelledby="nameErrors" tabindex="-1">
+            <h2 class="heading-medium error-summary-heading" id="nameErrors">There was a problem with your password</h2>
+            <ul class="error-summary-list">
+                {% if passwordError %}
+                    {% if passwordOneError %}
+                        {% set registrationPasswordErrorOneMessage = 'Enter a valid password' %}
+                    {% endif %}
+                    {% if passwordTwoError %}
+                        {% set registrationPasswordErrorTwoMessage = 'Enter a matching password' %}
+                    {% endif %}
+                    <li><a href="#passwordOne">{{ passwordErrorMessage }}</a></li>
+                {% endif %}
+            </ul>
+        </div>
+
+    {% endif %}
+
+    {% call components.gridRow() %}
+
+        {% call components.columnTwoThirds() %}
+        <style>
+            .module-criteria .criteria__list {
+                margin-top: 15px;
+                margin-bottom: 15px;
+                list-style-type: none;
+            }
+            .module-criteria .criteria__criterion, .module-criteria .criteria__criterion--has-failed, .module-criteria .criteria__criterion--has-passed {
+                padding-left: 5px;
+            }
+            .module-criteria .criteria__criterion--has-failed:before, .module-criteria .criteria__criterion--has-passed:before, .module-criteria .criteria__criterion:before {
+                font-family: "nta",Arial,sans-serif;
+                content: "\25CF";
+                -webkit-transform: scale3d(1.2,1.2,1);
+                transform: scale3d(1.2,1.2,1);
+                padding-right: 10px;
+                color: #0b0c0c;
+                display: inline-block;
+                width: 20px;
+            }
+            .module-criteria .criteria__criterion--has-failed:before {
+                content: "\2716";
+                color: #b10e1e;
+            }
+            .module-criteria .criteria__criterion--has-passed:before {
+                content: "\2714";
+                color: #006435;
+            }
+        </style>
+
+            {#<p class="lede">Now you need to create a memorable password for your account.</p>#}
+
+            {#<div class="module-criteria u-space-b30" id="password-criteria-scope">
+                <p>Your password must have:</p>
+                <ul class="list-bullet criteria__list">
+                    <li class="criteria__criterion" data-criteria="minLength" data-criteria-param="8">8 or more characters</li>
+                    <li class="criteria__criterion" data-criteria="hasNumeric">at least 1 number</li>
+                    <li class="criteria__criterion" data-criteria="hasMixedCase">upper and lower case letters</li>
+                </ul>
+            </div>
+#}
+            <div class="module-criteria" id="password-criteria-scope">
+                <span>Your password must have:</span>
+                <ul class="criteria__list">
+                    <li class="criteria__criterion" data-criteria="minLength" data-criteria-param="8">8 or more characters</li>
+                    <li class="criteria__criterion" data-criteria="hasNumeric">1 or more numbers</li>
+                    <li class="criteria__criterion" data-criteria="hasMixedCase">upper and lower case letters</li>
+                </ul>
+            </div>
+
+            {% call components.formElement(name='registerPassword', method='POST', action="#") %}
+
+                {#{{ components.field(label='Create a password', id='passwordOne', hint="", group=true, type='password', value=password, error=registrationPasswordErrorOneMessage)}}
+
+                {{ components.field(label='Retype your password', id='passwordTwo', hint="", group=true, type='password', error=registrationPasswordErrorTwoMessage)}}#}
+
+                {{ components.field(label='Create a password', id='password', hint="", name='passwordOne', group=true, type='password', value=password, error=registrationPasswordErrorOneMessage)}}
+
+                {{ components.field(label='Retype your password', id='passwordConfirm', name='passwordTwo', hint="", group=true, type='password', error=registrationPasswordErrorTwoMessage)}}
+
+
+                {% call components.formGroup() %}
+
+                    {{ components.button(text=buttonText, group=true)}}
+
+                {%- endcall %}
+
+                <p>
+                    <a href="/prototypes/learner/v13">Cancel</a>
+                </p>
+
+            {%- endcall %}
+
+        {%- endcall %}
+
+    {%- endcall %}
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+    <script src="/javascripts/legacyImports.js"></script>
+
+    <script type="application/javascript">
+        $(document).ready(function() {
+            var passwordCriteria = new DVSA.Modules.DVSACriteria.Criteria({
+                trigger: document.querySelector("#password"),
+                criteria: document.querySelector('#password-criteria-scope')
+            });
+            passwordCriteria.checkCriteria();
+        });
+    </script>
+
+{% endblock %}

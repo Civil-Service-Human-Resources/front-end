@@ -1,0 +1,54 @@
+{% extends 'layouts/default.layout.njk' %}
+
+{% set pageTitle = 'Change grade - Learning Platform for Government' %}
+{% set blackBarTitle = 'Learning Platform for Government' %}
+{% set learnerPrototypeVersion = 'v13' %}
+{% set signOutPath = '/prototypes/learner/v13/' %}
+{% set homePath = '/prototypes/learner/v13/home' %}
+{% set hasBeenUpdated = workAreaHasBeenUpdated if workAreaHasBeenUpdated %}
+
+{% set profileGrades = profileGrades if profileGrades %}
+
+
+{% block content %}
+
+    {{ components.pageHeading('Change grade') }}
+
+    {% call components.gridRow() %}
+
+        {% call components.columnTwoThirds() %}
+
+            {% call components.formElement(name='profileInterests', method='POST', action="#") %}
+
+
+                {% if profileGrades %}
+
+                    <fieldset class="u-space-b30 {% if registrationJob2Error %} form-group-error {% endif %}">
+
+                        {% for item in profileGrades %}
+                            {{ components.radio(item.text, item.text, 'grades'+item.value, name='grades') }}
+                        {% endfor %}
+
+                    </fieldset>
+
+                {% endif %}
+
+                {% call components.formGroup() %}
+
+                    {{ components.button(text='Save changes', group=true)}}
+
+                {%- endcall %}
+
+                <p>
+                    <a href="/prototypes/learner/v13">Cancel</a>
+                </p>
+
+            {%- endcall %}
+
+
+
+    {%- endcall %}
+
+    {%- endcall %}
+
+{% endblock %}

@@ -1,21 +1,33 @@
 {% set showNewNav = showNewNav if showNewNav %}
-
-{#{% if useNewNav %}
-  <div>we're using new nav :)</div>
-{% else %}
-  <div>we're NOT using new nav :(</div>
-{% endif %}#}
+{% set newHeader = newHeader if newHeader %}
 
 <header id="global-header" class="with-proposition">
-  <div class="header-wrapper">
-    <div class="header-global">
-      <div class="header-logo">
-        <a href="https://www.gov.uk" title="Go to the GOV.UK homepage" id="logo" class="content">
-          <img src="/images/gov.uk_logotype_crown_invert_trans.png?0.22.1" width="36" height="32" alt="">
-          GOV.UK
-        </a>
-      </div>
-    </div>
+
+    {% if newHeader %}
+
+      <div class="header-wrapper">
+        <div class="header-global">
+          <div class="header-logo">
+            <a href="/" title="Go to the Seventy Twenty Ten homepage" id="logo" class="content">
+              Seventy Twenty Ten
+            </a>
+          </div>
+        </div>
+
+    {% else %}
+
+      <div class="header-wrapper">
+        <div class="header-global">
+          <div class="header-logo">
+            <a href="https://www.gov.uk" title="Go to the GOV.UK homepage" id="logo" class="content">
+              <img src="/images/gov.uk_logotype_crown_invert_trans.png?0.22.1" width="36" height="32" alt="">
+              GOV.UK
+            </a>
+          </div>
+        </div>
+
+    {% endif %}
+
     <div class="header-proposition">
       <div class="content">
 
@@ -23,81 +35,91 @@
           {#<a href="#proposition-links" class="js-header-toggle menu">Menu</a>#}
         {#{% endif %}#}
 
-        <nav id="proposition-menu">
-          <a href="{% if homePath %}{{ homePath }}{% else %}/{% endif %}" id="proposition-name">
-            {% if blackBarTitle %}
-              {{ blackBarTitle }}
-            {% else %}
-              Prototype kit
-            {% endif %}
-          </a>
+        {% if newHeader %}
 
-          {% if not showNewNav %}
+        {% else %}
 
-          {% if blackBarTitle == 'Civil Service Learning' %}
+          <nav id="proposition-menu">
+            <a href="{% if homePath %}{{ homePath }}{% else %}/{% endif %}" id="proposition-name">
+              {% if blackBarTitle %}
+                {{ blackBarTitle }}
+              {% else %}
+                Prototype kit
+              {% endif %}
+            </a>
 
-            {% if loggedOut == 'true' %}
-              <ul id="proposition-links">
-                <li><a href="{{ homePath }}">Home</a></li>
-              </ul>
-            {% else %}
-              <ul id="proposition-links">
-                <li><a href="{{ homePath }}">Home</a></li>
-                {% if learnerPrototypeVersion == 'v1'%}
-                <li><a href="/prototypes/learner/{% if learnerPrototypeVersion %}{{ learnerPrototypeVersion }}{% else %}v1{% endif %}/learning-plan">Learning plan</a></li>
-                {% elif learnerPrototypeVersion == 'v2' %}
+            {% if not showNewNav %}
+
+            {% if blackBarTitle == 'Civil Service Learning' %}
+
+              {% if loggedOut == 'true' %}
+                <ul id="proposition-links">
+                  <li><a href="{{ homePath }}">Home</a></li>
+                </ul>
+              {% else %}
+                <ul id="proposition-links">
+                  <li><a href="{{ homePath }}">Home</a></li>
+                  {% if learnerPrototypeVersion == 'v1'%}
                   <li><a href="/prototypes/learner/{% if learnerPrototypeVersion %}{{ learnerPrototypeVersion }}{% else %}v1{% endif %}/learning-plan">Learning plan</a></li>
-                {% endif %}
-                <li><a href="/prototypes/learner/{% if learnerPrototypeVersion %}{{ learnerPrototypeVersion }}{% else %}v1{% endif %}/suggested-learning">Suggestions for you</a></li>
-                <li><a href="/prototypes/learner/{% if learnerPrototypeVersion %}{{ learnerPrototypeVersion }}{% else %}v1{% endif %}/learning-record">Learning record</a></li>
-                <li><a href="/prototypes/learner/{% if learnerPrototypeVersion %}{{ learnerPrototypeVersion }}{% else %}v1{% endif %}/your-profile">Profile</a></li>
-                {% if isAdmin %}
-                  <li><a href="/prototypes/learner/{% if learnerPrototypeVersion %}{{ learnerPrototypeVersion }}{% else %}v1{% endif %}/admin">Admin</a></li>
-                {% endif %}
-                <li><a href="{{ signOutPath }}">Sign out</a></li>
+                  {% elif learnerPrototypeVersion == 'v2' %}
+                    <li><a href="/prototypes/learner/{% if learnerPrototypeVersion %}{{ learnerPrototypeVersion }}{% else %}v1{% endif %}/learning-plan">Learning plan</a></li>
+                  {% endif %}
+                  <li><a href="/prototypes/learner/{% if learnerPrototypeVersion %}{{ learnerPrototypeVersion }}{% else %}v1{% endif %}/suggested-learning">Suggestions for you</a></li>
+                  <li><a href="/prototypes/learner/{% if learnerPrototypeVersion %}{{ learnerPrototypeVersion }}{% else %}v1{% endif %}/learning-record">Learning record</a></li>
+                  <li><a href="/prototypes/learner/{% if learnerPrototypeVersion %}{{ learnerPrototypeVersion }}{% else %}v1{% endif %}/your-profile">Profile</a></li>
+                  {% if isAdmin %}
+                    <li><a href="/prototypes/learner/{% if learnerPrototypeVersion %}{{ learnerPrototypeVersion }}{% else %}v1{% endif %}/admin">Admin</a></li>
+                  {% endif %}
+                  <li><a href="{{ signOutPath }}">Sign out</a></li>
+                </ul>
+              {% endif %}
+            {% endif %}
+
+              {% if blackBarTitle == 'Learning Platform for Government' %}
+
+                  {% if loggedOut == 'true' %}
+                    {#<ul id="proposition-links">
+                      <li><a href="{{ homePath }}">Home</a></li>
+                    </ul>#}
+                  {% else %}
+                    <ul id="proposition-links">
+                      <li><a href="{{ homePath }}">Home</a></li>
+                        {% if learnerPrototypeVersion == 'v1'%}
+                          <li><a href="/prototypes/learner/{% if learnerPrototypeVersion %}{{ learnerPrototypeVersion }}{% else %}v1{% endif %}/learning-plan">Learning plan</a></li>
+                            {% elif learnerPrototypeVersion == 'v2' %}
+                          <li><a href="/prototypes/learner/{% if learnerPrototypeVersion %}{{ learnerPrototypeVersion }}{% else %}v1{% endif %}/learning-plan">Learning plan</a></li>
+                        {% endif %}
+                      <li><a href="/prototypes/learner/{% if learnerPrototypeVersion %}{{ learnerPrototypeVersion }}{% else %}v1{% endif %}/suggested-learning">Suggestions for you</a></li>
+                      <li><a href="/prototypes/learner/{% if learnerPrototypeVersion %}{{ learnerPrototypeVersion }}{% else %}v1{% endif %}/learning-record">Learning record</a></li>
+                      <li><a href="/prototypes/learner/{% if learnerPrototypeVersion %}{{ learnerPrototypeVersion }}{% else %}v1{% endif %}/your-profile">Profile</a></li>
+                      {% if isAdmin %}
+                        <li><a href="/prototypes/learner/{% if learnerPrototypeVersion %}{{ learnerPrototypeVersion }}{% else %}v1{% endif %}/admin">Admin</a></li>
+                      {% endif %}
+                      <li><a href="{{ signOutPath }}">Sign out</a></li>
+                    </ul>
+                  {% endif %}
+              {% endif %}
+
+            {% if not blackBarTitle %}
+              <ul id="proposition-links">
+                <li>
+                  <a href="/">Index</a>
+                </li>
+                <li>
+                  <a href="https://github.com/Civil-Service-Human-Resources/lpg-prototypes">Github</a>
+                </li>
               </ul>
             {% endif %}
-          {% endif %}
 
-            {% if blackBarTitle == 'Learning Platform for Government' %}
-
-                {% if loggedOut == 'true' %}
-                  {#<ul id="proposition-links">
-                    <li><a href="{{ homePath }}">Home</a></li>
-                  </ul>#}
-                {% else %}
-                  <ul id="proposition-links">
-                    <li><a href="{{ homePath }}">Home</a></li>
-                      {% if learnerPrototypeVersion == 'v1'%}
-                        <li><a href="/prototypes/learner/{% if learnerPrototypeVersion %}{{ learnerPrototypeVersion }}{% else %}v1{% endif %}/learning-plan">Learning plan</a></li>
-                          {% elif learnerPrototypeVersion == 'v2' %}
-                        <li><a href="/prototypes/learner/{% if learnerPrototypeVersion %}{{ learnerPrototypeVersion }}{% else %}v1{% endif %}/learning-plan">Learning plan</a></li>
-                      {% endif %}
-                    <li><a href="/prototypes/learner/{% if learnerPrototypeVersion %}{{ learnerPrototypeVersion }}{% else %}v1{% endif %}/suggested-learning">Suggestions for you</a></li>
-                    <li><a href="/prototypes/learner/{% if learnerPrototypeVersion %}{{ learnerPrototypeVersion }}{% else %}v1{% endif %}/learning-record">Learning record</a></li>
-                    <li><a href="/prototypes/learner/{% if learnerPrototypeVersion %}{{ learnerPrototypeVersion }}{% else %}v1{% endif %}/your-profile">Profile</a></li>
-                    {% if isAdmin %}
-                      <li><a href="/prototypes/learner/{% if learnerPrototypeVersion %}{{ learnerPrototypeVersion }}{% else %}v1{% endif %}/admin">Admin</a></li>
-                    {% endif %}
-                    <li><a href="{{ signOutPath }}">Sign out</a></li>
-                  </ul>
-                {% endif %}
             {% endif %}
 
-          {% if not blackBarTitle %}
-            <ul id="proposition-links">
-              <li>
-                <a href="/">Index</a>
-              </li>
-              <li>
-                <a href="https://github.com/Civil-Service-Human-Resources/lpg-prototypes">Github</a>
-              </li>
-            </ul>
-          {% endif %}
+          </nav>
 
-          {% endif %}
 
-        </nav>
+
+        {% endif %}
+
+
       </div>
     </div>
 

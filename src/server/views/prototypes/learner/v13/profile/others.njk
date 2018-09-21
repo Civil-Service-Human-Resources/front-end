@@ -1,0 +1,50 @@
+{% extends 'layouts/default.layout.njk' %}
+
+{% set pageTitle = 'Change other areas of work - Learning Platform for Government' %}
+{% set blackBarTitle = 'Learning Platform for Government' %}
+{% set learnerPrototypeVersion = 'v13' %}
+{% set signOutPath = '/prototypes/learner/v13/' %}
+{% set homePath = '/prototypes/learner/v13/home' %}
+{% set hasBeenUpdated = workAreaHasBeenUpdated if workAreaHasBeenUpdated %}
+
+{% set profileOthers = profileOthers if profileOthers %}
+
+{% block content %}
+
+    {{ components.pageHeading('Change other areas of work') }}
+
+    {% call components.gridRow() %}
+
+        {% call components.columnTwoThirds() %}
+
+            {% call components.formElement(name='profileOthers', method='POST', action="#") %}
+
+                {% if profileOthers %}
+
+                    <fieldset class="u-space-b30 {% if registrationJob2Error %} form-group-error {% endif %}">
+
+                        {% for item in profileOthers %}
+                            {{ components.checkbox(item.text, item.text, 'others'+item.value, name='others') }}
+                        {% endfor %}
+
+                    </fieldset>
+
+                {% endif %}
+
+                {% call components.formGroup() %}
+
+                    {{ components.button(text='Save changes', group=true)}}
+
+                {%- endcall %}
+
+                <p>
+                    <a href="/prototypes/learner/v13">Cancel</a>
+                </p>
+
+            {%- endcall %}
+
+        {%- endcall %}
+
+    {%- endcall %}
+
+{% endblock %}

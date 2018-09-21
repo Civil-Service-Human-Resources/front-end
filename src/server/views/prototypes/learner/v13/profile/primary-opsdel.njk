@@ -1,0 +1,50 @@
+{% extends 'layouts/default.layout.njk' %}
+
+{% set pageTitle = 'Change primary area of work - Operational delivery - Learning Platform for Government' %}
+
+{% set blackBarTitle = 'Learning Platform for Government' %} {% set learnerPrototypeVersion = 'v13' %}
+{% set loggedOut = 'false' %}
+{% set signOutPath = '/prototypes/learner/v13/' %}
+{% set homePath = '/prototypes/learner/v13/' %}
+
+{% set detailsOpsDel = profilePrimaryOpsDel if profilePrimaryOpsDel %}
+
+{#{% set profession = profession if profession %}#}
+
+{% block content %}
+
+    {{ components.pageHeading('Change primary area of work - Operational delivery') }}
+
+    {% call components.gridRow() %}
+
+    {% call components.columnTwoThirds() %}
+
+        <p class="lede">Select the most suitable area of work from <strong>Operational delivery</strong>. This will help tailor your suggested learning.</p>
+
+    {% call components.formElement(name='detailsOpsDelForm', method='POST', action="#") %}
+
+        <fieldset class="u-space-b30">
+
+            {% for item in detailsOpsDel %}
+                {{ components.checkbox(text=item.text, value=item.text, id='detailsopsDel'+item.value,name='detailsOpsDel') }}
+            {% endfor %}
+
+        </fieldset>
+
+        {% call components.formGroup() %}
+
+            {{ components.button(text='Save changes', group=true)}}
+
+        {%- endcall %}
+
+        <p><a href="/prototypes/learner/v13">Cancel</a></p>
+
+    {%- endcall %}
+
+
+    {%- endcall %}
+
+    {%- endcall %}
+
+{% endblock %}
+

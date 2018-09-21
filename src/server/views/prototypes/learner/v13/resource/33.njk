@@ -1,0 +1,64 @@
+{% extends 'layouts/default.layout.njk' %}
+
+{% set pageTitle = 'No.1 Identifying an organisations stakeholders - Learning Platform for Government' %}
+{% set blackBarTitle = 'Learning Platform for Government' %} {% set learnerPrototypeVersion = 'v13' %}
+{% set mainContainerClass = 'has-lower-hero' %}
+{% set signOutPath = '/prototypes/learner/v13/' %}
+{% set homePath = '/prototypes/learner/v13/home' %}
+
+{% set resourceType = resourceType if resourceType %}
+{% set hideDetailStars = hideDetailStars if hideDetailStars %}
+
+
+{% block content %}
+
+    {{ components.pageHeading(heading='No.1 Identifying an organisation’s stakeholders') }}
+
+    {% call components.gridRow() %}
+
+        {% call components.columnTwoThirds() %}
+
+            {% call components.formElement(name='startLearning', method='POST', action="#") %}
+
+                {% call components.formGroup() %}
+                    {{ components.button(text='View article', start=false, group=true, url='http://www.open.edu/openlearn/money-business/leadership-management/discovering-management/content-section-1.4.2')}}
+                {%- endcall %}
+
+                <p>
+                    <a href="/prototypes/learner/v13/actions?action=addedToLearningPlan&type=blog">Add to your learning</a>
+                </p>
+
+            {%- endcall %}
+
+        {%- endcall %}
+
+        {% call components.columnOneThird() %}
+
+            <aside class="govuk-related-items govuk-related-items--flush govuk-related-items--keylined" role="complementary">
+                <h2 class="heading-small visuallyhidden">Key information</h2>
+
+                <table class="table-simple table--top u-space-b30">
+                    <caption class="visuallyhidden">Details about the course</caption>
+                    <tbody>
+                        <tr>
+                            <th>Course type</th>
+                            <td>Link</td>
+                        </tr>
+
+                            <th>Level</th>
+                            <td>EO to Grade 6</td>
+                        </tr>
+                        <tr class="table--snuggled-row">
+                            <th>Cost</th>
+                            <td>£Free</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </aside>
+
+        {%- endcall %}
+
+    {%- endcall %}
+
+{% endblock %}
