@@ -25,7 +25,9 @@
 
 {% block content %}
 
-    {% call components.gridRow() %}
+
+
+    {#{% call components.gridRow() %}
 
         {% call components.columnFull() %}
 
@@ -67,12 +69,12 @@
 
         {%- endcall %}
 
-    {%- endcall %}
+    {%- endcall %}#}
 
     {% call components.gridRow() %}
 
         {% call components.columnHalf() %}
-            <h2 class="heading-medium">15 minutes to spare?</h2>
+            <h2 class="heading-medium">{{ greeting }}, do you have 15 minutes to spare?</h2>
             <a href="#"><img src="/images/thumbs/video-thumb.jpg" width="100%" alt="youtube thumbnail of Simon Sinek - Start With Why - TED Talk Short Edited"></a>
             <h3 class="heading-small">Simon Sinek - Start With Why - TED Talk Short Edited</h3>
             <a href="#">Add to learning plan</a>

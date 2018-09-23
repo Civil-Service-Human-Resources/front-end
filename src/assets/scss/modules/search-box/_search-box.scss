@@ -78,4 +78,18 @@ $module: 'search-box';
       top: 10px;
     }
   }
+
+  &--header {
+    position: absolute;
+    right: 31px;
+    top: 6px;
+    width: 300px;
+
+    .#{$module}__submit  {
+      border: 1px solid $white;
+      height: 34px;
+      top: 2px;
+    }
+
+  }
 }
