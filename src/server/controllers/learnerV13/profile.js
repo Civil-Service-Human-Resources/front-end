@@ -208,7 +208,10 @@ export function profilePrimaryPost(req, res) {
 
   if (primaryChoice === 'Operational delivery') {
     newRedirectURL = '/prototypes/learner/v13/your-profile/primary/operational-delivery';
-  } else {
+  } else if (primaryChoice === 'Commercial') {
+      newRedirectURL = '/prototypes/learner/v13/your-profile/primary/commercial';
+  }
+  else {
     req.session.primaryOpsDelChoiceArray = null;
     newRedirectURL = profileURL;
   }
@@ -264,6 +267,51 @@ export function profilePrimaryOpsDelPost(req, res) {
   req.session.primaryOpsDelChoiceArray = primaryOpsDelChoiceArray;
 
   return res.redirect(profileURL);
+}
+// **************************************************************************************
+// Primary area of work COMMERCIAL
+// **************************************************************************************
+export function profilePrimaryCommercialGet(req, res) {
+    let viewData, navItem, showNewNav, profilePrimaryCommercial;
+
+    showNewNav = true;
+    navItem = 'profile';
+
+    profilePrimaryCommercial = generalData.detailsCommercial;
+
+    viewData = {
+        showNewNav,
+        navItem,
+        profilePrimaryCommercial,
+    };
+
+    return res.render('prototypes/learner/v13/profile/primary-commercial', viewData);
+}
+
+// primary: POST
+export function profilePrimaryCommercialPost(req, res) {
+    const { detailsCommercial } = req.body;
+
+    let primaryCommercialChoice,
+        primaryCommercialChoiceArray = [];
+
+    primaryCommercialChoice = detailsCommercial;
+    console.log(primaryCommercialChoice);
+
+    if (primaryCommercialChoice) {
+        if (typeof primaryCommercialChoice === 'string' || primaryCommercialChoice instanceof String) {
+            primaryCommercialChoiceArray.push(primaryCommercialChoice);
+        } else if (primaryCommercialChoice.length > 0) {
+            primaryCommercialChoiceArray = primaryCommercialChoice;
+        }
+    } else {
+        primaryCommercialChoiceArray = ['Unknown'];
+    }
+
+    req.session.anythingUpdated = true;
+    req.session.primaryCommercialChoiceArray = primaryCommercialChoiceArray;
+
+    return res.redirect(profileURL);
 }
 
 // **************************************************************************************

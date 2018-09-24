@@ -71,31 +71,38 @@
 
     {%- endcall %}#}
 
+     {% call components.gridRow(extraClass='u-space-t15') %}
+
+         {% call components.columnFull() %}
+
+             {% if fireTrainingComplete %}
+                 <p class="u-space-b5 highlight"><a href="/prototypes/learner/v13/feedback" class="bold-small small"> Leave your views</a> on 2 learning items.</p>
+             {% else %}
+                 <p class="u-space-b5 highlight"><a href="/prototypes/learner/v13/feedback" class="bold-small small"> Leave your views</a> on 2 learning items.</p>
+             {% endif %}
+
+         {%- endcall %}
+
+     {%- endcall %}
+
+
     {% call components.gridRow() %}
 
         {% call components.columnHalf() %}
-            <h2 class="heading-medium">{{ greeting }}, do you have 15 minutes to spare?</h2>
+            <h2 class="heading-medium u-space-t5">{{ greeting }}, do you have 15 minutes to spare?</h2>
             <a href="#"><img src="/images/thumbs/video-thumb.jpg" width="100%" alt="youtube thumbnail of Simon Sinek - Start With Why - TED Talk Short Edited"></a>
             <h3 class="heading-small">Simon Sinek - Start With Why - TED Talk Short Edited</h3>
             <a href="#">Add to learning plan</a>
             <p>Show blogs and videos that are <a href="#">under ten minutes</a>, or <a href="#">around half an hour</a>.</p>
         {%- endcall %}
 
-    {%- endcall %}
-
-    {% call components.gridRow() %}
-
-            {% call components.columnFull() %}
-
-                {% if fireTrainingComplete %}
-                    <p class="u-space-b5 highlight"><a href="/prototypes/learner/v13/feedback" class="bold-small small"> Leave your views</a> on 2 learning items.</p>
-                {% else %}
-                    <p class="u-space-b5 highlight"><a href="/prototypes/learner/v13/feedback" class="bold-small small"> Leave your views</a> on 2 learning items.</p>
-                {% endif %}
-
-            {%- endcall %}
-
+        {% call components.columnHalf() %}
+            <h2 class="heading-medium u-space-t5">Whats next for you?</h2>
+            <h3 class="heading-small">You have some required learning to complete</h3>
+            <ul></ul>
         {%- endcall %}
+
+    {%- endcall %}
 
     {% call components.gridRow() %}
 

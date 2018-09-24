@@ -26,6 +26,8 @@
 {% set email = email if email %}
 {% set anythingUpdated = anythingUpdated if anythingUpdated %}
 {% set firstName = firstName if firstName %}
+{% set primaryCommercialChoiceArray = primaryCommercialChoiceArray if primaryCommercialChoiceArray %}
+
 
 
 {% block content %}
@@ -166,6 +168,13 @@
                             {% if primaryOpsDelChoiceArray %}
                                 <br>
                                 {% for item in primaryOpsDelChoiceArray %}
+                                    {{ item }},
+                                {% endfor %}
+                            {% endif %}
+
+                            {% if primaryCommercialChoiceArray %}
+                                <br>
+                                {% for item in primaryCommercialChoiceArray %}
                                     {{ item }},
                                 {% endfor %}
                             {% endif %}

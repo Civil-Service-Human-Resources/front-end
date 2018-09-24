@@ -193,6 +193,7 @@ export function profileGet(req, res) {
     anythingUpdated,
     firstName,
     subDivisionSelection,
+    primaryCommercialChoiceArray,
     profileInterestsArray;
 
   //showNewNav = req.session.showNewNav;
@@ -238,6 +239,7 @@ export function profileGet(req, res) {
   req.session.anythingUpdated = null;
   firstName = req.session.firstName;
   subDivisionSelection = req.session.subDivisionSelection;
+  primaryCommercialChoiceArray = req.session.primaryCommercialChoiceArray;
 
   viewData = {
     workAreaHasBeenUpdated,
@@ -262,6 +264,7 @@ export function profileGet(req, res) {
     anythingUpdated,
     firstName,
     subDivisionSelection,
+    primaryCommercialChoiceArray,
   };
 
   return res.render('prototypes/learner/v13/profile/index', viewData);
