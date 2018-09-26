@@ -25,6 +25,10 @@
 {% set courseTitle2 = courseTitle2 if courseTitle2 %}
 {% set courseTitle3 = courseTitle3 if courseTitle3 %}
 
+{% set interviewTechniquesAdded = interviewTechniquesAdded if interviewTechniquesAdded %}
+{% set interviewTechniquesAddedHome = interviewTechniquesAddedHome if interviewTechniquesAddedHome %}
+
+
 
 {% block content %}
     <style> body, .smooth-container { scroll-behavior: smooth }</style>
@@ -73,6 +77,17 @@
         {%- endcall %}
 
     {%- endcall %}
+
+    {% if interviewTechniquesAdded %}
+        <div class="grid-row ">
+            <div class="column-full ">
+                <div class="banner banner--confirmation">
+                    <span class="banner__heading-large">Interview techniques (as interviewee)</span>
+                    <span>This has been added to <a href="/prototypes/learner/v13/home#learningPlan">your learning plan</a>.</span>
+                </div>
+            </div>
+        </div>
+    {% endif %}
 
 
     {# jump nav start #}
@@ -210,19 +225,48 @@
 
         {% call components.columnOneThird() %}
 
-            {{ components.tile(
-                title=courseTitle3,
-                url='/prototypes/learner/v13/resource?resourceID=31',
-                starPercent='61%',
-                starTotal='25',
-                type='Online',
-                duration='3 hours',
-                cost='£Free',
-                hideStars=hideHomeStars,
-                version='v13',
-                showRemoveX=showRemoveX,
-                intro='Few things in life are more stressful than a job interview.'
-            ) }}
+            {% if interviewTechniquesAddedHome %}
+
+                {{ components.tile(
+                    title='Advanced techniques for a digital Civil Service',
+                    url='/prototypes/learner/v13/resource?resourceID=41',
+                    type='Online',
+                    duration='1 hour 30 mins',
+                    cost='£Free',
+                    hideStars=hideHomeStars,
+                    version='v13',
+                    showRemoveX=showRemoveX,
+                    intro='Learn advanced computing skills to help you work in an increasingly digital Civil Service'
+                ) }}
+
+            {% else %}
+
+                <div class="tile">
+                    <a href="#" class="tile__dismiss" title="Remove this suggestion"><span class="visuallyhidden">Remove this suggestions</span></a>
+                    <h4 class="heading-small"><a href="/prototypes/learner/v13/resource?resourceID=31">Interview techniques (as interviewee)</a></h4>
+                    <ul class="tile__properties u-clearfix">
+                        <li class="tile__property">
+                            <span class="visuallyhidden">Type</span>
+                            <span class="tile__value">Online</span>
+                        </li>
+                        <li class="tile__property">
+                            <span class="visuallyhidden">Duration</span>
+                            <span class="tile__value">3 hours</span>
+                        </li>
+                        <li class="tile__property">
+                            <span class="visuallyhidden">Cost</span>
+                            <span class="tile__value">£Free</span>
+                        </li>
+                    </ul>
+                    <p class="tile__description">Few things in life are more stressful than a job interview.</p>
+                    <p class="tile__attribution"></p>
+                    <p class="tile__actions">
+                        <a href="/prototypes/learner/v13/actions?action=interviewTechniquesAddedToLearningPlan">Add to your learning</a>
+
+                    </p>
+                </div>
+
+            {% endif %}
 
         {%- endcall %}
 

@@ -98,9 +98,7 @@
     get: function(num) {
       return num != null
         ? // Return just the one element from the set
-          num < 0
-          ? this[num + this.length]
-          : this[num]
+          num < 0 ? this[num + this.length] : this[num]
         : // Return all the elements in a clean array
           slice.call(this);
     },
@@ -1422,11 +1420,7 @@
                 ? // Do a sibling check if the nodes have a common ancestor
                   siblingCheck(ap[i], bp[i])
                 : // Otherwise nodes in our document sort first
-                  ap[i] === preferredDoc
-                  ? -1
-                  : bp[i] === preferredDoc
-                    ? 1
-                    : 0;
+                  ap[i] === preferredDoc ? -1 : bp[i] === preferredDoc ? 1 : 0;
             };
 
         return doc;
@@ -1492,9 +1486,7 @@
           ? val
           : support.attributes || !documentIsHTML
             ? elem.getAttribute(name)
-            : (val = elem.getAttributeNode(name)) && val.specified
-              ? val.value
-              : null;
+            : (val = elem.getAttributeNode(name)) && val.specified ? val.value : null;
       };
 
       Sizzle.error = function(msg) {
@@ -1718,9 +1710,7 @@
                         ? check && result.slice(-check.length) === check
                         : operator === '~='
                           ? (' ' + result.replace(rwhitespace, ' ') + ' ').indexOf(check) > -1
-                          : operator === '|='
-                            ? result === check || result.slice(0, check.length + 1) === check + '-'
-                            : false;
+                          : operator === '|=' ? result === check || result.slice(0, check.length + 1) === check + '-' : false;
             };
           },
 
@@ -2733,9 +2723,7 @@
     }
 
     return elems.length === 1 && elem.nodeType === 1
-      ? jQuery.find.matchesSelector(elem, expr)
-        ? [elem]
-        : []
+      ? jQuery.find.matchesSelector(elem, expr) ? [elem] : []
       : jQuery.find.matches(
           expr,
           jQuery.grep(elems, function(elem) {
@@ -3675,11 +3663,7 @@
                 : data === 'null'
                   ? null
                   : // Only convert to a number if it doesn't change the string
-                    +data + '' === data
-                    ? +data
-                    : rbrace.test(data)
-                      ? jQuery.parseJSON(data)
-                      : data;
+                    +data + '' === data ? +data : rbrace.test(data) ? jQuery.parseJSON(data) : data;
         } catch (e) {}
 
         // Make sure we set the data so it isn't changed later
@@ -3964,9 +3948,7 @@
           })
         : // Gets one value
           // Try to fetch any internally stored data first
-          elem
-          ? dataAttr(elem, key, jQuery.data(elem, key))
-          : undefined;
+          elem ? dataAttr(elem, key, jQuery.data(elem, key)) : undefined;
     },
 
     removeData: function(key) {
@@ -4169,11 +4151,7 @@
     return chainable
       ? elems
       : // Gets
-        bulk
-        ? fn.call(elems)
-        : length
-          ? fn(elems[0], key)
-          : emptyGet;
+        bulk ? fn.call(elems) : length ? fn(elems[0], key) : emptyGet;
   });
   var rcheckableType = /^(?:checkbox|radio)$/i;
 
@@ -5353,9 +5331,7 @@
       found =
         typeof context.getElementsByTagName !== strundefined
           ? context.getElementsByTagName(tag || '*')
-          : typeof context.querySelectorAll !== strundefined
-            ? context.querySelectorAll(tag || '*')
-            : undefined;
+          : typeof context.querySelectorAll !== strundefined ? context.querySelectorAll(tag || '*') : undefined;
 
     if (!found) {
       for (found = [], elems = context.childNodes || context; (elem = elems[i]) != null; i++) {
@@ -5616,9 +5592,7 @@
                 tag === 'table' && !rtbody.test(elem)
                   ? tmp.firstChild
                   : // String was a bare <thead> or <tfoot>
-                    wrap[1] === '<table>' && !rtbody.test(elem)
-                    ? tmp
-                    : 0;
+                    wrap[1] === '<table>' && !rtbody.test(elem) ? tmp : 0;
 
               j = elem && elem.childNodes.length;
               while (j--) {
@@ -6544,9 +6518,7 @@
           ? // If we already have the right measurement, avoid augmentation
             4
           : // Otherwise initialize for horizontal or vertical properties
-            name === 'width'
-            ? 1
-            : 0,
+            name === 'width' ? 1 : 0,
       val = 0;
 
     for (; i < 4; i += 2) {
@@ -6793,9 +6765,7 @@
         // IE uses filters for opacity
         return ropacity.test((computed && elem.currentStyle ? elem.currentStyle.filter : elem.style.filter) || '')
           ? 0.01 * parseFloat(RegExp.$1) + ''
-          : computed
-            ? '1'
-            : '';
+          : computed ? '1' : '';
       },
 
       set: function(elem, value) {
@@ -7444,9 +7414,7 @@
       ? 0
       : typeof opt.duration === 'number'
         ? opt.duration
-        : opt.duration in jQuery.fx.speeds
-          ? jQuery.fx.speeds[opt.duration]
-          : jQuery.fx.speeds._default;
+        : opt.duration in jQuery.fx.speeds ? jQuery.fx.speeds[opt.duration] : jQuery.fx.speeds._default;
 
     // normalize opt.queue - true/undefined/null -> "fx"
     if (opt.queue == null || opt.queue === true) {
@@ -7759,9 +7727,7 @@
             ? // handle most common string cases
               ret.replace(rreturn, '')
             : // handle cases where value is null/undef or number
-              ret == null
-              ? ''
-              : ret;
+              ret == null ? '' : ret;
         }
 
         return;
@@ -8214,9 +8180,7 @@
 
           return tabindex
             ? parseInt(tabindex, 10)
-            : rfocusable.test(elem.nodeName) || (rclickable.test(elem.nodeName) && elem.href)
-              ? 0
-              : -1;
+            : rfocusable.test(elem.nodeName) || (rclickable.test(elem.nodeName) && elem.href) ? 0 : -1;
         },
       },
     },

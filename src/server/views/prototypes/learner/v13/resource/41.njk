@@ -1,10 +1,10 @@
 {% extends 'layouts/default.layout.njk' %}
 
 {% set pageTitle = 'Diversity and inclusion - Learning Platform for Government' %}
-{% set blackBarTitle = 'Learning Platform for Government' %} {% set learnerPrototypeVersion = 'v6' %}
+{% set blackBarTitle = 'Learning Platform for Government' %} {% set learnerPrototypeVersion = 'v13' %}
 {% set mainContainerClass = 'has-lower-hero' %}
-{% set signOutPath = '/prototypes/learner/v6/' %}
-{% set homePath = '/prototypes/learner/v6/home' %}
+{% set signOutPath = '/prototypes/learner/v13/' %}
+{% set homePath = '/prototypes/learner/v13/home' %}
 
 {% set resourceType = resourceType if resourceType %}
 {% set hideDetailStars = hideDetailStars if hideDetailStars %}
@@ -40,24 +40,28 @@
 
         <div class="discite">
 
+            {#macro resourceRow(name='This resource title',headingTag='h3',size='',headingExtraClass='heading--text',type='',status='',action'',duration='')#}
+
             {{ components.disciteRow(
                 name='Introducing unconscious bias',
                 headingTag='h3',
+                description='Learn about the concepts and the theory and how unconscious bias can influence attitudes and behaviours',
                 headingExtraClass='heading--text',
                 type='Online',
-                status='Completed',
-                action='Retake',
+                status='',
+                action='Start',
                 duration='5 minutes',
                 extraModifierClass='module'
             ) }}
 
             {{ components.disciteRow(
-                name='Challenging unconscious bias in recruitment decisions',
+                name='Tackling unconscious bias in recruitment decisions',
                 headingTag='h3',
+                description='Explore how unconscious bias can shape personal and group decision-making and have an impact on people management processes',
                 headingExtraClass='heading--text',
                 type='Online',
-                status='In Progress',
-                action='Resume',
+                status='',
+                action='Start',
                 duration='8 minutes',
                 extraModifierClass='module'
             ) }}
@@ -65,6 +69,7 @@
             {{ components.disciteRow(
                 name='Unconscious bias in the workplace',
                 headingTag='h3',
+                description='Learn techniques to reduce the impact of unconscious bias, create more inclusive and diverse teams and improve organisational culture and business performance.',
                 headingExtraClass='heading--text',
                 type='Online',
                 action='Start',
@@ -73,12 +78,12 @@
             ) }}
 
             {{ components.disciteRow(
-                name='Challenging unconscious bias',
+                name='Tackling unconscious bias',
                 headingTag='h3',
+                description='See how you can identify, challenge, prevent and remove areas of unconscious bias in the workplace.',
                 headingExtraClass='heading--text',
-                type='Document',
-                action='Download',
-                isDocument=true,
+                type='Online',
+                action='Start',
                 duration='8 minutes',
                 extraModifierClass='module'
             ) }}
@@ -86,6 +91,7 @@
             {{ components.disciteRow(
                 name='Equality, diversity and inclusion in the Civil Service',
                 headingTag='h3',
+                description='Find out about your own role and responsibilities in creating an inclusive working environment and in meeting the needs of diverse customers',
                 headingExtraClass='heading--text',
                 type='Video',
                 action='Start',
@@ -94,19 +100,9 @@
             ) }}
 
             {{ components.disciteRow(
-                name='Equality, Diversity and Inclusion: The legal framework',
+                name='The legal framework',
                 headingTag='h3',
-                headingExtraClass='heading--text',
-                type='Online',
-                action='Resume',
-                status='In progress',
-                duration='5 minutes',
-                extraModifierClass='module'
-            ) }}
-
-            {{ components.disciteRow(
-                name='Equality, diversity and inclusion: Our inclusive workplace',
-                headingTag='h3',
+                description='Understand the main features of equality legislation: the Equality Act 2010 and the Public Sector Equality Duty',
                 headingExtraClass='heading--text',
                 type='Online',
                 action='Start',
@@ -115,14 +111,27 @@
             ) }}
 
             {{ components.disciteRow(
-                name='Equality, diversity and inclusion: Our customers',
+                name='Our inclusive workplace',
                 headingTag='h3',
+                description='Think about the need for reasonable adjustments and observe the impact of assumptions, stereotyping, bullying and harassment',
+                headingExtraClass='heading--text',
+                type='Online',
+                action='Start',
+                duration='5 minutes',
+                extraModifierClass='module'
+            ) }}
+
+            {{ components.disciteRow(
+                name='Our customers',
+                headingTag='h3',
+                description='Makes clear the requirement to treat customers according to their needs and the legal requirement to make reasonable adjustments.',
                 headingExtraClass='heading--text',
                 type='Online',
                 action='Start',
                 duration='8 minutes',
                 extraModifierClass='module'
             ) }}
+
 
         </div>
 
@@ -151,10 +160,6 @@
                     <tr>
                         <th>Duration</th>
                         <td>1 hour</td>
-                    </tr>
-                    <tr>
-                        <th>Cost</th>
-                        <td>£Free</td>
                     </tr>
                 </tbody>
             </table>

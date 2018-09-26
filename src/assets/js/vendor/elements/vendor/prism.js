@@ -244,9 +244,7 @@ var _self =
         document.addEventListener &&
           !r.hasAttribute('data-manual') &&
           ('loading' !== document.readyState
-            ? window.requestAnimationFrame
-              ? window.requestAnimationFrame(n.highlightAll)
-              : window.setTimeout(n.highlightAll, 16)
+            ? window.requestAnimationFrame ? window.requestAnimationFrame(n.highlightAll) : window.setTimeout(n.highlightAll, 16)
             : document.addEventListener('DOMContentLoaded', n.highlightAll))),
       _self.Prism
     );

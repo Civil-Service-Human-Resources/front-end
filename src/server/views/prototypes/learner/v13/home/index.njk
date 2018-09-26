@@ -22,6 +22,9 @@
 
 {% set greeting = greeting if greeting %}
 
+{% set interviewTechniquesAddedHome = interviewTechniquesAddedHome if interviewTechniquesAddedHome %}
+
+
 {% block content %}
 
     {% call components.gridRow() %}
@@ -119,19 +122,19 @@
 
         {% call components.columnFull() %}
 
-            {{ components.heading(text='Required learning from your organisation', tag='h2', size='medium', extraClass='heading--red-top') }}
+            {{ components.heading(text='Required learning from your organisation or profession', tag='h2', size='medium', extraClass='heading--red-top') }}
 
             <div class="learning">
 
                 {{ components.disciteRow(
-                    name='Diversity &amp; inclusion',
+                    name='Diversity and inclusion',
                     headingTag='h3',
                     headingExtraClass='discite__heading',
                     headingURL='/prototypes/learner/v13/resource?resourceID=6',
                     type='Online',
                     status='In progress',
                     action='Resume',
-                    duration='2 hours',
+                    duration='1 hour',
                     dueBy='21 Oct 2018'
                 ) }}
 
@@ -153,9 +156,25 @@
 
             </div>
 
-            {{ components.heading(text='Learning you have chosen', tag='h2', size='medium', extraClass='heading--red-top') }}
+            {{ components.heading(text='Your learning plan', tag='h2', size='medium', extraClass='heading--red-top') }}
 
-            <div class="learning">
+            <div class="learning" id="learningPlan">
+
+                {% if interviewTechniquesAddedHome %}
+                    {{ components.disciteRow(
+                        name='Interview techniques (as interviewee)',
+                        headingTag='h3',
+                        description='Few things in life are more stressful than a job interview.',
+                        headingExtraClass='discite__heading',
+                        headingURL='/prototypes/learner/v13/resource?resourceID=31',
+                        type='Online',
+                        action='Remove',
+                        duration='3 hours',
+                        status='Just added',
+                        cost='£Free',
+                        startURL='/prototypes/learner/v13/scorms/basic-fire-safety'
+                    ) }}
+                {% endif %}
 
                 {% if hasBeenAdded %}
 

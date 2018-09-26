@@ -52,7 +52,7 @@ let courseDates = [{ value: '1', date: '12th June 2018', location: 'Glasgow' }, 
 
 module.exports.courseDates = courseDates;
 
-let extraInterests = [{ value: '1', name: 'Coaching &amp; mentoring' }, { value: '2', name: 'Communications &amp; engagement' }, { value: '3', name: 'Contract management' }, { value: '4', name: 'Customer service' }, { value: '5', name: 'Induction &amp; essential skills' }, { value: '6', name: 'Leadership' }, { value: '7', name: 'Well being &amp; Diversity' }];
+let extraInterests = [{ value: '1', name: 'Coaching and mentoring' }, { value: '2', name: 'Communications &amp; engagement' }, { value: '3', name: 'Contract management' }, { value: '4', name: 'Customer service' }, { value: '5', name: 'Induction &amp; essential skills' }, { value: '6', name: 'Leadership' }, { value: '7', name: 'Well being and Diversity' }];
 
 module.exports.extraInterests = extraInterests;
 

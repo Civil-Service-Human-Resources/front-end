@@ -8,7 +8,7 @@ var _register = require('./register');
 
 //////////////////////////////////////// */
 
-let allDepartments = [{ value: '0', text: 'Select an organisation' }, { value: '1', text: 'Cabinet Office' }, { value: '2', text: 'DEFRA' }, { value: '3', text: 'Department of Health and Social Care' }, { value: '4', text: 'DWP' }, { value: '5', text: 'Fast Stream' }, { value: '6', text: 'HM Revenue & Customs' }, { value: '7', text: 'Home Office' }, { value: '8', text: 'Other' }, { value: '8', text: 'Ministry Of Defence MoD, Tanks' }, { value: '8', text: 'Ministry Of Defence MoD, Planes' }, { value: '8', text: 'Ministry Of Defence MoD, Ships' }, { value: '8', text: 'Ministry Of Defence MoD, Subs' }, { value: '8', text: 'Ministry Of Defence MoD, Bikes' }, { value: '8', text: 'Ministry Of Defence MoD, Cavalry' }, { value: '8', text: 'Ministry Of Defence MoD, Helicopters' }, { value: '8', text: 'Ministry Of Defence MoD, Infantry' }];
+let allDepartments = [{ value: '0', text: 'Select an organisation' }, { value: '1', text: 'Cabinet Office' }, { value: '2', text: 'DEFRA' }, { value: '3', text: 'Department of Health and Social Care' }, { value: '4', text: 'DWP' }, { value: '5', text: 'Fast Stream' }, { value: '6', text: 'HM Revenue & Customs' }, { value: '7', text: 'Home Office' }, { value: '8', text: 'Foreign and Commonwealth Office, FCO' }, { value: '9', text: 'Communities' }, { value: '10', text: 'Ministry Of Justice, MoJ' }, { value: '11', text: 'Department for Transport, DfT' }];
 
 module.exports.allDepartments = allDepartments;
 
@@ -79,7 +79,7 @@ let courseDates = [{ value: '1', date: '12th June 2018', location: 'Glasgow' }, 
 
 module.exports.courseDates = courseDates;
 
-let extraInterests = [{ value: '1', name: 'Coaching &amp; mentoring' }, { value: '2', name: 'Communications &amp; engagement' }, { value: '3', name: 'Contract management' }, { value: '4', name: 'Customer service' }, { value: '5', name: 'Induction &amp; essential skills' }, { value: '6', name: 'Leadership' }, { value: '7', name: 'Well being &amp; Diversity' }];
+let extraInterests = [{ value: '1', name: 'Coaching and mentoring' }, { value: '2', name: 'Communications &amp; engagement' }, { value: '3', name: 'Contract management' }, { value: '4', name: 'Customer service' }, { value: '5', name: 'Induction &amp; essential skills' }, { value: '6', name: 'Leadership' }, { value: '7', name: 'Well being and Diversity' }];
 
 module.exports.extraInterests = extraInterests;
 

@@ -74,6 +74,12 @@ export function actionsGet(req, res) {
     redirectPath = '/prototypes/learner/v13/search';
   }
 
+  if (action == 'interviewTechniquesAddedToLearningPlan') {
+    req.session.interviewTechniquesAdded = true;
+    req.session.interviewTechniquesAddedHome = true;
+    redirectPath = 'suggested-learning';
+  }
+
   return res.redirect(redirectPath);
 }
 

@@ -43,6 +43,10 @@ $module: 'discite';
     }
   }
 
+  .heading {
+    // font-weight: bold;
+  }
+
   &__heading {
     @include bold-19;
   }
@@ -63,6 +67,7 @@ $module: 'discite';
   }
 
   &__blurb {
+    @include core-16;
     margin: 0;
   }
 

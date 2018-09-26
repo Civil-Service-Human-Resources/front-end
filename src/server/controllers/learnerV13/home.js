@@ -22,6 +22,7 @@ export function homeGet(req, res) {
     navItem,
     greeting,
     firstName,
+    interviewTechniquesAddedHome,
     showRemoveX;
 
   // anotherTestVar = global.anotherTestVar;
@@ -101,7 +102,7 @@ export function homeGet(req, res) {
     greeting = greeting + ' Lucy';
   }
 
-  // console.log('greeting = ' + greeting);
+  interviewTechniquesAddedHome = req.session.interviewTechniquesAddedHome;
 
   viewData = {
     hideHomeStars,
@@ -117,6 +118,7 @@ export function homeGet(req, res) {
     navItem,
     showRemoveX,
     greeting,
+    interviewTechniquesAddedHome,
   };
 
   // return res.render('prototypes/learner/v13/home/index-alt', viewData);
@@ -323,6 +325,8 @@ export function suggestedGet(req, res) {
     courseTitle1,
     courseTitle2,
     courseTitle3,
+    interviewTechniquesAdded,
+    interviewTechniquesAddedHome,
     department;
 
   showUpdatedPrimaryWorkArea = req.session.showUpdatedPrimaryWorkArea;
@@ -368,6 +372,10 @@ export function suggestedGet(req, res) {
     courseTitle3 = 'Interview techniques (as interviewee)';
   }
 
+  interviewTechniquesAdded = req.session.interviewTechniquesAdded;
+  req.session.interviewTechniquesAdded = null;
+  interviewTechniquesAddedHome = req.session.interviewTechniquesAddedHome;
+
   viewData = {
     hideHomeStars,
     showUpdatedPrimaryWorkArea,
@@ -385,6 +393,8 @@ export function suggestedGet(req, res) {
     courseTitle1,
     courseTitle2,
     courseTitle3,
+    interviewTechniquesAdded,
+    interviewTechniquesAddedHome,
   };
 
   return res.render(templateVersion, viewData);

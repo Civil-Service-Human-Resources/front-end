@@ -24,7 +24,7 @@ var _validationFunctions = require('./validation-functions');
 
 let generalData = require('./data'); // home GET
 function homeGet(req, res) {
-  let viewData, hideHomeStars, action, courseId, removeCheckMessage, removeMessage, fireTrainingComplete, removedFromLearningPlanWarning, addedToLearningPlan, removedFromLearningPlan, hasBeenRemoved, willBeRemoved, hasBeenAdded, hasLeftFeedback, showNewNav, navItem, greeting, firstName, showRemoveX;
+  let viewData, hideHomeStars, action, courseId, removeCheckMessage, removeMessage, fireTrainingComplete, removedFromLearningPlanWarning, addedToLearningPlan, removedFromLearningPlan, hasBeenRemoved, willBeRemoved, hasBeenAdded, hasLeftFeedback, showNewNav, navItem, greeting, firstName, interviewTechniquesAddedHome, showRemoveX;
 
   // anotherTestVar = global.anotherTestVar;
   // console.log('anotherTestVar = ' + anotherTestVar);
@@ -103,7 +103,7 @@ function homeGet(req, res) {
     greeting = greeting + ' Lucy';
   }
 
-  // console.log('greeting = ' + greeting);
+  interviewTechniquesAddedHome = req.session.interviewTechniquesAddedHome;
 
   viewData = {
     hideHomeStars,
@@ -118,10 +118,12 @@ function homeGet(req, res) {
     showNewNav,
     navItem,
     showRemoveX,
-    greeting
+    greeting,
+    interviewTechniquesAddedHome
   };
 
-  return res.render('prototypes/learner/v13/home/index-alt', viewData);
+  // return res.render('prototypes/learner/v13/home/index-alt', viewData);
+  return res.render('prototypes/learner/v13/home/index', viewData);
 }
 
 // planned GET
@@ -276,7 +278,7 @@ function recordGet(req, res) {
 
 // suggested learning GET
 function suggestedGet(req, res) {
-  let viewData, hideHomeStars, showUpdatedPrimaryWorkArea, hasAddedContractManagement, templateVersion, type, showNewNav, navItem, showRemoveX, primaryChoice, primaryOpsDelChoiceArray, isG6, isHEO, firstName, subDivisionSelection, courseTitle1, courseTitle2, courseTitle3, department;
+  let viewData, hideHomeStars, showUpdatedPrimaryWorkArea, hasAddedContractManagement, templateVersion, type, showNewNav, navItem, showRemoveX, primaryChoice, primaryOpsDelChoiceArray, isG6, isHEO, firstName, subDivisionSelection, courseTitle1, courseTitle2, courseTitle3, interviewTechniquesAdded, interviewTechniquesAddedHome, department;
 
   showUpdatedPrimaryWorkArea = req.session.showUpdatedPrimaryWorkArea;
   hasAddedContractManagement = req.session.hasAddedContractManagement;
@@ -321,6 +323,10 @@ function suggestedGet(req, res) {
     courseTitle3 = 'Interview techniques (as interviewee)';
   }
 
+  interviewTechniquesAdded = req.session.interviewTechniquesAdded;
+  req.session.interviewTechniquesAdded = null;
+  interviewTechniquesAddedHome = req.session.interviewTechniquesAddedHome;
+
   viewData = {
     hideHomeStars,
     showUpdatedPrimaryWorkArea,
@@ -337,7 +343,9 @@ function suggestedGet(req, res) {
     subDivisionSelection,
     courseTitle1,
     courseTitle2,
-    courseTitle3
+    courseTitle3,
+    interviewTechniquesAdded,
+    interviewTechniquesAddedHome
   };
 
   return res.render(templateVersion, viewData);

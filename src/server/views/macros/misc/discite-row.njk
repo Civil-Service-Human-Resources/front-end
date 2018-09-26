@@ -62,13 +62,20 @@
                 {% endif %}
             </ul>
 
-            {%  if status %}
+            {%  if status == 'In progress' or status == 'Booked' %}
                 <div class="discite__status">
                     <span class="badge badge--info ">{{ status }}</span>
                     {% if bookedDate %}<span class="meta u-space-t5">{{ bookedDate }}</span>{% endif %}
                 </div>
+            {% endif %}
+
+            {%  if status == 'Just added' %}
+                <div class="discite__status">
+                    <span class="badge badge--success ">{{ status }}</span>
+                </div>
 
             {% endif %}
+
             {%  if leaveFeedback %}
                 <div class="discite__status"><a class="" href="{{ leaveFeedback }}">Leave feedback</a></div>
             {% endif %}
