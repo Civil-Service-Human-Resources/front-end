@@ -37,6 +37,10 @@ let detailsOpsDel = [{ value: '1', text: 'Case ownership' }, { value: '2', text:
 
 module.exports.detailsOpsDel = detailsOpsDel;
 
+let detailsCommercial = [{ value: '1', text: 'Strategy and Policy Development' }, { value: '2', text: 'Business Needs and Sourcing' }, { value: '3', text: 'Procurement' }, { value: '4', text: 'Contract and Supplier Management' }];
+
+module.exports.detailsCommercial = detailsCommercial;
+
 // **************************************************************
 // DDAT
 // **************************************************************

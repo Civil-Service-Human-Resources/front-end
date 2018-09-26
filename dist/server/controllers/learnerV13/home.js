@@ -166,7 +166,7 @@ function plannedGet(req, res) {
 
 // profile GET
 function profileGet(req, res) {
-  let viewData, workAreaHasBeenUpdated, setWorkAreaCommercial, setWorkAreaDigital, showRolesJoined, showUpdatedPrimaryWorkArea, hasAddedContractManagement, showUpdatedOtherWorkArea, hasBeenUpdatedOther, hasBeenUpdatedInterests, showNewNav, navItem, departmentName, profileGrades, profileOthersArray, primaryChoice, primaryOpsDelChoiceArray, combinedName, email, anythingUpdated, firstName, subDivisionSelection, profileInterestsArray;
+  let viewData, workAreaHasBeenUpdated, setWorkAreaCommercial, setWorkAreaDigital, showRolesJoined, showUpdatedPrimaryWorkArea, hasAddedContractManagement, showUpdatedOtherWorkArea, hasBeenUpdatedOther, hasBeenUpdatedInterests, showNewNav, navItem, departmentName, profileGrades, profileOthersArray, primaryChoice, primaryOpsDelChoiceArray, combinedName, email, anythingUpdated, firstName, subDivisionSelection, primaryCommercialChoiceArray, profileInterestsArray;
 
   //showNewNav = req.session.showNewNav;
   req.session.showNewNav = true;
@@ -211,6 +211,7 @@ function profileGet(req, res) {
   req.session.anythingUpdated = null;
   firstName = req.session.firstName;
   subDivisionSelection = req.session.subDivisionSelection;
+  primaryCommercialChoiceArray = req.session.primaryCommercialChoiceArray;
 
   viewData = {
     workAreaHasBeenUpdated,
@@ -234,7 +235,8 @@ function profileGet(req, res) {
     email,
     anythingUpdated,
     firstName,
-    subDivisionSelection
+    subDivisionSelection,
+    primaryCommercialChoiceArray
   };
 
   return res.render('prototypes/learner/v13/profile/index', viewData);

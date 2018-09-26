@@ -126,7 +126,11 @@
 
             <p>other areas of work</p>
             <ul class="list-bullet">
-                <li><a href="#commercial">Commercial</a> </li>
+                {% if primaryChoice == 'Commercial'%}
+                    <li><a href="#commercial">Policy</a> </li>
+                {% else %}
+                    <li><a href="#commercial">Commercial</a> </li>
+                {% endif %}
             </ul>
 
         {%- endcall %}

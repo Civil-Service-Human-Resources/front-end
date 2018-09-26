@@ -37,7 +37,7 @@ gulp.task('scss', () => {
         'node_modules'
       ]
     }))
-    // If error occures, display error instead of crashing
+    // If error occurs, display error instead of crashing
     .on("error", notify.onError("Error: <%= error.message %>"))
     // Add browser specific prefixes
     .pipe(autoprefixer({

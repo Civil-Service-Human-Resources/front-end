@@ -25,8 +25,6 @@
 
 {% block content %}
 
-
-
     {#{% call components.gridRow() %}
 
         {% call components.columnFull() %}
@@ -99,7 +97,51 @@
         {% call components.columnHalf() %}
             <h2 class="heading-medium u-space-t5">Whats next for you?</h2>
             <h3 class="heading-small">You have some required learning to complete</h3>
-            <ul></ul>
+
+            <div class="discite">
+                <div class="discite__item u-clearfix discite__item--module">
+                    <div class="discite__main discite__main--module">
+                        <h3 class="heading  heading--text">Unconscious bias in the workplace</h3>
+                    </div>
+                    <div class="discite__properties discite__properties--module u-clearfix">
+                        <ul class="discite__property discite__property--module">
+                            <li class="discite__property-item">
+                                <span class="visuallyhidden">Type:</span>Online
+                            </li>
+                            <li class="discite__property-item">
+                                <span class="visuallyhidden">Duration:</span>
+                                5 minutes
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="discite__action discite__action--module">
+                        <span class="meta">Complete the previous module first</span>
+                    </div>
+                </div>
+                <div class="discite__item u-clearfix discite__item--module">
+                    <div class="discite__main discite__main--module">
+                        <h3 class="heading  heading--text">Introducing unconscious bias</h3>
+                    </div>
+                    <div class="discite__properties discite__properties--module u-clearfix">
+                        <ul class="discite__property discite__property--module">
+                            <li class="discite__property-item">
+                                <span class="visuallyhidden">Type:</span>
+                                Online
+                            </li>
+                            <li class="discite__property-item">
+                                <span class="visuallyhidden">Duration:</span>
+                                5 minutes
+                            </li>
+                        </ul>
+                        <div class="discite__status">
+                            <span class="badge badge--info ">Completed</span>
+                        </div>
+                    </div>
+                    <div class="discite__action discite__action--module">
+                        <a href="#">Retake<span class="visuallyhidden"> this module</span></a>
+                    </div>
+                </div>
+            </div>
         {%- endcall %}
 
     {%- endcall %}
@@ -142,7 +184,6 @@
         {% call components.columnFull() %}
 
             {{ components.heading(text='Required learning', tag='h2', size='medium', extraClass='heading--red-top') }}
-            <p style="float:right; width:400px;margin:-40px 0 0 0; text-align: right;">This is stuff what you have to do</p>
 
             <div class="learning">
 

@@ -2,8 +2,6 @@ $module: 'search-box';
 
 .#{$module}  {
 
-  // background-color: $civil-service;
-
   &__group {
     position: relative;
     padding: 20px 53px 20px 0;
@@ -14,9 +12,9 @@ $module: 'search-box';
       // padding: 0 58px 0 10px;
       padding: 0 12px 0 0;
 
-      @include m('sidebar') {
+      /*@include m('sidebar') {
 
-      }
+      }*/
     }
   }
 

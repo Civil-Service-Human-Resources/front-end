@@ -119,7 +119,8 @@ export function homeGet(req, res) {
     greeting,
   };
 
-  return res.render('prototypes/learner/v13/home/index-alt', viewData);
+  // return res.render('prototypes/learner/v13/home/index-alt', viewData);
+  return res.render('prototypes/learner/v13/home/index', viewData);
 }
 
 // planned GET

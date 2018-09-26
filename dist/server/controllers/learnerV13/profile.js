@@ -17,6 +17,8 @@ exports.profilePrimaryGet = profilePrimaryGet;
 exports.profilePrimaryPost = profilePrimaryPost;
 exports.profilePrimaryOpsDelGet = profilePrimaryOpsDelGet;
 exports.profilePrimaryOpsDelPost = profilePrimaryOpsDelPost;
+exports.profilePrimaryCommercialGet = profilePrimaryCommercialGet;
+exports.profilePrimaryCommercialPost = profilePrimaryCommercialPost;
 exports.profileOthersGet = profileOthersGet;
 exports.profileOthersPost = profileOthersPost;
 exports.profileInterestsGet = profileInterestsGet;
@@ -234,6 +236,8 @@ function profilePrimaryPost(req, res) {
 
   if (primaryChoice === 'Operational delivery') {
     newRedirectURL = '/prototypes/learner/v13/your-profile/primary/operational-delivery';
+  } else if (primaryChoice === 'Commercial') {
+    newRedirectURL = '/prototypes/learner/v13/your-profile/primary/commercial';
   } else {
     req.session.primaryOpsDelChoiceArray = null;
     newRedirectURL = profileURL;
@@ -288,6 +292,51 @@ function profilePrimaryOpsDelPost(req, res) {
 
   req.session.anythingUpdated = true;
   req.session.primaryOpsDelChoiceArray = primaryOpsDelChoiceArray;
+
+  return res.redirect(profileURL);
+}
+// **************************************************************************************
+// Primary area of work COMMERCIAL
+// **************************************************************************************
+function profilePrimaryCommercialGet(req, res) {
+  let viewData, navItem, showNewNav, profilePrimaryCommercial;
+
+  showNewNav = true;
+  navItem = 'profile';
+
+  profilePrimaryCommercial = generalData.detailsCommercial;
+
+  viewData = {
+    showNewNav,
+    navItem,
+    profilePrimaryCommercial
+  };
+
+  return res.render('prototypes/learner/v13/profile/primary-commercial', viewData);
+}
+
+// primary: POST
+function profilePrimaryCommercialPost(req, res) {
+  const { detailsCommercial } = req.body;
+
+  let primaryCommercialChoice,
+      primaryCommercialChoiceArray = [];
+
+  primaryCommercialChoice = detailsCommercial;
+  console.log(primaryCommercialChoice);
+
+  if (primaryCommercialChoice) {
+    if (typeof primaryCommercialChoice === 'string' || primaryCommercialChoice instanceof String) {
+      primaryCommercialChoiceArray.push(primaryCommercialChoice);
+    } else if (primaryCommercialChoice.length > 0) {
+      primaryCommercialChoiceArray = primaryCommercialChoice;
+    }
+  } else {
+    primaryCommercialChoiceArray = ['Unknown'];
+  }
+
+  req.session.anythingUpdated = true;
+  req.session.primaryCommercialChoiceArray = primaryCommercialChoiceArray;
 
   return res.redirect(profileURL);
 }

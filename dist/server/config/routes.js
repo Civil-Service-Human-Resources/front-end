@@ -1795,6 +1795,9 @@ router.post('/prototypes/learner/v13/your-profile/primary', learnerV13Controller
 // primary, ops del
 router.get('/prototypes/learner/v13/your-profile/primary/operational-delivery', learnerV13Controller.profilePrimaryOpsDelGet);
 router.post('/prototypes/learner/v13/your-profile/primary/operational-delivery', learnerV13Controller.profilePrimaryOpsDelPost);
+// primary, commercial
+router.get('/prototypes/learner/v13/your-profile/primary/commercial', learnerV13Controller.profilePrimaryCommercialGet);
+router.post('/prototypes/learner/v13/your-profile/primary/commercial', learnerV13Controller.profilePrimaryCommercialPost);
 // other areas
 router.get('/prototypes/learner/v13/your-profile/other-areas', learnerV13Controller.profileOthersGet);
 router.post('/prototypes/learner/v13/your-profile/other-areas', learnerV13Controller.profileOthersPost);

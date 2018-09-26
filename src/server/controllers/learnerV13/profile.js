@@ -209,9 +209,8 @@ export function profilePrimaryPost(req, res) {
   if (primaryChoice === 'Operational delivery') {
     newRedirectURL = '/prototypes/learner/v13/your-profile/primary/operational-delivery';
   } else if (primaryChoice === 'Commercial') {
-      newRedirectURL = '/prototypes/learner/v13/your-profile/primary/commercial';
-  }
-  else {
+    newRedirectURL = '/prototypes/learner/v13/your-profile/primary/commercial';
+  } else {
     req.session.primaryOpsDelChoiceArray = null;
     newRedirectURL = profileURL;
   }
@@ -272,46 +271,46 @@ export function profilePrimaryOpsDelPost(req, res) {
 // Primary area of work COMMERCIAL
 // **************************************************************************************
 export function profilePrimaryCommercialGet(req, res) {
-    let viewData, navItem, showNewNav, profilePrimaryCommercial;
+  let viewData, navItem, showNewNav, profilePrimaryCommercial;
 
-    showNewNav = true;
-    navItem = 'profile';
+  showNewNav = true;
+  navItem = 'profile';
 
-    profilePrimaryCommercial = generalData.detailsCommercial;
+  profilePrimaryCommercial = generalData.detailsCommercial;
 
-    viewData = {
-        showNewNav,
-        navItem,
-        profilePrimaryCommercial,
-    };
+  viewData = {
+    showNewNav,
+    navItem,
+    profilePrimaryCommercial,
+  };
 
-    return res.render('prototypes/learner/v13/profile/primary-commercial', viewData);
+  return res.render('prototypes/learner/v13/profile/primary-commercial', viewData);
 }
 
 // primary: POST
 export function profilePrimaryCommercialPost(req, res) {
-    const { detailsCommercial } = req.body;
+  const { detailsCommercial } = req.body;
 
-    let primaryCommercialChoice,
-        primaryCommercialChoiceArray = [];
+  let primaryCommercialChoice,
+    primaryCommercialChoiceArray = [];
 
-    primaryCommercialChoice = detailsCommercial;
-    console.log(primaryCommercialChoice);
+  primaryCommercialChoice = detailsCommercial;
+  console.log(primaryCommercialChoice);
 
-    if (primaryCommercialChoice) {
-        if (typeof primaryCommercialChoice === 'string' || primaryCommercialChoice instanceof String) {
-            primaryCommercialChoiceArray.push(primaryCommercialChoice);
-        } else if (primaryCommercialChoice.length > 0) {
-            primaryCommercialChoiceArray = primaryCommercialChoice;
-        }
-    } else {
-        primaryCommercialChoiceArray = ['Unknown'];
+  if (primaryCommercialChoice) {
+    if (typeof primaryCommercialChoice === 'string' || primaryCommercialChoice instanceof String) {
+      primaryCommercialChoiceArray.push(primaryCommercialChoice);
+    } else if (primaryCommercialChoice.length > 0) {
+      primaryCommercialChoiceArray = primaryCommercialChoice;
     }
+  } else {
+    primaryCommercialChoiceArray = ['Unknown'];
+  }
 
-    req.session.anythingUpdated = true;
-    req.session.primaryCommercialChoiceArray = primaryCommercialChoiceArray;
+  req.session.anythingUpdated = true;
+  req.session.primaryCommercialChoiceArray = primaryCommercialChoiceArray;
 
-    return res.redirect(profileURL);
+  return res.redirect(profileURL);
 }
 
 // **************************************************************************************
