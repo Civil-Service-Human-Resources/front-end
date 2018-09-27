@@ -140,7 +140,7 @@ function profileOrganistionPost(req, res) {
   departmentSelectOptions = generalData.allDepartments;
   department = departmentSelectOptions[organisation].text;
 
-  if (department === 'DWP' || department === 'dwp') {
+  if (department === 'DWP' || department === 'dwp' || department === 'Ministry Of Justice, MoJ') {
     altRedirectURL = '/prototypes/learner/v13/your-profile/organisation/sub-divisions';
   } else {
     req.session.subDivisionSelection = null;
@@ -167,6 +167,10 @@ function profileOrganisationSubDivisionsGet(req, res) {
 
   if (department === 'DWP') {
     subDivisionsDateSource = generalData.allSubDivisionsDWP;
+  }
+
+  if (department === 'Ministry Of Justice, MoJ') {
+    subDivisionsDateSource = generalData.allSubDivisionsMOJ;
   }
 
   // console.log(subDivisionsDateSource);

@@ -34,6 +34,21 @@ let allSubDivisionsDWP = [
 
 module.exports.allSubDivisionsDWP = allSubDivisionsDWP;
 
+// MoJ
+let allSubDivisionsMOJ = [
+  { value: '0', text: 'Chief Financial Officer (CFO) Group' },
+  { value: '1', text: 'Legal Aid Agency' },
+  { value: '2', text: 'Office of the Public Guardian' },
+  { value: '3', text: 'Chief People Officer (CPO) Group' },
+  { value: '5', text: 'Criminal Injuries Compensation Authority' },
+  { value: '5', text: 'Justice, Policy, Strategy and Communications Group' },
+  { value: '5', text: 'Justice, Analysis and Offender Policy Group' },
+  { value: '5', text: 'HM Courts and Tribunals Service' },
+  { value: '5', text: 'HM Prison and Probation Service' },
+];
+
+module.exports.allSubDivisionsMOJ = allSubDivisionsMOJ;
+
 let allProfessions = [
   { value: '0', text: 'Analysis' },
   { value: '1', text: 'Commercial' },
