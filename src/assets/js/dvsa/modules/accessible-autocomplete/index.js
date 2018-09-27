@@ -4,7 +4,9 @@ export const accessibleAutocompleteModule = () => {
       ? (module.exports = t())
       : 'function' == typeof define && define.amd
         ? define([], t)
-        : 'object' == typeof exports ? (exports.accessibleAutocomplete = t()) : (e.accessibleAutocomplete = t());
+        : 'object' == typeof exports
+          ? (exports.accessibleAutocomplete = t())
+          : (e.accessibleAutocomplete = t());
   })(this, function() {
     return (function(e) {
       function t(o) {
@@ -84,7 +86,9 @@ export const accessibleAutocompleteModule = () => {
           function u(e, t, n) {
             return 'string' == typeof t || 'number' == typeof t
               ? void 0 !== e.splitText
-              : 'string' == typeof t.nodeName ? !e._componentConstructor && s(e, t.nodeName) : n || e._componentConstructor === t.nodeName;
+              : 'string' == typeof t.nodeName
+                ? !e._componentConstructor && s(e, t.nodeName)
+                : n || e._componentConstructor === t.nodeName;
           }
           function s(e, t) {
             return e.__n === t || e.nodeName.toLowerCase() === t.toLowerCase();
@@ -123,7 +127,9 @@ export const accessibleAutocompleteModule = () => {
               else {
                 var u = r && t !== (t = t.replace(/^xlink\:?/, ''));
                 null == o || !1 === o
-                  ? u ? e.removeAttributeNS('http://www.w3.org/1999/xlink', t.toLowerCase()) : e.removeAttribute(t)
+                  ? u
+                    ? e.removeAttributeNS('http://www.w3.org/1999/xlink', t.toLowerCase())
+                    : e.removeAttribute(t)
                   : 'function' != typeof o &&
                     (u ? e.setAttributeNS('http://www.w3.org/1999/xlink', t.toLowerCase(), o) : e.setAttribute(t, o));
               }
