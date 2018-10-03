@@ -279,7 +279,7 @@ let allOrgsAndSubDivisions = [
   'House of Lords',
   'House of Lords House of Lords',
   'Human Fertilisation and Embryology Authority',
-  'Human Tissue Authority'
+  'Human Tissue Authority',
   'Independent Advisory Council on Deaths in Custody',
   'Independent Living Fund',
   'Independent Monitoring Boards',
