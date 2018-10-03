@@ -17,6 +17,11 @@ let allSubDivisionsDWP = [{ value: '0', text: 'Child Maintenance Group' }, { val
 
 module.exports.allSubDivisionsDWP = allSubDivisionsDWP;
 
+// MoJ
+let allSubDivisionsMOJ = [{ value: '0', text: 'Chief Financial Officer (CFO) Group' }, { value: '1', text: 'Legal Aid Agency' }, { value: '2', text: 'Office of the Public Guardian' }, { value: '3', text: 'Chief People Officer (CPO) Group' }, { value: '5', text: 'Criminal Injuries Compensation Authority' }, { value: '5', text: 'Justice, Policy, Strategy and Communications Group' }, { value: '5', text: 'Justice, Analysis and Offender Policy Group' }, { value: '5', text: 'HM Courts and Tribunals Service' }, { value: '5', text: 'HM Prison and Probation Service' }];
+
+module.exports.allSubDivisionsMOJ = allSubDivisionsMOJ;
+
 let allProfessions = [{ value: '0', text: 'Analysis' }, { value: '1', text: 'Commercial' }, { value: '2', text: 'Communications' }, { value: '3', text: 'Corporate finance' }, { value: '4', text: 'Digital, Data and Technology' }, { value: '5', text: 'Finance' }, { value: '6', text: 'Fraud, error, debt and grants' }, { value: '7', text: 'Human resources' }, { value: '8', text: 'Internal audit' }, { value: '9', text: 'Legal' }, { value: '10', text: 'Project delivery' }, { value: '11', text: 'Property' }, { value: '12', text: 'Other' }];
 
 module.exports.allProfessions = allProfessions;
