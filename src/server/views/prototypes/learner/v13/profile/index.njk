@@ -32,13 +32,13 @@
 
 {% block content %}
 
-    <h1 class="heading-xlarge heading heading--page-heading ">
-        Hello,
-        {% if firstName %}
+    <h1 class="heading-large heading heading--page-heading ">
+        Your profile
+        {# {% if firstName %}
          {{ firstName }}
         {% else %}
             Lucy
-        {% endif %}
+        {% endif %} #}
     </h1>
 
     {% call components.gridRow() %}
@@ -129,6 +129,8 @@
             </table>
 
             {{ components.heading(text='Job details', tag='h2', size='medium', extraClass='') }}
+
+            <p>Job details are required to help create suggestions for your learning</p>
 
             <table class="key-value-list key-value-list--auto u-space-b30 table--top">
 

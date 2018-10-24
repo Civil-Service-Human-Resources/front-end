@@ -117,3 +117,12 @@ body {
   background: #fbfbfb;
   border: 1px solid #c1c1c1;
 }
+
+body {
+  background-color: green;
+}
+
+.wrapper--wrong {
+  padding-bottom: 10px;
+  background-color: $mellow-red;
+}
